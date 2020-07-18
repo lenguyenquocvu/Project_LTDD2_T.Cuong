@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "33119525128",
+    "firebase_url": "https://quanlydiemsinhvien-d3ff8.firebaseio.com",
+    "project_id": "quanlydiemsinhvien-d3ff8",
+    "storage_bucket": "quanlydiemsinhvien-d3ff8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:33119525128:android:7e8d9170edac35422f74bd",
+        "android_client_info": {
+          "package_name": "com.example.quanlydiemsinhvien"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "33119525128-j9qgggool43n5oos1dr79ja2rvrqmphp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCARVOs1F8JMP-XrDd7CWZwcpN8K-C_qX4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "33119525128-j9qgggool43n5oos1dr79ja2rvrqmphp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

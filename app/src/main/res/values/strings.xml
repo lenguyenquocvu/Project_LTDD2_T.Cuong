@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">QuanLyDiemSinhVien</string>
+
+    <!-- String of the Khoa Layout-->
+    <string name="actionBarTitle">Danh sách Khoa</string>
+    <string name="ten_khoa">Tên Khoa</string>
+    <string name="ma_khoa">Mã Khoa</string>
+    <string name="ngay_thanh_lap">Ngày Thành Lập</string>
+    <string name="item_menu_them">Thêm</string>
+
+    <!-- Dialog -->
+    <string name="titleAddKhoa">Thêm Khoa Mới</string>
+    <string name="hintEdtMaKhoa">Nhập mã Khoa...</string>
+    <string name="hintEdtTenKhoa">Nhập tên Khoa...</string>
+    <string name="hintEdtNgayThanhLap">Ngày thành lập ...</string>
+    <string name="btnThem">Thêm</string>
+    <string name="btnCancel">Cancel</string>
+
+    <!-- End Khoa layout -->
+
+
+    <!-- String of the Nganh Layout -->
+    <string name="titleForActionBarOfNganh">Danh sách Ngành của Khoa </string>
+    <string name="ten_nganh">Tên Ngành</string>
+    <string name="ma_nganh">Mã Ngành</string>
+
+    <!-- Dialog -->
+    <string name="titleAddNganh">Thêm Ngành Mới</string>
+    <string name="hintEdtMaNganh">Nhập mã Ngành...</string>
+    <string name="hintEdtTenNganh">Nhập tên Khoa...</string>
+    <!-- End Nganh layout-->
+
 </resources>

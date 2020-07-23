@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     ListView listView;
     ArrayList<String> arrayList = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         listView = findViewById(R.id.lvTest);
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, arrayList);
         listView.setAdapter(adapter);
+
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
         DatabaseReference ref = database.child("ChuongTrinhDaoTao");
         ref.addValueEventListener(new ValueEventListener() {

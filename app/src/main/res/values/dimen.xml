@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Value of the Khoa layout-->
+    <dimen name="heightCarViewKhoa">70dp</dimen>
+    <dimen name="fontSizeOnCarViewKhoa">20sp</dimen>
+    <dimen name="carViewMargin">3dp</dimen>
+    <dimen name="carViewCorner">5dp</dimen>
+    <dimen name="cardViewElevation">2dp</dimen>
+
+    <!-- Dialog -->
+    <dimen name="marginDialog">20dp</dimen>
+    <dimen name="fontSizeTextViewDialog">15dp</dimen>
+
+    <!-- End Khoa layout -->
+
+</resources>

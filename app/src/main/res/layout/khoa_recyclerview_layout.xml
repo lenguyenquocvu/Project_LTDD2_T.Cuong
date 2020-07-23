@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Khoa.KhoaActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            style="@style/title_for_table_khoa"
+            android:layout_weight="2">
+
+            <TextView
+                style="@style/textview_on_table_khoa"
+                android:text="@string/ma_khoa" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/title_for_table_khoa"
+            android:layout_weight="4">
+
+            <TextView
+                style="@style/textview_on_table_khoa"
+                android:text="@string/ten_khoa" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/title_for_table_khoa"
+            android:layout_weight="2">
+
+            <TextView
+                style="@style/textview_on_table_khoa"
+                android:text="@string/ngay_thanh_lap" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/khoa_recylerview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:scrollbars="vertical" />
+</LinearLayout>

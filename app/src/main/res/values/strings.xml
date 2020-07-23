@@ -8,7 +8,13 @@
     <string name="hello_world">Hello Square World!</string>
 
     <string name="txtQuanLy">Quản lý</string>
+    <string name="txtDanhSachGV">Danh sách giảng viên</string>
+    <string name="txtDanhSachSV">Danh sách sinh viên</string>
     <string name="btnKhoa">Khoa</string>
     <string name="btnGiangVien">Giảng viên</string>
     <string name="btnSinhVien">Sinh viên</string>
+
+    <string name="themMenuItem">Thêm</string>
+    <string name="thoatMenuItem">Thoát</string>
+    <string name="menuTitle">Option menu</string>
 </resources>

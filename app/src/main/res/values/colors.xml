@@ -3,11 +3,18 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="backgroundColor">#000000</color>
-    <color name="btnColor">#FF3704</color>
-    <color name="titleColor">#FF3704</color>
-    <color name="textColor">#ffffff</color>
-    <color name="start_background_color">#000000</color>
-    <color name="center_background_color">#000000</color>
-    <color name="end_background_color">#31302F</color>
+    <color name="backgroundColor">#ffffff</color>
+    <color name="btnColor">#3B5998</color>
+    <color name="titleColor">#3B5998</color>
+    <color name="textColorButton">#ffffff</color>
+    <color name="start_background_color">#3B5998</color>
+    <color name="center_background_color">#3B5998</color>
+    <color name="end_background_color">#DFE3EE</color>
+    <color name="textColorItemRecyclerViewEven">#ffffff</color>
+    <color name="textColorItemRecyclerViewOdd">#3B5998</color>
+    <color name="recyclerViewItemEvenColor">#3B5998</color>
+    <color name="recyclerViewItemOddColor">#ffffff</color>
+    <color name="actionBarBackground">#DFE3EE</color>
+    <color name="textActionBarColor">#3B5998</color>
+    <color name="menuActionBarcolor">#3B5998</color>
 </resources>

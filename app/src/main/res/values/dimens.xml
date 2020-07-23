@@ -14,8 +14,11 @@
     <dimen name="inner_frame_layout_padding">5dp</dimen>
     <dimen name="layout_margin">5dp</dimen>
     <dimen name="button_margin_bottom">5dp</dimen>
-    <dimen name="title_text_size">30sp</dimen>
+    <dimen name="title_text_size">15sp</dimen>
     <dimen name="button_padding_left">5dp</dimen>
     <dimen name="button_radius">3dp</dimen>
     <integer name="gradient_angle_background">90</integer>
+    <dimen name="cardView_margin">5dp</dimen>
+    <dimen name="cardView_corner">2dp</dimen>
+    <dimen name="cardView_Elevation">4dp</dimen>
 </resources>

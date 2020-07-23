@@ -6,16 +6,83 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionBarStyle">@style/MyActionBarStyle</item>
+<!--        Đổi màu cho menu item-->
+        <item name="android:textColor">@color/textActionBarColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MyActionBarStyle" parent="@style/Widget.AppCompat.ActionBar.Solid">
+        <item name="background">@color/actionBarBackground</item>
+        <item name="titleTextStyle">@style/TitleActionBarStyle</item>
+    </style>
+
+    <style name="TitleActionBarStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/textActionBarColor</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+    <style name="TitleLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">@dimen/layout_margin</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="TitleStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:textColor">@color/titleColor</item>
+        <item name="android:textAllCaps">true</item>
     </style>
 
     <style name="QuanLyButton">
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textColor">@color/textColorButton</item>
         <item name="android:background">@drawable/my_button_bg</item>
         <item name="android:paddingLeft">@dimen/button_padding_left</item>
         <item name="android:layout_marginBottom">@dimen/button_margin_bottom</item>
+    </style>
+
+    <style name="TextViewIdEven">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/textColorItemRecyclerViewEven</item>
+    </style>
+
+    <style name="TextViewTenEven">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">7</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/textColorItemRecyclerViewEven</item>
+    </style>
+
+    <style name="TextViewIdOdd">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/textColorItemRecyclerViewOdd</item>
+    </style>
+
+    <style name="TextViewTenOdd">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">7</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/textColorItemRecyclerViewOdd</item>
     </style>
 
 </resources>

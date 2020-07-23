@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view_khoahoc"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dsKhoaHocMargin"
+    android:layout_marginBottom="@dimen/marginBottomItem"
+    card_view:cardCornerRadius="@dimen/cornerRadiusKhoaHocItem"
+    card_view:cardElevation="@dimen/cardElevation">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/edtMaMH"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/khK17"
+            android:textSize="@dimen/khoahocSize"
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/marginLeftLayout"/>
+
+        <TextView
+            android:id="@+id/edtTenMH"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:text="@string/k17Info"
+            android:layout_marginLeft="@dimen/marginLeftLayout"/>
+
+        <TextView
+            android:id="@+id/SoTinChi"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/k17Info"
+            android:layout_marginLeft="@dimen/marginLeftLayout"/>
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

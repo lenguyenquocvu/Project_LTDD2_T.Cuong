@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">QuanLyDiemSinhVien</string>
+    <string name="dsKhoaHoc">Danh sách Khóa học</string>
+    <string name="khK17">K17</string>
+    <string name="k17Info">2017-2020</string>
+    <string name="txtKH">Khóa học:</string>
+    <string name="txtBatDau">Bắt đầu:</string>
+    <string name="txtKetThuc">Kết thúc:</string>
+    <string name="txtOK">OK</string>
+    <string name="txtCTDT">Chương trình đào tạo</string>
+    <string name="txtDSLopHP">Danh sách lớp học phần (theo môn học)</string>
+    <string name="txtMaLop">Mã lớp HP:</string>
+    <string name="txtTenLopHP">Tên lớp HP:</string>
+    <string name="txtMaGV">Mã giảng viên:</string>
+    <string name="titleMenuThem">Thêm</string>
+    <string name="lblMonHoc">Môn học:</string>
+    <string name="lblTenMonHoc">Tên môn học:</string>
+    <string name="lblSoTC">Số tín chỉ:</string>
 </resources>

@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">QuanLyDiemSinhVien</string>
+    <string name="txtMaSV">Mã Sinh Viên</string>
+    <string name="txtTenSV">Tên Sinh Viên</string>
+    <string name="txtDiemSV">Diểm</string>
+    <string name="txtTenGV">Tên Giảng Viên</string>
+    <string name="txtMaGV">Mã Sinh Viên</string>
+    <string name="txtTimKiem">Tim kiếm mã lớp...</string>
+    <string name="txtMaLHP">Mã lớp học phần</string>
+    <string name="txtTenLHP">Tên lớp học phần</string>
 </resources>

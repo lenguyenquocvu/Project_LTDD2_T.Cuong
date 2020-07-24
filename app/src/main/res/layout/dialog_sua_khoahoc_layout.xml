@@ -50,7 +50,8 @@
             <EditText
                 android:id="@+id/edtKhBatDau"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="numberSigned"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -74,7 +75,8 @@
             <EditText
                 android:id="@+id/edtKhKetThuc"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="numberSigned"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

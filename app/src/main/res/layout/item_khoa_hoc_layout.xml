@@ -1,36 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/card_view_khoahoc"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/dsKhoaHocMargin"
-    android:layout_marginBottom="@dimen/marginBottomItem"
-    card_view:cardCornerRadius="@dimen/cornerRadiusKhoaHocItem"
-    card_view:cardElevation="@dimen/cardElevation">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    
+<com.daimajia.swipe.SwipeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:swipe="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/swipe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        swipe:leftEdgeSwipeOffset="0dp"
+        swipe:rightEdgeSwipeOffset="0dp">
+        <LinearLayout
+            android:id="@+id/right_wrapper"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+            <TextView
+                android:id="@+id/edit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#0776a5"
+                android:text="Edit"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:clickable="true"/>
 
-        <TextView
-            android:id="@+id/txtKhoaKhoc"
-            android:layout_width="wrap_content"
+            <ImageButton
+                android:id="@+id/ibtnDelete"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#003c54"
+                android:gravity="center"
+                android:src="@drawable/ic_delete_white_24dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/khK17"
-            android:textSize="@dimen/khoahocSize"
-            android:textStyle="bold"
-            android:layout_marginLeft="@dimen/marginLeftLayout"/>
+            android:orientation="vertical"
+            android:background="?android:selectableItemBackground"
+            android:paddingLeft="@dimen/paddingLeftLayout"
+            android:elevation="@dimen/cardElevation">
 
-        <TextView
-            android:id="@+id/txtKhoaHocInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/k17Info"
-            android:layout_marginLeft="@dimen/marginLeftLayout"/>
-    </LinearLayout>
+            <TextView
+                android:id="@+id/txtKhoaKhoc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/khK17"
+                android:textSize="@dimen/khoahocSize"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"
+                android:layout_margin="@dimen/dsKhoaHocMargin" />
 
-
-</androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/txtKhoaHocInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/k17Info"
+                android:textColor="@color/colorBlack"
+                android:layout_margin="@dimen/dsKhoaHocMargin" />
+        </LinearLayout>
+    </com.daimajia.swipe.SwipeLayout>

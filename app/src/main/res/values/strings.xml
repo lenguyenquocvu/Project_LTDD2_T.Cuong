@@ -16,4 +16,6 @@
     <string name="lblMonHoc">Môn học:</string>
     <string name="lblTenMonHoc">Tên môn học:</string>
     <string name="lblSoTC">Số tín chỉ:</string>
+    <string name="btnEdit">Edit</string>
+    <string name="btnDelete">Delete</string>
 </resources>

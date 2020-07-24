@@ -7,4 +7,5 @@
     <dimen name="cardElevation">5dp</dimen>
     <dimen name="marginBottomItem">2dp</dimen>
     <dimen name="marginLeftLayout">15dp</dimen>
+    <dimen name="paddingLeftLayout">10dp</dimen>
 </resources>

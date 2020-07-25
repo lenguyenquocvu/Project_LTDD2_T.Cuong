@@ -7,4 +7,9 @@
     <!-- Color of the Khoa Layout -->
     <color name="colorBackgroundTitleTableKhoa">#FFFFFF</color>
 
+    <!-- Color for Swipe -->
+    <color name="colorBackgroundBtnEdit">#007bff </color>
+    <color name="colorBackgroundBtnDelete">#ff0d00</color>
+
+
 </resources>

@@ -1,4 +1,4 @@
-package com.example.quanlydiemsinhvien.Khoa;
+package com.example.quanlydiemsinhvien.data_models;
 
 public class Khoa {
     private String maKhoa;

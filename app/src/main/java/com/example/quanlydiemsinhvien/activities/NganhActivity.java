@@ -1,4 +1,4 @@
-package com.example.quanlydiemsinhvien.Nganh;
+package com.example.quanlydiemsinhvien.activities;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -11,15 +11,18 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.quanlydiemsinhvien.data_models.Nganh;
 import com.example.quanlydiemsinhvien.R;
+import com.example.quanlydiemsinhvien.adapters.NganhAdapter;
+import com.example.quanlydiemsinhvien.dialogs.AddNganhDialog;
 
 import java.util.Vector;
 
 public class NganhActivity extends AppCompatActivity {
-    private Vector<Nganh> listNganh = new Vector<Nganh>();
+    public static Vector<Nganh> dataNganh = new Vector<Nganh>();
     private RecyclerView recyclerView;
 
-    private NganhAdapter adapterNganh;
+    public static NganhAdapter adapterNganh;
     private RecyclerView.LayoutManager layoutManager;
 
     @Override
@@ -36,21 +39,22 @@ public class NganhActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         // Set data
-        listNganh.add(new Nganh("CNTT", "Cong Nghe Thong Tin"));
-        listNganh.add(new Nganh("DL", "Du Lich"));
-        listNganh.add(new Nganh("QTKD", "Quan Tri Kinh Doanh"));
-        listNganh.add(new Nganh("TN", "Tieng Nhat"));
-        listNganh.add(new Nganh("TH", "Tieng Han"));
-        listNganh.add(new Nganh("KT", "Ke Toan"));
-        listNganh.add(new Nganh("TA", "Tieng Anh"));
+        duLieuNganhGia();
 
         // Use the linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         // Specify an adapter
-        adapterNganh = new NganhAdapter(listNganh);
+        adapterNganh = new NganhAdapter(dataNganh, this);
         recyclerView.setAdapter(adapterNganh);
+    }
+
+    // Day du lieu gia
+    public void duLieuNganhGia() {
+        for (int i = 0; i < 10; i++) {
+            dataNganh.add(new Nganh("Ma Nganh " + i, "Ten Nganh " + i));
+        }
     }
 
     @Override

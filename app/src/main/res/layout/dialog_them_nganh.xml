@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:layout_margin="@dimen/marginDialog">
     <LinearLayout
         style="@style/child_linear_dialog"
@@ -23,7 +23,7 @@
             android:layout_weight="3">
 
             <EditText
-                android:id="@+id/edtMaKhoa"
+                android:id="@+id/edtMaNganh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hintEdtMaNganh" />
@@ -50,7 +50,7 @@
             android:layout_weight="3">
 
             <EditText
-                android:id="@+id/edtTenKhoa"
+                android:id="@+id/edtTenNganh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hintEdtTenNganh" />
@@ -78,7 +78,7 @@
             android:layout_weight="3">
 
             <Spinner
-                android:id="@+id/spnMaKhoa"
+                android:id="@+id/spnMaNganh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 

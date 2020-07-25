@@ -1,13 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nganh_cardview"
+    android:id="@+id/nganh_swipe"
     android:layout_width="match_parent"
     android:layout_height="@dimen/heightCarViewKhoa"
     android:layout_margin="@dimen/carViewMargin"
     app:cardCornerRadius="@dimen/carViewCorner"
     app:cardElevation="@dimen/cardViewElevation">
 
+    <!-- Layout for swipe from right to left -->
+    <LinearLayout
+        android:id="@+id/dragToLeft"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <TextView
+            android:id="@+id/tvEdit"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/btnEdit"
+            android:background="@color/colorBackgroundBtnEdit"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/tvDelete"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/btnDelete"
+            android:background="@color/colorBackgroundBtnDelete"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <!-- Layout of the row -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,4 +54,4 @@
 
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</com.daimajia.swipe.SwipeLayout>

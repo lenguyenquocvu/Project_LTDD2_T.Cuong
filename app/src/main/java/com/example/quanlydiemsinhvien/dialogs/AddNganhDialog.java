@@ -1,4 +1,4 @@
-package com.example.quanlydiemsinhvien.Nganh;
+package com.example.quanlydiemsinhvien.dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -13,14 +13,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.quanlydiemsinhvien.activities.NganhActivity;
+import com.example.quanlydiemsinhvien.data_models.Nganh;
 import com.example.quanlydiemsinhvien.R;
 
 public class AddNganhDialog extends DialogFragment {
     // Properties of view
-    Nganh nganh = new Nganh();
-    EditText edtMaNganh;
-    EditText edtTenNganh;
-    Spinner spnMaKhoa;
+    private EditText edtMaNganh;
+    private EditText edtTenNganh;
+    private Spinner spnMaKhoa;
 
     @NonNull
     @Override
@@ -28,7 +29,7 @@ public class AddNganhDialog extends DialogFragment {
         // Create a new dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        // Set content for dialog
+        /* Set content for dialog */
         // Set title for Dialog
         builder.setTitle(R.string.titleAddNganh);
 
@@ -36,23 +37,22 @@ public class AddNganhDialog extends DialogFragment {
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         builder.setView(inflater.inflate(R.layout.dialog_them_nganh, null));
 
-        // Set them button
+        // Set Them Nganh button
         builder.setPositiveButton(R.string.btnThem, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Dialog dialog = Dialog.class.cast(dialogInterface);
 
-                // Get all view from layout dialog_them_nganh
-                edtMaNganh = dialog.findViewById(R.id.tvMaNganh);
-                edtTenNganh = dialog.findViewById(R.id.tvTenNganh);
+                edtMaNganh = dialog.findViewById(R.id.edtMaNganh);
+                edtTenNganh = dialog.findViewById(R.id.edtTenNganh);
 
                 String maNganh = edtMaNganh.getText().toString();
                 String tenNganh = edtTenNganh.getText().toString();
 
-                nganh.setMaNganh(maNganh);
-                nganh.setTenNganh(tenNganh);
+                NganhActivity.dataNganh.add(new Nganh(maNganh, tenNganh));
+                NganhActivity.adapterNganh.notifyDataSetChanged();
 
-                Toast.makeText(getActivity(), "Them Nganh button is tapped!" + nganh.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Thêm thành công! ", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -61,7 +61,7 @@ public class AddNganhDialog extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(getActivity(), "Cancel on Nganh is tapped!", Toast.LENGTH_SHORT).show();
-                AddNganhDialog.this.getDialog().cancel();
+                AddNganhDialog.this.dismiss();
             }
         });
 

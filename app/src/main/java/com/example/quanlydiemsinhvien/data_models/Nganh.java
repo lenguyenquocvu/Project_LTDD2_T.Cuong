@@ -1,6 +1,4 @@
-package com.example.quanlydiemsinhvien.Nganh;
-
-import com.example.quanlydiemsinhvien.Khoa.Khoa;
+package com.example.quanlydiemsinhvien.data_models;
 
 public class Nganh {
     private String maNganh;
@@ -13,7 +11,7 @@ public class Nganh {
     public Nganh(String maNganh, String tenNganh) {
         this.maNganh = maNganh;
         this.tenNganh = tenNganh;
-    }
+    };
 
     public Nganh(String maNganh, String tenNganh, Khoa khoa) {
         this.maNganh = maNganh;

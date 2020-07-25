@@ -1,4 +1,4 @@
-package com.example.quanlydiemsinhvien.Khoa;
+package com.example.quanlydiemsinhvien.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,16 +12,19 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.quanlydiemsinhvien.Nganh.NganhActivity;
+import com.example.quanlydiemsinhvien.data_models.Khoa;
 import com.example.quanlydiemsinhvien.R;
+import com.example.quanlydiemsinhvien.adapters.KhoaAdapter;
+import com.example.quanlydiemsinhvien.dialogs.AddKhoaDialog;
+import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
 
 import java.util.Vector;
 
 public class KhoaActivity extends AppCompatActivity {
-    private Vector<Khoa> data = new Vector<Khoa>();
+    public static Vector<Khoa> dataKhoa = new Vector<Khoa>();
     private RecyclerView recyclerView;
 
-    private KhoaAdapter khoaAdapter;
+    public static KhoaAdapter khoaAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
     public static Intent intent;
@@ -32,31 +35,34 @@ public class KhoaActivity extends AppCompatActivity {
         setContentView(R.layout.khoa_recyclerview_layout);
         setTitle(R.string.actionBarTitle);
 
+        intent = getIntent();
+
         // Get View from layout
         recyclerView = findViewById(R.id.khoa_recylerview);
 
         // improve performance if changes in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
 
-        //AddKhoaDialog addKhoaDialog = new AddKhoaDialog();
+        // Item decoration
+        recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R.drawable.divider, getTheme())));
 
         // Day du lieu gia
-        data.add(new Khoa("HK01", "Cong Nghe Thong Tin", "12/11/2019"));
-        data.add(new Khoa("HK02", "Kinh Te", "12/01/2019"));
-        data.add(new Khoa("HK03", "Du Lich", "11/11/2019"));
-        data.add(new Khoa("HK04", "Quan Tri Kinh Doanh", "01/11/2019"));
-        data.add(new Khoa("HK05", "Ke Toan", "02/01/2019"));
-        data.add(new Khoa("HK06", "Tieng Han", "03/11/2019"));
-        //data.add(addKhoaDialog.getTheKhoa());
+        duLieuGia();
 
         // Use linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         // Specify an adapter
-        khoaAdapter = new KhoaAdapter(data);
+        khoaAdapter = new KhoaAdapter(this, dataKhoa);
         recyclerView.setAdapter(khoaAdapter);
+    }
 
+    // Day du lieu gia
+    public void duLieuGia() {
+        for (int i = 0; i < 20; i++) {
+           dataKhoa.add(new Khoa("K" + i, "Khoa " + i, + i + "/07/2020"));
+        }
     }
 
     // Create a menu on action bar
@@ -67,26 +73,19 @@ public class KhoaActivity extends AppCompatActivity {
         return true;
     }
 
-    // Event for item menu
+    // Event for item menu on action bar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.item_menu_them) {
             Log.d("test", "Item menu Them");
-
-            // Switch intent
-            intent = new Intent();
-            intent.setClass(KhoaActivity.this, NganhActivity.class);
-            startActivity(intent);
-
-            AddKhoaDialog theDialog = new AddKhoaDialog();
             showAddKhoaDialog();
         }
         return true;
     }
 
-    // Show add Khoa dialog
+    // Show Add Khoa dialog
     public void showAddKhoaDialog() {
-        DialogFragment newFragment = new AddKhoaDialog();
-        newFragment.show(getSupportFragmentManager(), "addKhoa");
+        DialogFragment khoaDialog = new AddKhoaDialog();
+        khoaDialog.show(getSupportFragmentManager(), "addKhoa");
     }
 }

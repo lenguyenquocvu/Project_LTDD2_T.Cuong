@@ -3,6 +3,7 @@ package com.example.quanlydiemsinhvien.phongdaotao;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,8 @@ public class HopThoaiThemGiangVienActivity extends Dialog {
 
     Button btnThem;
     Button btnThoat;
+
+    Intent intent;
 
     public HopThoaiThemGiangVienActivity(Context context) {
         super(context);

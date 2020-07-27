@@ -7,14 +7,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background"
-    tools:context=".phongdaotao.QuanLyActivity">
+    tools:context=".phongdaotao.DanhSachSinhVienActivity">
 
     <LinearLayout
         style="@style/TitleLayout">
 
         <TextView
-            android:text="@string/txtQuanLy"
-            style="@style/TitleStyle"/>
+            style="@style/TitleStyle"
+            android:text="@string/txtDanhSachSV" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -24,20 +25,20 @@
         android:layout_margin="@dimen/layout_margin"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnKhoa"
-            style="@style/QuanLyButton"
-            android:text="@string/btnKhoa"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_student_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btnGiangVien"
-            style="@style/QuanLyButton"
-            android:text="@string/btnGiangVien"/>
+        </androidx.recyclerview.widget.RecyclerView>
 
-        <Button
-            android:id="@+id/btnSinhVien"
-            style="@style/QuanLyButton"
-            android:text="@string/btnSinhVien"/>
+        <TextView
+            android:id="@+id/empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="No Records"
+            android:visibility="gone" />
 
     </LinearLayout>
 

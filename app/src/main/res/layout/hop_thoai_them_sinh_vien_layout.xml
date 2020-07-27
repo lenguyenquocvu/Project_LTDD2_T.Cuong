@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="500dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:background="@color/titleDialogBackgroundColor"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/titleThemDialog"
+            android:textColor="@color/titleDialogColor"
+            android:textAllCaps="true"
+            android:textStyle="bold"></TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/ThemLayout">
+
+            <TextView
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtMaSV"/>
+
+            <EditText
+                android:id="@+id/edtMaGV"
+                style="@style/EditTextAttributeName"
+                android:focusable="auto"
+                android:hint="@string/hintMaSV" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ThemLayout">
+
+            <TextView
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtHoSV"/>
+
+            <EditText
+                android:id="@+id/edtHoGV"
+                android:hint="@string/hintHoSV"
+                style="@style/EditTextAttributeName"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ThemLayout">
+
+            <TextView
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtTenSV"/>
+
+            <EditText
+                android:id="@+id/edtTenGV"
+                android:hint="@string/hintTenSV"
+                style="@style/EditTextAttributeName"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ThemLayout">
+
+            <TextView
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtSdtSV"/>
+
+            <EditText
+                android:id="@+id/edtSdtGV"
+                android:hint="@string/hintSdtSV"
+                android:inputType="phone"
+                style="@style/EditTextAttributeName"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ThemLayout">
+
+            <TextView
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtEmail"/>
+
+            <EditText
+                android:id="@+id/edtEmailGV"
+                android:hint="@string/hintEmail"
+                android:inputType="textEmailAddress"
+                style="@style/EditTextAttributeName"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ThemLayout">
+
+            <TextView
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtNgaySinh"/>
+
+            <EditText
+                android:id="@+id/editTextDate"
+                android:hint="@string/hintNgaySinh"
+                style="@style/EditTextDate" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ThemLayout">
+
+            <TextView
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtMaNganh"/>
+
+            <Spinner
+                android:id="@+id/spinnerMaNganh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                style="@style/SpinnerMaNganh"
+                android:entries="@array/spinnerMaNganh"></Spinner>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnThemSV"
+            android:text="@string/themDialogButton"
+            style="@style/ButtonThemDialog"/>
+
+        <Button
+            android:id="@+id/btnThoatSV"
+            android:text="@string/thoatDialogButton"
+            style="@style/ButtonThoatDialog"/>
+
+    </LinearLayout>
+
+</LinearLayout>

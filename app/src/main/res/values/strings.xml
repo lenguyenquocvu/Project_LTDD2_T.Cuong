@@ -8,7 +8,65 @@
     <string name="hello_world">Hello Square World!</string>
 
     <string name="txtQuanLy">Quản lý</string>
+    <string name="txtDanhSachGV">Danh sách giảng viên</string>
+    <string name="txtDanhSachSV">Danh sách sinh viên</string>
     <string name="btnKhoa">Khoa</string>
     <string name="btnGiangVien">Giảng viên</string>
     <string name="btnSinhVien">Sinh viên</string>
+
+    <string name="themMenuItem">Thêm</string>
+    <string name="thoatMenuItem">Thoát</string>
+
+    <string name="themDialogButton">Thêm</string>
+    <string name="thoatDialogButton">Thoát</string>
+
+    <string name="menuTitle">Option menu</string>
+
+    <string name="titleThemDialog">Thêm Giảng Viên</string>
+    <string name="titleChinhSuaDialog">Chỉnh sửa thông tin</string>
+
+    <string name="txtMaGV">Mã GV</string>
+    <string name="hintMaGV">Nhập mã giảng viên</string>
+
+    <string name="txtHoGV">Họ GV</string>
+    <string name="hintHoGV">Nhập họ giảng viên</string>
+
+    <string name="txtTenGV">Tên GV</string>
+    <string name="hintTenGV">Nhập tên giảng viên</string>
+
+    <string name="txtSdtGV">Số điện thoại</string>
+    <string name="hintSdtGV">Nhập số điện thoại</string>
+
+    <string name="txtEmail">Email</string>
+    <string name="hintEmail">Nhập email</string>
+
+    <string name="txtNgaySinh">Ngày sinh</string>
+    <string name="hintNgaySinh">Nhập ngày sinh</string>
+
+    <string name="txtMaNganh">Mã ngành</string>
+    <string name="hintMaNganh">Chọn mã ngành</string>
+
+    <string name="txtMaSV">Mã SV</string>
+    <string name="hintMaSV">Nhập mã sinh viên</string>
+
+    <string name="txtHoSV">Họ SV</string>
+    <string name="hintHoSV">Nhập họ sinh viên</string>
+
+    <string name="txtTenSV">Tên SV</string>
+    <string name="hintTenSV">Nhập tên sinh viên</string>
+
+    <string name="txtSdtSV">Số điện thoại</string>
+    <string name="hintSdtSV">Nhập số điện thoại</string>
+
+    <string-array name="spinnerMaNganh">
+        <item>@string/hintMaNganh</item>
+        <item>Ngành Công nghệ thông tin</item>
+        <item>Ngành Đồ họa</item>
+        <item>Ngành Truyền thông mạng máy tính</item>
+    </string-array>
+
+    <string name="swipeEdit">Chỉnh sửa</string>
+    <string name="swipeDelete">Xóa</string>
+
+    <string name="btnCapNhatDialog">Cập nhật</string>
 </resources>

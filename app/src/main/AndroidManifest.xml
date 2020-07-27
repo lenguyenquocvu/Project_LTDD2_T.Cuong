@@ -12,6 +12,7 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".phongdaotao.DanhSachGiangVienActivity" ></activity>
+        <activity android:name=".phongdaotao.DanhSachSinhVienActivity" ></activity>
         <activity android:name=".phongdaotao.QuanLyActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

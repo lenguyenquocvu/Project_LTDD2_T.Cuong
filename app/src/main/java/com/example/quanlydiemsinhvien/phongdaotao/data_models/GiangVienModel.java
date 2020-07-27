@@ -1,10 +1,10 @@
 package com.example.quanlydiemsinhvien.phongdaotao.data_models;
 
-public class CardViewModel  {
+public class GiangVienModel {
     String id;
     String name;
 
-    public CardViewModel(String id, String name) {
+    public GiangVienModel(String id, String name) {
         this.id = id;
         this.name = name;
     }

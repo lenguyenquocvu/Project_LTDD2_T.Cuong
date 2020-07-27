@@ -85,4 +85,70 @@
         <item name="android:textColor">@color/textColorItemRecyclerViewOdd</item>
     </style>
 
+    <style name="ThemLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="TextViewAttributeName">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">3</item>
+    </style>
+
+    <style name="EditTextAttributeName">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">7</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/hintTextSize</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="EditTextDate">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">7</item>
+        <item name="android:inputType">date</item>
+        <item name="android:textSize">@dimen/hintTextSize</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="SpinnerMaNganh" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
+        <item name="android:textSize">@dimen/spinnerItemTextSize</item>
+    </style>
+
+    <style name="SwipeStyle">
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:weightSum">2</item>
+    </style>
+
+    <style name="SwipeItemStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:background">#0076a5</item>
+    </style>
+
+    <style name="ButtonThemDialog">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:background">@color/btnColor</item>
+        <item name="android:textColor">@color/textColorButton</item>
+    </style>
+
+    <style name="ButtonThoatDialog">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:background">@color/btnColor</item>
+        <item name="android:textColor">@color/textColorButton</item>
+    </style>
 </resources>

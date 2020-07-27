@@ -7,14 +7,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background"
-    tools:context=".phongdaotao.DanhSachGiangVienActivity">
+    tools:context=".phongdaotao.DanhSachSinhVienActivity">
 
     <LinearLayout
         style="@style/TitleLayout">
 
         <TextView
-            android:text="@string/txtDanhSachGV"
-            style="@style/TitleStyle"/>
+            style="@style/TitleStyle"
+            android:text="@string/txtDanhSachSV" />
 
     </LinearLayout>
 
@@ -26,7 +26,7 @@
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_teacher_recycler_view"
+            android:id="@+id/list_student_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

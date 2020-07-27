@@ -1,81 +1,66 @@
 package com.example.quanlydiemsinhvien.phongdaotao;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.util.Attributes;
 import com.example.quanlydiemsinhvien.R;
-import com.example.quanlydiemsinhvien.phongdaotao.adapters.GiangVienSwipeRecyclerViewAdapter;
-import com.example.quanlydiemsinhvien.phongdaotao.data_models.GiangVienModel;
+import com.example.quanlydiemsinhvien.phongdaotao.adapters.SinhVienSwipeRecyclerViewAdapter;
+import com.example.quanlydiemsinhvien.phongdaotao.data_models.SinhVienModel;
 
 import java.util.ArrayList;
 
-public class DanhSachGiangVienActivity extends AppCompatActivity {
+public class DanhSachSinhVienActivity extends AppCompatActivity {
     Intent intent;
-    public static ArrayList<GiangVienModel> data;
+    private ArrayList<SinhVienModel> data;
+    public static Context context;
 
     private Dialog dialog;
-
-    String id;
-    String name;
-
-    EditText edtMaGV;
-    EditText edtTenGV;
 
     private RecyclerView recyclerView;
     private TextView tvEmptyView;
 
-    GiangVienSwipeRecyclerViewAdapter mAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.danh_sach_giang_vien_layout);
-        setTitle("Quản lý giảng viên");
+        setContentView(R.layout.danh_sach_sinh_vien_layout);
+        setTitle("Quản lý sinh viên");
 
+        dialog = new HopThoaiThemSinhVienActivity(DanhSachSinhVienActivity.this);
 
-        dialog = new HopThoaiThemGiangVienActivity(DanhSachGiangVienActivity.this);
-
-        data = new ArrayList<GiangVienModel>();
-        data.add(new GiangVienModel("001", "Nguyễn A"));
-        data.add(new GiangVienModel("002", "Nguyễn B"));
-        data.add(new GiangVienModel("003", "Nguyễn C"));
-        data.add(new GiangVienModel("004", "Nguyễn D"));
-        data.add(new GiangVienModel("005", "Nguyễn E"));
-        data.add(new GiangVienModel("006", "Nguyễn F"));
-        data.add(new GiangVienModel("007", "Nguyễn G"));
-        data.add(new GiangVienModel("007", "Nguyễn G"));
-        data.add(new GiangVienModel("007", "Nguyễn G"));
-        data.add(new GiangVienModel("007", "Nguyễn G"));
-        data.add(new GiangVienModel("007", "Nguyễn G"));
-        data.add(new GiangVienModel("007", "Nguyễn G"));
-
-        edtMaGV = findViewById(R.id.edtMaGV);
-        edtTenGV = findViewById(R.id.edtTenGV);
+        data = new ArrayList<SinhVienModel>();
+        data.add(new SinhVienModel("001", "Nguyễn A"));
+        data.add(new SinhVienModel("002", "Nguyễn B"));
+        data.add(new SinhVienModel("003", "Nguyễn C"));
+        data.add(new SinhVienModel("004", "Nguyễn D"));
+        data.add(new SinhVienModel("005", "Nguyễn E"));
+        data.add(new SinhVienModel("006", "Nguyễn F"));
+        data.add(new SinhVienModel("007", "Nguyễn G"));
+        data.add(new SinhVienModel("007", "Nguyễn G"));
+        data.add(new SinhVienModel("007", "Nguyễn G"));
+        data.add(new SinhVienModel("007", "Nguyễn G"));
+        data.add(new SinhVienModel("007", "Nguyễn G"));
+        data.add(new SinhVienModel("007", "Nguyễn G"));
 
         tvEmptyView = (TextView) findViewById(R.id.empty_view);
-        recyclerView = findViewById(R.id.list_teacher_recycler_view);
+        recyclerView = findViewById(R.id.list_student_recycler_view);
         LinearLayoutManager layoutManager =new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        mAdapter = new GiangVienSwipeRecyclerViewAdapter(this, data);
+        SinhVienSwipeRecyclerViewAdapter mAdapter = new SinhVienSwipeRecyclerViewAdapter(this, data);
+
+         
 
         if (data.isEmpty()) {
             recyclerView.setVisibility(View.GONE);
@@ -85,7 +70,7 @@ public class DanhSachGiangVienActivity extends AppCompatActivity {
             recyclerView.setVisibility(View.VISIBLE);
             tvEmptyView.setVisibility(View.GONE);
         }
-        ((GiangVienSwipeRecyclerViewAdapter) mAdapter).setMode(Attributes.Mode.Single);
+        ((SinhVienSwipeRecyclerViewAdapter) mAdapter).setMode(Attributes.Mode.Single);
         recyclerView.setAdapter(mAdapter);
 
         /* Scroll Listeners */

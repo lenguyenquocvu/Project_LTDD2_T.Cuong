@@ -1,40 +1,65 @@
 package com.example.quanlydiemsinhvien.phongdaotao;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.quanlydiemsinhvien.R;
 
-public class HopThoaiThemGiangVienActivity extends DialogFragment {
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
+import java.util.List;
+
+public class HopThoaiThemGiangVienActivity extends Dialog {
+    String id;
+    String name;
+
+    EditText edtMaGV;
+    EditText edtTenGV;
+
+    Button btnThem;
+    Button btnThoat;
+
+    public HopThoaiThemGiangVienActivity(Context context) {
+        super(context);
+    }
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        // Get the layout inflater
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.hop_thoai_them_giang_vien_layout);
 
-        // Inflate and set the layout for the dialog
-        // Pass null as the parent view because its going in the dialog layout
-        builder.setView(inflater.inflate(R.layout.hop_thoai_them_giang_vien_layout, null))
-                // Add action buttons
-                .setPositiveButton(R.string.themMenuItem, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        // sign in the user ...
-                    }
-                })
-                .setNegativeButton(R.string.thoatMenuItem, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        HopThoaiThemGiangVienActivity.this.getDialog().cancel();
-                    }
-                });
-        return builder.create();
+        edtMaGV = findViewById(R.id.edtMaGV);
+        edtTenGV = findViewById(R.id.edtTenGV);
+
+        btnThem = findViewById(R.id.btnThemGV);
+        btnThoat = findViewById(R.id.btnThoatGV);
+
+        btnThem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        btnThoat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HopThoaiThemGiangVienActivity.this.cancel();
+            }
+        });
     }
 }

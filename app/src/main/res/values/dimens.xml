@@ -21,6 +21,4 @@
     <dimen name="cardView_margin">5dp</dimen>
     <dimen name="cardView_corner">2dp</dimen>
     <dimen name="cardView_Elevation">4dp</dimen>
-    <dimen name="hintTextSize">10sp</dimen>
-    <dimen name="spinnerItemTextSize">10sp</dimen>
 </resources>

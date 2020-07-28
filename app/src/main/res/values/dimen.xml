@@ -8,4 +8,5 @@
     <dimen name="marginBottomItem">2dp</dimen>
     <dimen name="marginLeftLayout">15dp</dimen>
     <dimen name="paddingLeftLayout">10dp</dimen>
+    <dimen name="width_0dp">0dp</dimen>
 </resources>

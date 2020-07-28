@@ -21,10 +21,8 @@ import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.ChuongTrinhDaoTaoAdapter;
 import com.example.quanlydiemsinhvien.adapters.decorations.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.data_models.ChuongTrinhDaoTao;
-import com.example.quanlydiemsinhvien.helper.SwipeHelper;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
@@ -67,89 +65,6 @@ public class DanhSachChuongTrinhDaoTaoActivity extends AppCompatActivity {
         chuongTrinhDaoTaoAdapter = new ChuongTrinhDaoTaoAdapter(this, dsChuongTrinhDaoTaos_after_click);
         rvChuongTrinhDaoTaos.setAdapter(chuongTrinhDaoTaoAdapter);
 
-
-
-//        SwipeHelper swipeHelper = new SwipeHelper(this, rvChuongTrinhDaoTaos) {
-//            @Override
-//            public void instantiateUnderlayButton(RecyclerView.ViewHolder viewHolder, List<UnderlayButton> underlayButtons) {
-//                underlayButtons.add(new SwipeHelper.UnderlayButton(getApplicationContext(),
-//                        "Delete",
-//                        30, 0,
-//                        Color.parseColor("#FF3C30"),
-//                        new SwipeHelper.UnderlayButtonClickListener() {
-//                            @Override
-//                            public void onClick(final int pos) {
-//                                Log.d("delete", pos+"");
-//                                AlertDialog.Builder builder = new AlertDialog.Builder(DanhSachChuongTrinhDaoTaoActivity.this);
-//                                builder.setTitle("Xóa khóa học");
-//                                builder.setMessage("Bạn có muốn xóa không?");
-//                                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(DialogInterface dialog, int which) {
-//                                        dialog.dismiss();
-//                                    }
-//                                });
-//
-//                                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(DialogInterface dialog, int which) {
-//                                        dsChuongTrinhDaoTaos_after_click.remove(pos);
-//                                        chuongTrinhDaoTaoAdapter.notifyDataSetChanged();
-//                                    }
-//                                });
-//
-//                                AlertDialog alertDialog = builder.create();
-//                                alertDialog.show();
-//                            }
-//                        }
-//                ));
-//
-//                underlayButtons.add(new SwipeHelper.UnderlayButton(getApplicationContext(),
-//                        "Edit",
-//                        30, 0,
-//                        Color.parseColor("#000000"),
-//                        new SwipeHelper.UnderlayButtonClickListener() {
-//                            @Override
-//                            public void onClick(int pos) {
-//                                final ChuongTrinhDaoTao chuongTrinhDaoTao = dsChuongTrinhDaoTaos_after_click.get(pos);
-//
-//                                AlertDialog.Builder builder = new AlertDialog.Builder(DanhSachChuongTrinhDaoTaoActivity.this);
-//
-//                                View view = LayoutInflater.from(DanhSachChuongTrinhDaoTaoActivity.this).inflate(R.layout.dialog_sua_mon_hoc__ctdt_layout, null);
-//
-//                                EditText edtMaMH = view.findViewById(R.id.edtMaMH);
-//                                EditText edtTenMH = view.findViewById(R.id.edtTenMH);
-//                                EditText edtSoTinChi = view.findViewById(R.id.edtSoTinChi);
-//
-//                                edtMaMH.setText(chuongTrinhDaoTao.getMaMH());
-//                                edtTenMH.setText(chuongTrinhDaoTao.getTenMH());
-//                                edtSoTinChi.setText(chuongTrinhDaoTao.getSoTinChi() + "");
-//
-//                                builder.setView(view);
-//
-//                                builder.setTitle("Cập nhật lại môn học");
-//
-//                                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(DialogInterface dialog, int which) {
-//                                        dialog.dismiss();
-//                                    }
-//                                });
-//
-//                                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(DialogInterface dialog, int which) {
-//                                        chuongTrinhDaoTaoAdapter.notifyDataSetChanged();
-//                                    }
-//                                });
-//
-//                                AlertDialog alertDialog = builder.create();
-//                                alertDialog.show();
-//                            }
-//                        }
-//                ));
-//            }
-//        };
     }
 
     @Override

@@ -32,6 +32,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:19.3.1'
     implementation 'com.google.firebase:firebase-database:19.3.1'
 
+
     // swipe
     implementation 'com.daimajia.swipelayout:library:1.2.0@aar'
 

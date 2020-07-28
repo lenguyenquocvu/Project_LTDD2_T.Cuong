@@ -1,21 +1,19 @@
 package com.example.quanlydiemsinhvien.data_models;
 
-public class KhoaHoc {
+import java.io.Serializable;
+
+public class KhoaHoc implements Serializable {
     private String maKH;
-    private String batDau;
-    private String ketThuc;
+    private int batDau;
+    private int ketThuc;
 
     public KhoaHoc() {
     }
 
-    public KhoaHoc(String maKH, String batDau, String ketThuc) {
+    public KhoaHoc(String maKH, int batDau, int ketThuc) {
         this.maKH = maKH;
         this.batDau = batDau;
         this.ketThuc = ketThuc;
-    }
-
-    public String getThoiGianKhoaHoc(){
-        return this.batDau + "-" + this.ketThuc;
     }
 
     public String getMaKH() {
@@ -26,19 +24,19 @@ public class KhoaHoc {
         this.maKH = maKH;
     }
 
-    public String getBatDau() {
+    public int getBatDau() {
         return batDau;
     }
 
-    public void setBatDau(String batDau) {
+    public void setBatDau(int batDau) {
         this.batDau = batDau;
     }
 
-    public String getKetThuc() {
+    public int getKetThuc() {
         return ketThuc;
     }
 
-    public void setKetThuc(String ketThuc) {
+    public void setKetThuc(int ketThuc) {
         this.ketThuc = ketThuc;
     }
 

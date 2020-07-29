@@ -15,8 +15,10 @@ import androidx.fragment.app.DialogFragment;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.activities.KhoaActivity;
 import com.example.quanlydiemsinhvien.data_models.Khoa;
+import com.example.quanlydiemsinhvien.firebase_data.KhoaDatabase;
 
 public class AddKhoaDialog extends DialogFragment {
+
     private EditText edtMaKhoa;
     private EditText edtTenKhoa;
     private DatePicker dtpNgayThanhLap;
@@ -54,10 +56,15 @@ public class AddKhoaDialog extends DialogFragment {
                 String tenKhoa = edtTenKhoa.getText().toString();
                 String ngayThanhLap = checkDigit(day) + "/" + checkDigit(month) + "/" + year;
 
-                // Add the khoa into the RecyclerView
                 Khoa khoa = new Khoa(maKhoa, tenKhoa, ngayThanhLap);
-                KhoaActivity.dataKhoa.add(khoa);
-                KhoaActivity.khoaAdapter.notifyDataSetChanged();
+
+                // Add new khoa to data base
+                KhoaDatabase mDatabase = new KhoaDatabase();
+                mDatabase.writeNewKhoa(khoa.getMaKhoa(), khoa.getTenKhoa(), khoa.getNgayThanhLap());
+
+                // Add the khoa into the RecyclerView
+                /*KhoaActivity.dataKhoa.add(khoa);
+                KhoaActivity.khoaAdapter.notifyDataSetChanged();*/
 
                 Toast.makeText(getActivity(), khoa.getMaKhoa(), Toast.LENGTH_SHORT).show();
             }

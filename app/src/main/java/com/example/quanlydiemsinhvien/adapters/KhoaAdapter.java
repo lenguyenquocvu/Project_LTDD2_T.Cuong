@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,22 +24,27 @@ import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.activities.KhoaActivity;
 import com.example.quanlydiemsinhvien.activities.NganhActivity;
 import com.example.quanlydiemsinhvien.data_models.Khoa;
+import com.example.quanlydiemsinhvien.firebase_data.KhoaDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder> {
+    ArrayList<Khoa> listKhoa = new ArrayList<Khoa>();
+
     EditText edtMaKhoa;
     EditText edtTenKhoa;
     DatePicker dpNgayThanhLap;
 
     private Context context;
-    private Vector<Khoa> listCarKhoa;
     public static Intent intent;
 
-    public KhoaAdapter(Context context, Vector<Khoa> listCarKhoa) {
+    KhoaDatabase mKhoaDatabase = new KhoaDatabase();
+
+    public KhoaAdapter(ArrayList<Khoa> listKhoa, Context context) {
+        this.listKhoa = listKhoa;
         this.context = context;
-        this.listCarKhoa = listCarKhoa;
     }
 
     @Override
@@ -76,7 +80,8 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final KhoaViewHolder holder, final int position) {
-        Khoa theKhoa = listCarKhoa.get(position);
+
+        Khoa theKhoa = listKhoa.get(position);
         holder.tvMaKhoa.setText(theKhoa.getMaKhoa());
         holder.tvTenKhoa.setText(theKhoa.getTenKhoa());
         holder.tvNgayThanhLap.setText(theKhoa.getNgayThanhLap());
@@ -87,7 +92,7 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
         // Drag from right to left
         holder.swipeLayout.addDrag(SwipeLayout.DragEdge.Right, holder.swipeLayout.findViewById(R.id.dragToLeft));
 
-        // Event when swiping
+        // Action when swiping
         holder.swipeLayout.addSwipeListener(new SwipeLayout.SwipeListener() {
             @Override
             public void onStartOpen(SwipeLayout layout) {
@@ -157,7 +162,7 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
 
     @Override
     public int getItemCount() {
-        return listCarKhoa.size();
+        return listKhoa.size();
     }
 
     // Show dialog Remove the Khoa
@@ -172,7 +177,11 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(context, "Xoa Khoa " + recentKhoa.getMaKhoa() + "is tapped!", Toast.LENGTH_SHORT).show();
-                removeTheKhoa(position);
+
+                // Delete A Khoa from database
+                mKhoaDatabase.deleteAKhoa(recentKhoa.getMaKhoa());
+
+                //removeTheKhoa(position);
             }
         });
 
@@ -180,7 +189,6 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(context, "Cancel Khoa is tapped!", Toast.LENGTH_SHORT).show();
-
             }
         });
 
@@ -189,11 +197,11 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
     }
 
     // Remove the khoa
-    public void removeTheKhoa(int position) {
+    /*public void removeTheKhoa(int position) {
         KhoaActivity.dataKhoa.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, KhoaActivity.dataKhoa.size());
-    }
+    }*/
 
     // Show dialog Edit the dialog
     public void showDialogEditKhoa(final Khoa recentKhoa, View view, final int position) {
@@ -219,8 +227,7 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
         final int day = Integer.parseInt(arrNgayThanhLap[0]);
         int month = Integer.parseInt(arrNgayThanhLap[1]);
         int year = Integer.parseInt(arrNgayThanhLap[2]);
-        dpNgayThanhLap.updateDate(year, month, day);
-
+        dpNgayThanhLap.updateDate(year, month - 1, day);
 
         // Set button Edit Khoa
         builder.setPositiveButton(R.string.btnSua, new DialogInterface.OnClickListener() {
@@ -248,8 +255,11 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
                 recentKhoa.setTenKhoa(tenKhoa);
                 recentKhoa.setNgayThanhLap(ngayThanhLap);
 
-                notifyItemChanged(position);
-                KhoaActivity.khoaAdapter.notifyItemChanged(position);
+                // Update database A Khoa into Firebase database
+                mKhoaDatabase.updateAKhoa(maKhoa, tenKhoa, ngayThanhLap);
+
+                /*notifyItemChanged(position);
+                KhoaActivity.khoaAdapter.notifyItemChanged(position);*/
             }
         });
 

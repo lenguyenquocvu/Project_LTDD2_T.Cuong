@@ -28,12 +28,12 @@ public class NganhAdapter extends RecyclerSwipeAdapter<NganhAdapter.NganhViewHol
     EditText edtMaNganh;
     EditText edtTenNganh;
 
-    Intent intent;
-    private Vector<Nganh> listCarNganh;
     Context context;
+    Intent intent;
+    private Vector<Nganh> listNganh;
 
-    public NganhAdapter(Vector<Nganh> listCarNganh, Context context) {
-        this.listCarNganh = listCarNganh;
+    public NganhAdapter(Vector<Nganh> listNganh, Context context) {
+        this.listNganh = listNganh;
         this.context = context;
     }
 
@@ -68,7 +68,7 @@ public class NganhAdapter extends RecyclerSwipeAdapter<NganhAdapter.NganhViewHol
 
     @Override
     public void onBindViewHolder(@NonNull NganhViewHolder holder, final int position) {
-        Nganh theNganh = listCarNganh.get(position);
+        Nganh theNganh = listNganh.get(position);
         holder.tvMaNganh.setText(theNganh.getMaNganh());
         holder.tvTenNganh.setText(theNganh.getTenNganh());
 
@@ -112,7 +112,7 @@ public class NganhAdapter extends RecyclerSwipeAdapter<NganhAdapter.NganhViewHol
 
     @Override
     public int getItemCount() {
-        return listCarNganh.size();
+        return listNganh.size();
     }
 
     // Show edit Nganh dialog
@@ -165,8 +165,6 @@ public class NganhAdapter extends RecyclerSwipeAdapter<NganhAdapter.NganhViewHol
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-
-
 
     // Show delete Nganh dialog
     public void showDeleteNganhDialog(final int position) {

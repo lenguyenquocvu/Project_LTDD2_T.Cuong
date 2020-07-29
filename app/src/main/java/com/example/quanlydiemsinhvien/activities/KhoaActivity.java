@@ -1,12 +1,16 @@
 package com.example.quanlydiemsinhvien.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,17 +21,29 @@ import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.KhoaAdapter;
 import com.example.quanlydiemsinhvien.dialogs.AddKhoaDialog;
 import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
+import com.example.quanlydiemsinhvien.firebase_data.KhoaDatabase;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class KhoaActivity extends AppCompatActivity {
-    public static Vector<Khoa> dataKhoa = new Vector<Khoa>();
-    private RecyclerView recyclerView;
-
+    public static final String KHOATAG = "Khoa";
+    public static ArrayList<Khoa> dataKhoa = new ArrayList<Khoa>();
     public static KhoaAdapter khoaAdapter;
-    private RecyclerView.LayoutManager layoutManager;
 
     public static Intent intent;
+    private Context context = KhoaActivity.this;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+
+    // Properties of Firebase
+    public static DatabaseReference mDataRef = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,29 +56,42 @@ public class KhoaActivity extends AppCompatActivity {
         // Get View from layout
         recyclerView = findViewById(R.id.khoa_recylerview);
 
-        // improve performance if changes in content do not change the layout size of the RecyclerView
+        // Improve performance if changes in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
 
         // Item decoration
         recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R.drawable.divider, getTheme())));
 
-        // Day du lieu gia
-        duLieuGia();
+        // Get all data from firebase
+        mDataRef.child("Khoa").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                dataKhoa.clear();
+                for (DataSnapshot node : snapshot.getChildren()) {
+                    Khoa khoa = node.getValue(Khoa.class);
+                    dataKhoa.add(khoa);
+
+                    Log.d(KHOATAG, khoa.toString() + "");
+                }
+
+                // Update after changed data
+                mDataRef.keepSynced(true);
+
+                // Specify an adapter
+                khoaAdapter = new KhoaAdapter(dataKhoa, context);
+                recyclerView.setAdapter(khoaAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d(KHOATAG, "Load data error: ", error.toException());
+            }
+        });
 
         // Use linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        // Specify an adapter
-        khoaAdapter = new KhoaAdapter(this, dataKhoa);
-        recyclerView.setAdapter(khoaAdapter);
-    }
-
-    // Day du lieu gia
-    public void duLieuGia() {
-        for (int i = 0; i < 20; i++) {
-           dataKhoa.add(new Khoa("K" + i, "Khoa " + i, + i + "/07/2020"));
-        }
     }
 
     // Create a menu on action bar

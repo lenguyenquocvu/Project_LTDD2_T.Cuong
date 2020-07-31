@@ -39,7 +39,7 @@ public class DanhSachKhoaHocActivity extends AppCompatActivity implements OnItem
     public static Intent intent;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
-
+    private KhoaHoc khoaHoc;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +57,7 @@ public class DanhSachKhoaHocActivity extends AppCompatActivity implements OnItem
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dsKhoaHoc.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    KhoaHoc khoaHoc = new KhoaHoc();
+                    khoaHoc = new KhoaHoc();
                     khoaHoc = dataSnapshot.getValue(KhoaHoc.class);
                     dsKhoaHoc.add(khoaHoc);
                 }
@@ -77,7 +77,7 @@ public class DanhSachKhoaHocActivity extends AppCompatActivity implements OnItem
 
         txtNganh = findViewById(R.id.txtNganh);
 
-        txtNganh.setText("Ngành 12345");
+        txtNganh.setText("CNTT");
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         rvDsKhoaHoc.setLayoutManager(linearLayoutManager);

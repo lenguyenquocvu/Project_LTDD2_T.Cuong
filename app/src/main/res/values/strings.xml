@@ -18,4 +18,5 @@
     <string name="lblSoTC">Số tín chỉ:</string>
     <string name="btnEdit">Edit</string>
     <string name="btnDelete">Delete</string>
+    <string name="txtMonHoc">Môn học:</string>
 </resources>

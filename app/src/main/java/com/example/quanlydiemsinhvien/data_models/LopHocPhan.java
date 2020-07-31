@@ -1,35 +1,41 @@
 package com.example.quanlydiemsinhvien.data_models;
 
 public class LopHocPhan {
-    private String maLop;
-    private String tenLop;
+    private String maLHP;
+    private String TenLHP;
     private String maGV;
     private String maMH;
+    private String maNH;
+    private String maHK;
+    private boolean KetThuc;
 
     public LopHocPhan() {
     }
 
-    public LopHocPhan(String maLop, String tenLop, String maGV, String maMH) {
-        this.maLop = maLop;
-        this.tenLop = tenLop;
+    public LopHocPhan(String maLHP, String tenLHP, String maGV, String maMH, String maNH, String maHK, boolean ketThuc) {
+        this.maLHP = maLHP;
+        TenLHP = tenLHP;
         this.maGV = maGV;
         this.maMH = maMH;
+        this.maNH = maNH;
+        this.maHK = maHK;
+        KetThuc = ketThuc;
     }
 
-    public String getMaLop() {
-        return maLop;
+    public String getMaLHP() {
+        return maLHP;
     }
 
-    public void setMaLop(String maLop) {
-        this.maLop = maLop;
+    public void setMaLHP(String maLHP) {
+        this.maLHP = maLHP;
     }
 
-    public String getTenLop() {
-        return tenLop;
+    public String getTenLHP() {
+        return TenLHP;
     }
 
-    public void setTenLop(String tenLop) {
-        this.tenLop = tenLop;
+    public void setTenLHP(String tenLHP) {
+        TenLHP = tenLHP;
     }
 
     public String getMaGV() {
@@ -48,12 +54,27 @@ public class LopHocPhan {
         this.maMH = maMH;
     }
 
-    @Override
-    public String toString() {
-        return "LopHocPhan{" +
-                "maLop='" + maLop + '\'' +
-                ", tenLop='" + tenLop + '\'' +
-                ", maGV='" + maGV + '\'' +
-                '}';
+    public String getMaNH() {
+        return maNH;
+    }
+
+    public void setMaNH(String maNH) {
+        this.maNH = maNH;
+    }
+
+    public String getMaHK() {
+        return maHK;
+    }
+
+    public void setMaHK(String maHK) {
+        this.maHK = maHK;
+    }
+
+    public boolean isKetThuc() {
+        return KetThuc;
+    }
+
+    public void setKetThuc(boolean ketThuc) {
+        KetThuc = ketThuc;
     }
 }

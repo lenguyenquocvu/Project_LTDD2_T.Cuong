@@ -1,14 +1,19 @@
 package com.example.quanlydiemsinhvien.activities;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,44 +24,88 @@ import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.DanhSachLopHocPhanTheoMonAdapter;
 import com.example.quanlydiemsinhvien.adapters.decorations.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.data_models.LopHocPhan;
+import com.example.quanlydiemsinhvien.data_models.MonHoc;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DanhSachLopHPTheoMHActivity extends AppCompatActivity {
     RecyclerView rvLopHPTheoMH;
     private ArrayList<LopHocPhan> dsLopHPTheoMH;
     private ArrayList<LopHocPhan> dsLopHPTheoMH_after_click;
-    TextView txtTenMH;
-    DanhSachLopHocPhanTheoMonAdapter lopHocPhanTheoMonAdapter;
+    private TextView txtTenMH;
+    private DanhSachLopHocPhanTheoMonAdapter lopHocPhanTheoMonAdapter;
+
+    FirebaseDatabase rootNode;
+    DatabaseReference reference;
+
+    private MonHoc mhMenu;
+
+    private Intent intent;
+    private String maMH;
+    private String tenMH;
+    private LopHocPhan lopHocPhan;
+    private Map<String, Object> mapMenu;
+    private MonHoc monHoc = new MonHoc();
+
+    private String beforeKey = ((Calendar.getInstance().get(Calendar.YEAR)) % 100) + "";
+
+    private int demSLLHP;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.danh_sach_lop_hoc_phan_theo_mon_layout);
 
         rvLopHPTheoMH = findViewById(R.id.rvDsLopHPTheoMH);
-        txtTenMH = findViewById(R.id.edtTenMH);
+        intent = getIntent();
+        maMH = intent.getStringExtra("maMH");
+        tenMH = intent.getStringExtra("tenMH");
 
-        txtTenMH.setText(DanhSachKhoaHocActivity.intent.getStringExtra("tenMH"));
+        txtTenMH = findViewById(R.id.edtTenMH);
+        txtTenMH.setText(tenMH);
 
         dsLopHPTheoMH = new ArrayList<LopHocPhan>();
-        dsLopHPTheoMH.add(new LopHocPhan("LTC#02", "Lập trình C#", "GV01", "LTC#"));
-        dsLopHPTheoMH.add(new LopHocPhan("CSDL01", "Cơ sở dữ liệu", "GV02", "CSDL"));
-        dsLopHPTheoMH.add(new LopHocPhan("java02", "Lập trình java", "GV03", "Java"));
-        dsLopHPTheoMH.add(new LopHocPhan("LTDD2L02", "Lập trình di động 2", "GV03", "LTDD2"));
+
 
         dsLopHPTheoMH_after_click = new ArrayList<LopHocPhan>();
-        for (LopHocPhan lopHocPhan : dsLopHPTheoMH) {
-            if (lopHocPhan.getMaMH().equals(DanhSachKhoaHocActivity.intent.getStringExtra("maMH"))) {
-                dsLopHPTheoMH_after_click.add(lopHocPhan);
+
+        rootNode = FirebaseDatabase.getInstance();
+        reference = rootNode.getReference("LopHocPhan");
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    if(dataSnapshot.child("maMH").getValue().equals(maMH)){
+                        lopHocPhan = new LopHocPhan();
+                        lopHocPhan = dataSnapshot.getValue(LopHocPhan.class);
+                        dsLopHPTheoMH_after_click.add(lopHocPhan);
+                        demSLLHP++;
+                    }
+                }
+                lopHocPhanTheoMonAdapter = new DanhSachLopHocPhanTheoMonAdapter(DanhSachLopHPTheoMHActivity.this, dsLopHPTheoMH_after_click);
+                rvLopHPTheoMH.setHasFixedSize(true);
+                rvLopHPTheoMH.setAdapter(lopHocPhanTheoMonAdapter);
             }
-        }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         rvLopHPTheoMH.setLayoutManager(linearLayoutManager);
         // Item decoration
         rvLopHPTheoMH.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R.drawable.divider, getTheme())));
-        lopHocPhanTheoMonAdapter = new DanhSachLopHocPhanTheoMonAdapter(this, dsLopHPTheoMH_after_click);
-        rvLopHPTheoMH.setAdapter(lopHocPhanTheoMonAdapter);
 
     }
 
@@ -71,6 +120,7 @@ public class DanhSachLopHPTheoMHActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.mnu_them:
             {
+
                 final LopHocPhan lopHocPhan = new LopHocPhan();
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(DanhSachLopHPTheoMHActivity.this);
@@ -80,9 +130,54 @@ public class DanhSachLopHPTheoMHActivity extends AppCompatActivity {
                 final EditText edtMaLop = view.findViewById(R.id.edtMaLop);
                 final EditText edtTenLop = view.findViewById(R.id.edtTenLop);
                 final EditText edtMaGV = view.findViewById(R.id.edtMaGV);
+                final Spinner spnMonHoc = view.findViewById(R.id.spnMonHoc);
 
                 edtMaLop.setEnabled(true);
                 edtTenLop.setEnabled(true);
+
+                final ArrayList<MonHoc> dataDsMH = new ArrayList<MonHoc>();
+
+                final ArrayList<String> dataDsTenMH = new ArrayList<String>();
+                mapMenu = new HashMap<String, Object>();
+
+                DatabaseReference referenceMH = rootNode.getReference("MonHoc");
+                referenceMH.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                            if(dataSnapshot != null){
+                                mhMenu = new MonHoc();
+                                mhMenu = dataSnapshot.getValue(MonHoc.class);
+                                dataDsMH.add(mhMenu);
+                                dataDsTenMH.add(mhMenu.getTenMH());
+                                mapMenu.put(mhMenu.getTenMH(), mhMenu);
+                            }
+                        }
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(DanhSachLopHPTheoMHActivity.this, android.R.layout.simple_spinner_item, dataDsTenMH);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spnMonHoc.setAdapter(adapter);
+                        spnMonHoc.setSelection(0);
+                        spnMonHoc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                String tenMH = spnMonHoc.getSelectedItem().toString();
+                                monHoc = (MonHoc) mapMenu.get(tenMH);
+                                edtMaLop.setText(beforeKey + monHoc.getMaMH() + ((demSLLHP + 1) + ""));
+                                edtTenLop.setText(monHoc.getTenMH());
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
                 builder.setView(view);
 
@@ -98,8 +193,8 @@ public class DanhSachLopHPTheoMHActivity extends AppCompatActivity {
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        lopHocPhan.setMaLop(edtMaLop.getText().toString());
-                        lopHocPhan.setTenLop(edtTenLop.getText().toString());
+                        lopHocPhan.setMaLHP(edtMaLop.getText().toString());
+                        lopHocPhan.setTenLHP(edtTenLop.getText().toString());
                         lopHocPhan.setMaGV(edtMaGV.getText().toString());
                         dsLopHPTheoMH_after_click.add(lopHocPhan);
                         lopHocPhanTheoMonAdapter.notifyItemInserted(0);

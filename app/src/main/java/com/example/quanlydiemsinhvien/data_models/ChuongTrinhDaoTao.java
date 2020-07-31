@@ -1,68 +1,53 @@
 package com.example.quanlydiemsinhvien.data_models;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class ChuongTrinhDaoTao {
-    private String maMH;
-    private String tenMH;
-    private int soTinChi;
-    private String maKH;
-    private boolean showMenu = false;
+    private KhoaHoc khoaHoc;
+    private Nganh nganh;
+    private ArrayList<MonHoc> dsMonHocs;
+    private HashMap map = new HashMap();
+
+    public HashMap getMap() {
+        return map;
+    }
+
+    public void setMap(HashMap map) {
+        this.map = map;
+    }
 
     public ChuongTrinhDaoTao() {
     }
 
-    public ChuongTrinhDaoTao(String maMH, String tenMH, int soTinChi, String maKH) {
-        this.maMH = maMH;
-        this.tenMH = tenMH;
-        this.soTinChi = soTinChi;
-        this.maKH = maKH;
+    public ChuongTrinhDaoTao(KhoaHoc khoaHoc, Nganh nganh, HashMap map) {
+        this.khoaHoc = khoaHoc;
+        this.nganh = nganh;
+        this.map = map;
     }
 
-    public String getMaMH() {
-        return maMH;
+    public KhoaHoc getKhoaHoc() {
+        return khoaHoc;
     }
 
-    public void setMaMH(String maMH) {
-        this.maMH = maMH;
+    public void setKhoaHoc(KhoaHoc khoaHoc) {
+        this.khoaHoc = khoaHoc;
     }
 
-    public String getTenMH() {
-        return tenMH;
+    public Nganh getNganh() {
+        return nganh;
     }
 
-    public void setTenMH(String tenMH) {
-        this.tenMH = tenMH;
+    public void setNganh(Nganh nganh) {
+        this.nganh = nganh;
     }
 
-    public int getSoTinChi() {
-        return soTinChi;
+    public ArrayList<MonHoc> getDsMonHocs() {
+        return dsMonHocs;
     }
 
-    public void setSoTinChi(int soTinChi) {
-        this.soTinChi = soTinChi;
-    }
-
-    public boolean isShowMenu() {
-        return showMenu;
-    }
-
-    public void setShowMenu(boolean showMenu) {
-        this.showMenu = showMenu;
-    }
-
-    public String getMaKH() {
-        return maKH;
-    }
-
-    public void setMaKH(String maKH) {
-        this.maKH = maKH;
-    }
-
-    @Override
-    public String toString() {
-        return "ChuongTrinhDaoTao{" +
-                "maMH='" + maMH + '\'' +
-                ", tenMH='" + tenMH + '\'' +
-                ", soTinChi=" + soTinChi +
-                '}';
+    public void setDsMonHocs(ArrayList<MonHoc> dsMonHocs) {
+        this.dsMonHocs = dsMonHocs;
     }
 }

@@ -49,8 +49,8 @@ public class DanhSachLopHocPhanTheoMonAdapter extends RecyclerSwipeAdapter<DanhS
     @Override
     public void onBindViewHolder(@NonNull final DanhSachLopHocPhanTheoMonViewHolder holder, final int position) {
         final LopHocPhan chuongTrinhDaoTao = dsLopHP.get(position);
-        holder.txtMaLop.setText(chuongTrinhDaoTao.getMaLop());
-        holder.txtTenLop.setText(chuongTrinhDaoTao.getTenLop());
+        holder.txtMaLop.setText(chuongTrinhDaoTao.getMaLHP());
+        holder.txtTenLop.setText(chuongTrinhDaoTao.getTenLHP());
         holder.txtMaGV.setText(chuongTrinhDaoTao.getMaGV());
 
         holder.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
@@ -63,8 +63,8 @@ public class DanhSachLopHocPhanTheoMonAdapter extends RecyclerSwipeAdapter<DanhS
                 Context ct = v.getContext();
                 Intent intent = DanhSachKhoaHocActivity.intent;
                 intent.setClass(ct, DanhSachKhoaHocActivity.class); // null <=> class danh sach sinh vien cua mot lop hoc phan
-                intent.putExtra("maLop", dsLopHP.get(position).getMaLop());
-                intent.putExtra("tenLop", dsLopHP.get(position).getTenLop());
+                intent.putExtra("maLop", dsLopHP.get(position).getMaLHP());
+                intent.putExtra("tenLop", dsLopHP.get(position).getTenLHP());
                 ct.startActivity(intent);
             }
         });
@@ -112,8 +112,8 @@ public class DanhSachLopHocPhanTheoMonAdapter extends RecyclerSwipeAdapter<DanhS
                 EditText edtTenLop = view.findViewById(R.id.edtTenLop);
                 final EditText edtMaGV = view.findViewById(R.id.edtMaGV);
 
-                edtMaLop.setText(lopHocPhan.getMaLop());
-                edtTenLop.setText(lopHocPhan.getTenLop());
+                edtMaLop.setText(lopHocPhan.getMaLHP());
+                edtTenLop.setText(lopHocPhan.getTenLHP());
                 edtMaGV.setText(lopHocPhan.getMaGV());
 
                 builder.setView(view);

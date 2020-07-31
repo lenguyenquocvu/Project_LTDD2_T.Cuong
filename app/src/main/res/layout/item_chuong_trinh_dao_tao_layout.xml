@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:weightSum="2">
 
-        <TextView
+        <!--<TextView
             android:id="@+id/edit"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -23,7 +23,7 @@
             android:clickable="true"
             android:gravity="center"
             android:text="Edit"
-            android:textColor="#fff" />
+            android:textColor="#fff" /> -->
 
         <ImageButton
             android:id="@+id/ibtnDelete"

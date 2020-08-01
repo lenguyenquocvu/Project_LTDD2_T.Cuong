@@ -1,29 +1,32 @@
-package com.example.quanlydiemsinhvien.phongdaotao.adapters;
+package com.example.quanlydiemsinhvien.adapters;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.example.quanlydiemsinhvien.R;
-import com.example.quanlydiemsinhvien.phongdaotao.DanhSachSinhVienActivity;
-import com.example.quanlydiemsinhvien.phongdaotao.HopThoaiThemSinhVienActivity;
-import com.example.quanlydiemsinhvien.phongdaotao.data_models.SinhVienModel;
+import com.example.quanlydiemsinhvien.data_models.SinhVienModel;
+import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditSinhVien;
+import com.example.quanlydiemsinhvien.dialogs.DialogDeleteSinhVien;
 
 import java.util.ArrayList;
 
 public class SinhVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SinhVienSwipeRecyclerViewAdapter.SimpleViewHolder> {
-    static Dialog dialog;
-
     private Context mContext;
     private ArrayList<SinhVienModel> sinhVienList;
+
+    public static String KEY_SINHVIEN = "SinhVien";
+    public static String KEY_POSITION = "position";
 
     public SinhVienSwipeRecyclerViewAdapter(Context context, ArrayList<SinhVienModel> objects) {
         this.mContext = context;
@@ -38,10 +41,10 @@ public class SinhVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SinhV
 
     @Override
     public void onBindViewHolder(final SimpleViewHolder viewHolder, final int position) {
-        final SinhVienModel item = sinhVienList.get(position);
+        final SinhVienModel sinhVien = sinhVienList.get(position);
 
-        viewHolder.tvName.setText((item.getName()));
-        viewHolder.tvId.setText(item.getId());
+        viewHolder.tvTenSV.setText((sinhVien.getHoSV()) + " " + sinhVien.getTenSV());
+        viewHolder.tvMaSV.setText(sinhVien.getMaSV());
 
 
         viewHolder.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
@@ -102,7 +105,7 @@ public class SinhVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SinhV
         viewHolder.swipeLayout.getSurfaceView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, " onClick : " + item.getName() + " \n" + item.getId(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, " onClick : " + sinhVien.getTenSV() + " \n" + sinhVien.getMaSV(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -110,9 +113,14 @@ public class SinhVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SinhV
         viewHolder.tvEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Dialog dialog = new HopThoaiThemSinhVienActivity(mContext);
-                dialog.show();
-                Toast.makeText(view.getContext(), "Clicked on Edit  " + viewHolder.tvName.getText().toString(), Toast.LENGTH_SHORT).show();
+                final SinhVienModel sinhVien = sinhVienList.get(position);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(KEY_SINHVIEN, sinhVien);
+                bundle.putInt(KEY_POSITION, position);
+                DialogAddOrEditSinhVien dialogAddOrEditSinhVien = new DialogAddOrEditSinhVien();
+                dialogAddOrEditSinhVien.setArguments(bundle);
+                dialogAddOrEditSinhVien.show(((AppCompatActivity)mContext).getSupportFragmentManager(), "Edit");
+                Toast.makeText(view.getContext(), "Clicked on Edit  " + viewHolder.tvTenSV.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -120,12 +128,17 @@ public class SinhVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SinhV
         viewHolder.tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mItemManger.removeShownLayouts(viewHolder.swipeLayout);
-                sinhVienList.remove(position);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, sinhVienList.size());
-                mItemManger.closeAllItems();
-                Toast.makeText(view.getContext(), "Deleted " + viewHolder.tvName.getText().toString(), Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(KEY_SINHVIEN, sinhVien);
+                DialogDeleteSinhVien dialogDeleteSinhVien = new DialogDeleteSinhVien();
+                dialogDeleteSinhVien.setArguments(bundle);
+                dialogDeleteSinhVien.show(((AppCompatActivity)mContext).getSupportFragmentManager(), "Delete");
+//                mItemManger.removeShownLayouts(viewHolder.swipeLayout);
+//                sinhVienList.remove(position);
+//                notifyItemRemoved(position);
+//                notifyItemRangeChanged(position, sinhVienList.size());
+//                mItemManger.closeAllItems();
+                Toast.makeText(view.getContext(), "Deleted " + viewHolder.tvTenSV.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -147,16 +160,16 @@ public class SinhVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SinhV
 
     public static class SimpleViewHolder extends RecyclerView.ViewHolder {
         SwipeLayout swipeLayout;
-        TextView tvName;
-        TextView tvId;
+        TextView tvTenSV;
+        TextView tvMaSV;
         TextView tvDelete;
         TextView tvEdit;
 
         public SimpleViewHolder(View itemView) {
             super(itemView);
             swipeLayout = (SwipeLayout) itemView.findViewById(R.id.swipe);
-            tvName = (TextView) itemView.findViewById(R.id.txtTenSV);
-            tvId = (TextView) itemView.findViewById(R.id.txtMaSV);
+            tvTenSV = (TextView) itemView.findViewById(R.id.txtTenSV);
+            tvMaSV = (TextView) itemView.findViewById(R.id.txtMaSV);
             tvDelete = (TextView) itemView.findViewById(R.id.tvDelete);
             tvEdit = (TextView) itemView.findViewById(R.id.tvEdit);
         }

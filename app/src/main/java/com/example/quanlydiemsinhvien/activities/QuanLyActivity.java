@@ -1,6 +1,5 @@
-package com.example.quanlydiemsinhvien.phongdaotao;
+package com.example.quanlydiemsinhvien.activities;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;

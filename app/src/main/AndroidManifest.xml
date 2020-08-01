@@ -11,9 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".phongdaotao.DanhSachGiangVienActivity" ></activity>
-        <activity android:name=".phongdaotao.DanhSachSinhVienActivity" ></activity>
-        <activity android:name=".phongdaotao.QuanLyActivity">
+        <activity android:name=".activities.DanhSachGiangVienActivity" ></activity>
+        <activity android:name=".activities.DanhSachSinhVienActivity" ></activity>
+        <activity android:name=".activities.QuanLyActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,6 +36,10 @@
     </application>
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <dist:module dist:instant="true" />
 

@@ -5,22 +5,22 @@
     android:layout_height="500dp"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:background="@color/titleDialogBackgroundColor"
-        android:layout_weight="1">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:gravity="center"-->
+<!--        android:background="@color/titleDialogBackgroundColor"-->
+<!--        android:layout_weight="1">-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/titleThemDialog"
-            android:textColor="@color/titleDialogColor"
-            android:textAllCaps="true"
-            android:textStyle="bold"></TextView>
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/titleThemDialog"-->
+<!--            android:textColor="@color/titleDialogColor"-->
+<!--            android:textAllCaps="true"-->
+<!--            android:textStyle="bold"></TextView>-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -110,7 +110,7 @@
                 android:text="@string/txtNgaySinh"/>
 
             <EditText
-                android:id="@+id/editTextDate"
+                android:id="@+id/edtDate"
                 android:hint="@string/hintNgaySinh"
                 style="@style/EditTextDate" />
 
@@ -125,32 +125,28 @@
 
             <Spinner
                 android:id="@+id/spinnerMaNganh"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"
-                style="@style/SpinnerMaNganh"
-                android:entries="@array/spinnerMaNganh"></Spinner>
+                style="@style/SpinnerMaNganh"></Spinner>
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:orientation="horizontal">-->
 
-        <Button
-            android:id="@+id/btnThemGV"
-            android:text="@string/themDialogButton"
-            style="@style/ButtonThemDialog"/>
+<!--        <Button-->
+<!--            android:id="@+id/btnThemGV"-->
+<!--            android:text="@string/themDialogButton"-->
+<!--            style="@style/ButtonThemDialog"/>-->
 
-        <Button
-            android:id="@+id/btnThoatGV"
-            android:text="@string/thoatDialogButton"
-            style="@style/ButtonThoatDialog"/>
+<!--        <Button-->
+<!--            android:id="@+id/btnThoatGV"-->
+<!--            android:text="@string/thoatDialogButton"-->
+<!--            style="@style/ButtonThoatDialog"/>-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
 </LinearLayout>

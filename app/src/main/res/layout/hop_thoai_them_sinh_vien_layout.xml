@@ -5,22 +5,22 @@
     android:layout_height="500dp"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:background="@color/titleDialogBackgroundColor"
-        android:layout_weight="1">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:gravity="center"-->
+<!--        android:background="@color/titleDialogBackgroundColor"-->
+<!--        android:layout_weight="1">-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/titleThemDialog"
-            android:textColor="@color/titleDialogColor"
-            android:textAllCaps="true"
-            android:textStyle="bold"></TextView>
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/titleThemDialog"-->
+<!--            android:textColor="@color/titleDialogColor"-->
+<!--            android:textAllCaps="true"-->
+<!--            android:textStyle="bold"></TextView>-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                 android:text="@string/txtMaSV"/>
 
             <EditText
-                android:id="@+id/edtMaGV"
+                android:id="@+id/edtMaSV"
                 style="@style/EditTextAttributeName"
                 android:focusable="auto"
                 android:hint="@string/hintMaSV" />
@@ -52,7 +52,7 @@
                 android:text="@string/txtHoSV"/>
 
             <EditText
-                android:id="@+id/edtHoGV"
+                android:id="@+id/edtHoSV"
                 android:hint="@string/hintHoSV"
                 style="@style/EditTextAttributeName"/>
 
@@ -66,7 +66,7 @@
                 android:text="@string/txtTenSV"/>
 
             <EditText
-                android:id="@+id/edtTenGV"
+                android:id="@+id/edtTenSV"
                 android:hint="@string/hintTenSV"
                 style="@style/EditTextAttributeName"/>
 
@@ -80,9 +80,23 @@
                 android:text="@string/txtSdtSV"/>
 
             <EditText
-                android:id="@+id/edtSdtGV"
+                android:id="@+id/edtSdtSV"
                 android:hint="@string/hintSdtSV"
                 android:inputType="phone"
+                style="@style/EditTextAttributeName"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ThemLayout">
+
+            <TextView
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtDiaChiSV"/>
+
+            <EditText
+                android:id="@+id/edtDiaChiSV"
+                android:hint="@string/hintDiaChiSV"
                 style="@style/EditTextAttributeName"/>
 
         </LinearLayout>
@@ -95,7 +109,7 @@
                 android:text="@string/txtEmail"/>
 
             <EditText
-                android:id="@+id/edtEmailGV"
+                android:id="@+id/edtEmailSV"
                 android:hint="@string/hintEmail"
                 android:inputType="textEmailAddress"
                 style="@style/EditTextAttributeName"/>
@@ -125,32 +139,28 @@
 
             <Spinner
                 android:id="@+id/spinnerMaNganh"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"
-                style="@style/SpinnerMaNganh"
-                android:entries="@array/spinnerMaNganh"></Spinner>
+                style="@style/SpinnerMaNganh"></Spinner>
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:orientation="horizontal">-->
 
-        <Button
-            android:id="@+id/btnThemSV"
-            android:text="@string/themDialogButton"
-            style="@style/ButtonThemDialog"/>
+<!--        <Button-->
+<!--            android:id="@+id/btnThemSV"-->
+<!--            android:text="@string/themDialogButton"-->
+<!--            style="@style/ButtonThemDialog"/>-->
 
-        <Button
-            android:id="@+id/btnThoatSV"
-            android:text="@string/thoatDialogButton"
-            style="@style/ButtonThoatDialog"/>
+<!--        <Button-->
+<!--            android:id="@+id/btnThoatSV"-->
+<!--            android:text="@string/thoatDialogButton"-->
+<!--            style="@style/ButtonThoatDialog"/>-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
 </LinearLayout>

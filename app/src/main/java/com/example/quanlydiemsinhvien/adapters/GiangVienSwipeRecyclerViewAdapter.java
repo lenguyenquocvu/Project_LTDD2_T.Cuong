@@ -1,30 +1,45 @@
-package com.example.quanlydiemsinhvien.phongdaotao.adapters;
+package com.example.quanlydiemsinhvien.adapters;
 
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.fragment.app.DialogFragment;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.example.quanlydiemsinhvien.R;
-import com.example.quanlydiemsinhvien.phongdaotao.DanhSachGiangVienActivity;
-import com.example.quanlydiemsinhvien.phongdaotao.HopThoaiThemGiangVienActivity;
-import com.example.quanlydiemsinhvien.phongdaotao.data_models.GiangVienModel;
+import com.example.quanlydiemsinhvien.data_models.GiangVienModel;
+import com.example.quanlydiemsinhvien.data_models.NganhModel;
+import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditGiangVien;
+import com.example.quanlydiemsinhvien.dialogs.DialogDeleteGiangVien;
+import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditGiangVienListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class GiangVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<GiangVienSwipeRecyclerViewAdapter.SimpleViewHolder> {
     private Context mContext;
     private ArrayList<GiangVienModel> giangVienList;
+
+    public static String KEY_GIANGVIEN = "GiangVien";
+    public static String KEY_POSITION = "position";
 
     public GiangVienSwipeRecyclerViewAdapter(Context context, ArrayList<GiangVienModel> objects) {
         this.mContext = context;
@@ -39,10 +54,10 @@ public class GiangVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<Gian
 
     @Override
     public void onBindViewHolder(final SimpleViewHolder viewHolder, final int position) {
-        final GiangVienModel item = giangVienList.get(position);
+        final GiangVienModel giangVien = giangVienList.get(position);
 
-        viewHolder.tvName.setText((item.getName()));
-        viewHolder.tvId.setText(item.getId());
+        viewHolder.tvName.setText((giangVien.getHoGV() + " " + giangVien.getTenGV()));
+        viewHolder.tvId.setText(giangVien.getMaGV());
 
 
         viewHolder.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
@@ -52,68 +67,28 @@ public class GiangVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<Gian
         // Drag From Right
         viewHolder.swipeLayout.addDrag(SwipeLayout.DragEdge.Right, viewHolder.swipeLayout.findViewById(R.id.bottom_wrapper));
 
-
-        // Handling different events when swiping
-        viewHolder.swipeLayout.addSwipeListener(new SwipeLayout.SwipeListener() {
-            @Override
-            public void onClose(SwipeLayout layout) {
-                //when the SurfaceView totally cover the BottomView.
-            }
-
-            @Override
-            public void onUpdate(SwipeLayout layout, int leftOffset, int topOffset) {
-                //you are swiping.
-            }
-
-            @Override
-            public void onStartOpen(SwipeLayout layout) {
-
-            }
-
-            @Override
-            public void onOpen(SwipeLayout layout) {
-                //when the BottomView totally show.
-            }
-
-            @Override
-            public void onStartClose(SwipeLayout layout) {
-
-            }
-
-            @Override
-            public void onHandRelease(SwipeLayout layout, float xvel, float yvel) {
-                //when user's hand released.
-            }
-        });
-
-        /*viewHolder.swipeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                if ((((SwipeLayout) v).getOpenStatus() == SwipeLayout.Status.Close)) {
-                    //Start your activity
-
-                    Toast.makeText(mContext, " onClick : " + item.getName() + " \n" + item.getEmailId(), Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });*/
-
         viewHolder.swipeLayout.getSurfaceView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, " onClick : " + item.getName() + " \n" + item.getId(), Toast.LENGTH_SHORT).show();
+//                Context context = v.getContext();
+//                Intent intent = DanhSachGiangVienActivity.intent;
+//                intent.setClass(context, DanhSachGiangVienActivity.class);
+//                intent.putExtra(KEY_MAGV, DanhSachGiangVienActivity.)
             }
         });
 
 
         viewHolder.tvEdit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                final Dialog dialog = new HopThoaiThemGiangVienActivity(mContext);
-                dialog.show();
-                Toast.makeText(view.getContext(), "Clicked on Edit  " + viewHolder.tvName.getText().toString(), Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                final GiangVienModel giangVien = giangVienList.get(position);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(KEY_GIANGVIEN, giangVien);
+                bundle.putInt(KEY_POSITION, position);
+                DialogAddOrEditGiangVien dialogAddOrEditGiangVien = new DialogAddOrEditGiangVien();
+                dialogAddOrEditGiangVien.setArguments(bundle);
+                dialogAddOrEditGiangVien.show(((AppCompatActivity)mContext).getSupportFragmentManager(), "Edit");
+                Toast.makeText(v.getContext(), "Clicked on Edit  " + viewHolder.tvName.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -121,11 +96,16 @@ public class GiangVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<Gian
         viewHolder.tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mItemManger.removeShownLayouts(viewHolder.swipeLayout);
-                giangVienList.remove(position);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, giangVienList.size());
-                mItemManger.closeAllItems();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(KEY_GIANGVIEN, giangVien);
+                DialogDeleteGiangVien deleteGiangVien = new DialogDeleteGiangVien();
+                deleteGiangVien.setArguments(bundle);
+                deleteGiangVien.show(((AppCompatActivity)mContext).getSupportFragmentManager(), "Delete");
+//                mItemManger.removeShownLayouts(viewHolder.swipeLayout);
+//                giangVienList.remove(position);
+//                notifyItemRemoved(position);
+//                notifyItemRangeChanged(position, giangVienList.size());
+//                mItemManger.closeAllItems();
                 Toast.makeText(view.getContext(), "Deleted " + viewHolder.tvName.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -134,6 +114,7 @@ public class GiangVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<Gian
         mItemManger.bindView(viewHolder.itemView, position);
 
     }
+
 
     @Override
     public int getItemCount() {

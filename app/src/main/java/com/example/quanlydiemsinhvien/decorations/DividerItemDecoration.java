@@ -1,4 +1,4 @@
-package com.example.quanlydiemsinhvien.phongdaotao;
+package com.example.quanlydiemsinhvien.decorations;
 
 import android.content.Context;
 import android.content.res.TypedArray;

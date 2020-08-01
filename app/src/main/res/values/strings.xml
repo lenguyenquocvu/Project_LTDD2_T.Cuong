@@ -42,7 +42,7 @@
     <!-- Dialog Add Nganh -->
     <string name="titleAddNganh">Thêm Ngành Mới</string>
     <string name="hintEdtMaNganh">Nhập mã Ngành...</string>
-    <string name="hintEdtTenNganh">Nhập tên Khoa...</string>
+    <string name="hintEdtTenNganh">Nhập tên Ngành...</string>
 
     <!-- Dialog Delete Nganh -->
     <string name="titileDeleteNganh">Thông báo xoá </string>
@@ -51,8 +51,16 @@
     <!-- Dialog Edit Nganh-->
     <string name="titileEditNganh">Chỉnh sửa ngành</string>
 
-
-
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
 
     <!-- End Nganh layout-->
 

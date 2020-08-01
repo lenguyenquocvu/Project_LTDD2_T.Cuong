@@ -3,34 +3,29 @@ package com.example.quanlydiemsinhvien.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.quanlydiemsinhvien.data_models.Khoa;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.KhoaAdapter;
+import com.example.quanlydiemsinhvien.data_models.Khoa;
 import com.example.quanlydiemsinhvien.dialogs.AddKhoaDialog;
+import com.example.quanlydiemsinhvien.dialogs.AddNganhDialog;
 import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.firebase_data.KhoaDatabase;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class KhoaActivity extends AppCompatActivity {
     public static final String KHOATAG = "Khoa";
@@ -43,7 +38,7 @@ public class KhoaActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
 
     // Properties of Firebase
-    public static DatabaseReference mDataRef = FirebaseDatabase.getInstance().getReference();
+    KhoaDatabase mDatabase = new KhoaDatabase();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,19 +58,18 @@ public class KhoaActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R.drawable.divider, getTheme())));
 
         // Get all data from firebase
-        mDataRef.child("Khoa").addValueEventListener(new ValueEventListener() {
+        mDatabase.getmDataRef().child("Khoa").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dataKhoa.clear();
+
                 for (DataSnapshot node : snapshot.getChildren()) {
                     Khoa khoa = node.getValue(Khoa.class);
                     dataKhoa.add(khoa);
-
-                    Log.d(KHOATAG, khoa.toString() + "");
                 }
 
                 // Update after changed data
-                mDataRef.keepSynced(true);
+                mDatabase.getmDataRef().keepSynced(true);
 
                 // Specify an adapter
                 khoaAdapter = new KhoaAdapter(dataKhoa, context);

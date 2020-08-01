@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,12 +26,13 @@ import com.example.quanlydiemsinhvien.activities.KhoaActivity;
 import com.example.quanlydiemsinhvien.activities.NganhActivity;
 import com.example.quanlydiemsinhvien.data_models.Khoa;
 import com.example.quanlydiemsinhvien.firebase_data.KhoaDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder> {
+    public static final String KEY_MAKHOA = "ma_khoa";
+    public static final String KEY_TENKHOA = "ten_khoa";
+    public static final String KEY_DATA = "data";
     ArrayList<Khoa> listKhoa = new ArrayList<Khoa>();
 
     EditText edtMaKhoa;
@@ -39,6 +41,7 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
 
     private Context context;
     public static Intent intent;
+    private Bundle bundle;
 
     KhoaDatabase mKhoaDatabase = new KhoaDatabase();
 
@@ -80,8 +83,7 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final KhoaViewHolder holder, final int position) {
-
-        Khoa theKhoa = listKhoa.get(position);
+        final Khoa theKhoa = listKhoa.get(position);
         holder.tvMaKhoa.setText(theKhoa.getMaKhoa());
         holder.tvTenKhoa.setText(theKhoa.getTenKhoa());
         holder.tvNgayThanhLap.setText(theKhoa.getNgayThanhLap());
@@ -129,8 +131,7 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
         holder.tvEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Khoa recentKhoa = KhoaActivity.dataKhoa.get(position);
-                showDialogEditKhoa(recentKhoa, view, position);
+                showDialogEditKhoa(theKhoa, view, position);
             }
         });
 
@@ -139,7 +140,7 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
             @Override
             public void onClick(View view) {
                 Toast.makeText(context, "Delete" + position + "is tapped!", Toast.LENGTH_SHORT).show();
-                showDialogRemoveKhoa(position);
+                showDialogRemoveKhoa(theKhoa);
             }
         });
 
@@ -147,10 +148,17 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
         holder.swipeLayout.getSurfaceView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Khoa recentKhoa = KhoaActivity.dataKhoa.get(position);
                 Context context = view.getContext();
+
+                bundle = new Bundle();
+                bundle.putString(KEY_MAKHOA, recentKhoa.getMaKhoa());
+                bundle.putString(KEY_TENKHOA, recentKhoa.getTenKhoa());
 
                 intent = KhoaActivity.intent;
                 intent.setClass(context, NganhActivity.class);
+                intent.putExtra(KEY_DATA, bundle);
+
                 context.startActivity(intent);
 
                 Log.d("test", "position: " + position);
@@ -166,9 +174,7 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
     }
 
     // Show dialog Remove the Khoa
-    public void showDialogRemoveKhoa(final int position) {
-        final Khoa recentKhoa = KhoaActivity.dataKhoa.get(position);
-
+    public void showDialogRemoveKhoa(final Khoa theKhoa) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
         builder.setTitle(R.string.titleRemoveKhoa).setMessage(R.string.contentRemove);
@@ -176,32 +182,23 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
         builder.setPositiveButton(R.string.btnXoa, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(context, "Xoa Khoa " + recentKhoa.getMaKhoa() + "is tapped!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Xoa Khoa " + theKhoa.getMaKhoa() + "is tapped!", Toast.LENGTH_SHORT).show();
 
-                // Delete A Khoa from database
-                mKhoaDatabase.deleteAKhoa(recentKhoa.getMaKhoa());
-
-                //removeTheKhoa(position);
+                // Delete A Khoa to Firebase server
+                mKhoaDatabase.deleteAKhoa(theKhoa.getMaKhoa());
             }
         });
 
         builder.setNegativeButton(R.string.btnCancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(context, "Cancel Khoa is tapped!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Cancel Khoa", Toast.LENGTH_SHORT).show();
             }
         });
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-
-    // Remove the khoa
-    /*public void removeTheKhoa(int position) {
-        KhoaActivity.dataKhoa.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, KhoaActivity.dataKhoa.size());
-    }*/
 
     // Show dialog Edit the dialog
     public void showDialogEditKhoa(final Khoa recentKhoa, View view, final int position) {
@@ -219,6 +216,7 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
         dpNgayThanhLap = view.findViewById(R.id.dtpNgayThanhLap);
 
         // Set data to dialog
+        disableEditText(edtMaKhoa);
         edtMaKhoa.setText(recentKhoa.getMaKhoa());
         edtTenKhoa.setText(recentKhoa.getTenKhoa());
 
@@ -233,12 +231,6 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
         builder.setPositiveButton(R.string.btnSua, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Dialog dialog = Dialog.class.cast(dialogInterface);
-
-                // Get view from layout
-                edtMaKhoa = dialog.findViewById(R.id.edtMaKhoa);
-                edtTenKhoa = dialog.findViewById(R.id.edtTenKhoa);
-                dpNgayThanhLap = dialog.findViewById(R.id.dtpNgayThanhLap);
 
                 String maKhoa = edtMaKhoa.getText().toString();
                 String tenKhoa = edtTenKhoa.getText().toString();
@@ -251,15 +243,8 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
                 edtTenKhoa.setText(tenKhoa);
                 dpNgayThanhLap.updateDate(year, month, day);
 
-                recentKhoa.setMaKhoa(maKhoa);
-                recentKhoa.setTenKhoa(tenKhoa);
-                recentKhoa.setNgayThanhLap(ngayThanhLap);
-
                 // Update database A Khoa into Firebase database
                 mKhoaDatabase.updateAKhoa(maKhoa, tenKhoa, ngayThanhLap);
-
-                /*notifyItemChanged(position);
-                KhoaActivity.khoaAdapter.notifyItemChanged(position);*/
             }
         });
 
@@ -278,6 +263,13 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
 
     public String checkDigit(int number) {
         return number <= 9 ? "0" + number : number + "";
+    }
+
+    public void disableEditText(EditText editText) {
+        editText.setFocusable(false);
+        editText.setEnabled(false);
+        editText.setCursorVisible(false);
+        editText.setKeyListener(null);
     }
 
 }

@@ -1,26 +1,15 @@
 package com.example.quanlydiemsinhvien.firebase_data;
 
-import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
-import com.example.quanlydiemsinhvien.activities.KhoaActivity;
-import com.example.quanlydiemsinhvien.adapters.KhoaAdapter;
 import com.example.quanlydiemsinhvien.data_models.Khoa;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import static com.example.quanlydiemsinhvien.activities.KhoaActivity.KHOATAG;
-import static com.example.quanlydiemsinhvien.activities.KhoaActivity.khoaAdapter;
 
 public class KhoaDatabase {
     DatabaseReference mDataRef;
@@ -60,11 +49,10 @@ public class KhoaDatabase {
         Map<String, Object> postValue = updateKhoa.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/Khoa/" + key, postValue);
+        childUpdates.put("/Khoa/" + maKhoa, postValue);
 
         mDataRef.updateChildren(childUpdates);
 
         Log.d(KHOATAG, key);
-
     }
 }

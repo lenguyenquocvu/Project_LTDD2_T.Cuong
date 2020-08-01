@@ -1,10 +1,10 @@
 package com.example.quanlydiemsinhvien.adapters;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,18 +21,22 @@ import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.activities.NganhActivity;
 import com.example.quanlydiemsinhvien.data_models.Nganh;
+import com.example.quanlydiemsinhvien.firebase_data.NganhDatabase;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class NganhAdapter extends RecyclerSwipeAdapter<NganhAdapter.NganhViewHolder> {
     EditText edtMaNganh;
     EditText edtTenNganh;
+    TextView tvMaKhoa;
 
-    Context context;
+    private Context context;
     Intent intent;
-    private Vector<Nganh> listNganh;
+    Bundle data;
+    private ArrayList<Nganh> listNganh;
+    private NganhDatabase myDatabase;
 
-    public NganhAdapter(Vector<Nganh> listNganh, Context context) {
+    public NganhAdapter(ArrayList<Nganh> listNganh, Context context) {
         this.listNganh = listNganh;
         this.context = context;
     }
@@ -48,6 +52,7 @@ public class NganhAdapter extends RecyclerSwipeAdapter<NganhAdapter.NganhViewHol
         SwipeLayout swipeLayout;
         TextView tvEdit;
         TextView tvDelete;
+
 
         public NganhViewHolder(View itemView) {
             super(itemView);
@@ -68,7 +73,7 @@ public class NganhAdapter extends RecyclerSwipeAdapter<NganhAdapter.NganhViewHol
 
     @Override
     public void onBindViewHolder(@NonNull NganhViewHolder holder, final int position) {
-        Nganh theNganh = listNganh.get(position);
+        final Nganh theNganh = listNganh.get(position);
         holder.tvMaNganh.setText(theNganh.getMaNganh());
         holder.tvTenNganh.setText(theNganh.getTenNganh());
 
@@ -81,24 +86,24 @@ public class NganhAdapter extends RecyclerSwipeAdapter<NganhAdapter.NganhViewHol
         holder.tvEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Edit Nganh button is tapped!", Toast.LENGTH_SHORT).show();
-                Nganh recentNganh = NganhActivity.dataNganh.get(position);
-                showEditNganhDialog(position, recentNganh, view);
+                showEditNganhDialog(position, theNganh, view);
+                Toast.makeText(view.getContext(), "Edit Nganh " + theNganh.getTenNganh() + "successfully!", Toast.LENGTH_SHORT).show();
             }
         });
 
         holder.tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDeleteNganhDialog(position);
-                Toast.makeText(view.getContext(), "Delete Nganh button is tapped!", Toast.LENGTH_SHORT).show();
+                showDeleteNganhDialog(position, theNganh);
+                Toast.makeText(view.getContext(), "Delete Nganh " + theNganh.getTenNganh() + "successfully!", Toast.LENGTH_SHORT).show();
             }
         });
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Get context
+
+                // Switch screen
                 /*Context context = view.getContext();
                 intent = new Intent();
                 intent.setClass(context, );*/
@@ -119,46 +124,44 @@ public class NganhAdapter extends RecyclerSwipeAdapter<NganhAdapter.NganhViewHol
     public void showEditNganhDialog(final int position, final Nganh recentNganh, View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-        // Set titile Edit Nganh Dialog
+        // Set title Edit Nganh Dialog
         builder.setTitle(R.string.titileEditNganh);
 
-        // Get layout
+        // Get view from layout
         view = LayoutInflater.from(context).inflate(R.layout.dialog_them_nganh, null);
+        builder.setView(view);
 
         edtMaNganh = view.findViewById(R.id.edtMaNganh);
         edtTenNganh = view.findViewById(R.id.edtTenNganh);
+        tvMaKhoa = view.findViewById(R.id.tvMaKhoa);
+
+        disableEditText(edtMaNganh);
+        tvMaKhoa.setEnabled(false);
 
         edtMaNganh.setText(recentNganh.getMaNganh());
         edtTenNganh.setText(recentNganh.getTenNganh());
+        tvMaKhoa.setText(NganhActivity.getMaKhoaCuaNganh);
 
-        builder.setView(view);
-
+        // Edit Button
         builder.setPositiveButton(R.string.btnEdit, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(context, "Edit Nganh button is tapped!", Toast.LENGTH_SHORT).show();
-                Dialog dialog = Dialog.class.cast(dialogInterface);
-
-                edtMaNganh = dialog.findViewById(R.id.edtMaNganh);
-                edtTenNganh = dialog.findViewById(R.id.edtTenNganh);
-
+                String maKhoaCuaNganh = tvMaKhoa.getText().toString();
                 String maNganh = edtMaNganh.getText().toString();
                 String tenNganh = edtTenNganh.getText().toString();
 
-                recentNganh.setMaNganh(maNganh);
-                recentNganh.setTenNganh(tenNganh);
-
-                notifyItemChanged(position);
-                NganhActivity.adapterNganh.notifyItemChanged(position);
+                // Write edit in the Firebase server
+                myDatabase = new NganhDatabase();
+                myDatabase.updateANganh(maKhoaCuaNganh, maNganh, tenNganh);
             }
         });
 
+        // Cancel Button
         builder.setNegativeButton(R.string.btnCancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(context, "Cancel edit Nganh button is tapped!", Toast.LENGTH_SHORT).show();
                 dialogInterface.dismiss();
-
             }
         });
 
@@ -167,9 +170,7 @@ public class NganhAdapter extends RecyclerSwipeAdapter<NganhAdapter.NganhViewHol
     }
 
     // Show delete Nganh dialog
-    public void showDeleteNganhDialog(final int position) {
-        Nganh nganh = NganhActivity.dataNganh.get(position);
-
+    public void showDeleteNganhDialog(final int position, final Nganh theNganh) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
         // Set titile for dialog
@@ -179,7 +180,9 @@ public class NganhAdapter extends RecyclerSwipeAdapter<NganhAdapter.NganhViewHol
         builder.setPositiveButton(R.string.btnXoa, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                removeTheNganh(position);
+                myDatabase = new NganhDatabase();
+                myDatabase.removeANganh(theNganh.getMaNganh());
+
                 Toast.makeText(context, "Delete Nganh button is tapped", Toast.LENGTH_SHORT).show();
             }
         });
@@ -196,10 +199,10 @@ public class NganhAdapter extends RecyclerSwipeAdapter<NganhAdapter.NganhViewHol
         alertDialog.show();
     }
 
-    // Remove the Nganh
-    public void removeTheNganh(int position) {
-        NganhActivity.dataNganh.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, NganhActivity.dataNganh.size());
+    public void disableEditText(EditText editText) {
+        editText.setFocusable(false);
+        editText.setEnabled(false);
+        editText.setCursorVisible(false);
+        editText.setKeyListener(null);
     }
 }

@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.quanlydiemsinhvien.R;
-import com.example.quanlydiemsinhvien.activities.KhoaActivity;
 import com.example.quanlydiemsinhvien.data_models.Khoa;
 import com.example.quanlydiemsinhvien.firebase_data.KhoaDatabase;
 

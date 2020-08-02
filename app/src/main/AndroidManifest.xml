@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainDanhSachSinhVien"></activity>
+        <activity android:name=".activity.MainDanhSachGiangVien" />
+        <activity android:name=".activity.MainDanhSachPhongDaoTao" />
+        <activity android:name=".activity.MainDanhSachAdmin" />
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

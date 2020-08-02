@@ -36,6 +36,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DanhSachSinhVienActivity extends AppCompatActivity implements OnItemClickToAddSinhVienListener, OnItemClickToDeleteListener, OnItemClickToEditSinhVienListener {
     public static Intent intent;
@@ -153,19 +154,24 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
                 sv.setTenSV(sinhVien.getTenSV());
                 sv.setHoSV(sinhVien.getHoSV());
                 sv.setNgaySinh(sinhVien.getNgaySinh());
-                sv.setSDT(sinhVien.getSDT());
+                sv.setSdt(sinhVien.getSdt());
                 sv.setDiaChi(sinhVien.getDiaChi());
                 sv.setEmail(sinhVien.getEmail());
                 sv.setMaNganh(sinhVien.getMaNganh());
 
-                reference.child(sv.getMaSV()).child("maSV").setValue(sv.getMaSV());
-                reference.child(sv.getMaSV()).child("TenSV").setValue(sv.getTenSV());
-                reference.child(sv.getMaSV()).child("HoSV").setValue(sv.getHoSV());
-                reference.child(sv.getMaSV()).child("NgaySinh").setValue(sv.getNgaySinh());
-                reference.child(sv.getMaSV()).child("SDT").setValue(sv.getSDT());
-                reference.child(sv.getMaSV()).child("DiaChi").setValue(sv.getDiaChi());
-                reference.child(sv.getMaSV()).child("Email").setValue(sv.getEmail());
-                reference.child(sv.getMaSV()).child("maNganh").setValue(sv.getMaNganh());
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("maSV", sv.getMaSV());
+                map.put("tenSV", sv.getTenSV());
+                map.put("hoSV", sv.getHoSV());
+                map.put("ngaySinh", sv.getNgaySinh());
+                map.put("sdt", sv.getSdt());
+                map.put("diaChi", sv.getDiaChi());
+                map.put("email", sv.getEmail());
+                map.put("maNganh", sv.getMaNganh());
+
+                HashMap<String, Object> mapLink = new HashMap<>();
+                mapLink.put("/" + sv.getMaSV() + "/", map);
+                reference.updateChildren(mapLink);
             }
             break;
         }

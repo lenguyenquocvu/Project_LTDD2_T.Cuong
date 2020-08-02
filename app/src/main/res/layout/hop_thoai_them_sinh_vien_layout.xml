@@ -135,7 +135,7 @@
 
             <TextView
                 style="@style/TextViewAttributeName"
-                android:text="@string/txtMaNganh"/>
+                android:text="@string/txtNganh"/>
 
             <Spinner
                 android:id="@+id/spinnerMaNganh"

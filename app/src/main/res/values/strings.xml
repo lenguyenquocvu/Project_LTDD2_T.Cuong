@@ -43,7 +43,7 @@
     <string name="txtNgaySinh">Ngày sinh</string>
     <string name="hintNgaySinh">Nhập ngày sinh</string>
 
-    <string name="txtMaNganh">Mã ngành</string>
+    <string name="txtNganh">Ngành</string>
 
     <string name="txtMaSV">Mã SV</string>
     <string name="hintMaSV">Nhập mã sinh viên</string>

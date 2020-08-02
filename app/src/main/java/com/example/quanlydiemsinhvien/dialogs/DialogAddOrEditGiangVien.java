@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,7 +30,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -41,7 +43,9 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
     private EditText edtSDT;
     private static Spinner spnMaNganh;
 
-    public static ArrayList<NganhModel> spinnerItems;
+    static ArrayAdapter<NganhModel> arrayAdapterNganh;
+
+    public static ArrayList<NganhModel> spinnerItems = new ArrayList<NganhModel>();
 
     private OnItemClickToAddGiangVienListener addGiangVienListener;
     private GiangVienModel giangVien;
@@ -66,10 +70,31 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
         edtSDT = view.findViewById(R.id.edtSdtGV);
         spnMaNganh = view.findViewById(R.id.spinnerMaNganh);
 
+        edtMaGV.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() == 0) {
+                    edtMaGV.setError("Bạn bắt buộc phải nhập usernam");
+                } else {
+                    edtMaGV.setError(null);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         spinnerDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                spinnerItems = new ArrayList<NganhModel>();
+
 
                 for (DataSnapshot areaSnapshot : snapshot.getChildren()) {
                     NganhModel nganh = new NganhModel();
@@ -77,15 +102,18 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
                     spinnerItems.add(nganh);
                 }
 
-                ArrayAdapter<NganhModel> arrayAdapter = new ArrayAdapter<NganhModel>(getActivity(), android.R.layout.simple_spinner_item, spinnerItems);
-                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spnMaNganh.setAdapter(arrayAdapter);
+                arrayAdapterNganh = new ArrayAdapter<NganhModel>(getActivity(), android.R.layout.simple_spinner_item, spinnerItems);
+                arrayAdapterNganh.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spnMaNganh.setAdapter(arrayAdapterNganh);
+
+                Log.d("-->","Size of Nganh" + spinnerItems.size());
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
         });
 
         builder.setView(view);
@@ -97,10 +125,11 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
             edtTenGV.setText(giangVien.getTenGV());
             edtHoGV.setText(giangVien.getHoGV());
             edtNgaySinh.setText(giangVien.getNgaySinh());
-            edtSDT.setText(giangVien.getSDT() + "");
+            edtSDT.setText(giangVien.getSdt() + "");
             edtEmail.setText(giangVien.getEmail());
-            //spnMaNganh.setSelection(getPositionOfMaNganh(giangVien.getMaNganh()));
+            spnMaNganh.setSelection(getPositionOfNganh(giangVien.getMaNganh()));
             builder.setTitle("Chỉnh sửa giảng viên");
+//            Log.d("position", "position " + getPositionOfMaNganh(giangVien.getMaNganh(), spinnerItems));
         } else {
             edtMaGV.setEnabled(true);
             builder.setTitle("Thêm giảng viên");
@@ -111,28 +140,44 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (getArguments() == null) {
-                    giangVien = new GiangVienModel();
-
-                    giangVien.setMaGV(edtMaGV.getText().toString());
-                    giangVien.setTenGV(edtTenGV.getText().toString());
-                    giangVien.setHoGV(edtHoGV.getText().toString());
-                    giangVien.setNgaySinh(edtNgaySinh.getText().toString());
-                    giangVien.setSDT(Integer.parseInt(edtSDT.getText().toString()));
-                    giangVien.setEmail(edtEmail.getText().toString());
-                    giangVien.setMaNganh(getSelectedMaNganh());
-                    addGiangVienListener.applyGiangVien(giangVien);
+                    if(edtMaGV.getText().toString().isEmpty() ||
+                            edtHoGV.getText().toString().isEmpty() ||
+                            edtTenGV.getText().toString().isEmpty() ||
+                            edtSDT.getText().toString().isEmpty() ||
+                            edtNgaySinh.getText().toString().isEmpty()){
+                        Toast.makeText(getContext(), "Không thể thêm giảng viên! Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_LONG).show();
+                    }else{
+                        giangVien = new GiangVienModel();
+                        giangVien.setMaGV(edtMaGV.getText().toString());
+                        giangVien.setTenGV(edtTenGV.getText().toString());
+                        giangVien.setHoGV(edtHoGV.getText().toString());
+                        giangVien.setNgaySinh(edtNgaySinh.getText().toString());
+                        giangVien.setSdt(edtSDT.getText().toString());
+                        giangVien.setEmail(edtEmail.getText().toString());
+                        giangVien.setMaNganh(getSelectedMaNganh());
+                        addGiangVienListener.applyGiangVien(giangVien);
+                    }
                 } else {
-                    giangVien.setMaGV(edtMaGV.getText().toString());
-                    giangVien.setTenGV(edtTenGV.getText().toString());
-                    giangVien.setHoGV(edtHoGV.getText().toString());
-                    giangVien.setNgaySinh(edtNgaySinh.getText().toString());
-                    giangVien.setSDT(Integer.parseInt(edtSDT.getText().toString()));
-                    giangVien.setEmail(edtEmail.getText().toString());
-                    giangVien.setMaNganh(getSelectedMaNganh());
-                    int position = getArguments().getInt(GiangVienSwipeRecyclerViewAdapter.KEY_POSITION);
-                    editGiangVienListener = (OnItemClickToEditGiangVienListener) getActivity();
-                    editGiangVienListener.onItemClicked(giangVien, position);
-                    getArguments().clear();
+                    if(edtMaGV.getText().toString().isEmpty() ||
+                            edtHoGV.getText().toString().isEmpty() ||
+                            edtTenGV.getText().toString().isEmpty() ||
+                            edtSDT.getText().toString().isEmpty() ||
+                            edtNgaySinh.getText().toString().isEmpty()){
+                        Toast.makeText(getContext(), "Không thể chỉnh sửa thông tin! Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_LONG).show();
+                    }else{
+                        giangVien.setMaGV(edtMaGV.getText().toString());
+                        giangVien.setTenGV(edtTenGV.getText().toString());
+                        giangVien.setHoGV(edtHoGV.getText().toString());
+                        giangVien.setNgaySinh(edtNgaySinh.getText().toString());
+                        giangVien.setSdt(edtSDT.getText().toString());
+                        giangVien.setEmail(edtEmail.getText().toString());
+                        giangVien.setMaNganh(getSelectedMaNganh());
+                        int position = getArguments().getInt(GiangVienSwipeRecyclerViewAdapter.KEY_POSITION);
+                        editGiangVienListener = (OnItemClickToEditGiangVienListener) getActivity();
+                        editGiangVienListener.onItemClicked(giangVien, position);
+                        getArguments().clear();
+                    }
+
                 }
             }
         })
@@ -166,13 +211,13 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
         }
         return maNganh;
     }
-    public static int getPositionOfMaNganh(String maNganh){
-        int position = 0;
+    public static int getPositionOfNganh(String maNganh){
+        int postion = 0;
         for(int i = 0; i < spinnerItems.size(); i++){
-            if(maNganh == spinnerItems.get(i).getMaNganh()){
-                position = i;
+            if(maNganh.equals(spinnerItems.get(i).getMaNganh())){
+                postion = i;
             }
         }
-        return position;
+        return postion;
     }
 }

@@ -4,23 +4,23 @@ import java.io.Serializable;
 
 public class GiangVienModel implements Serializable {
     String maGV;
-    String HoGV;
-    String TenGV;
-    String NgaySinh;
-    int SDT;
-    String Email;
+    String hoGV;
+    String tenGV;
+    String ngaySinh;
+    String sdt;
+    String email;
     String maNganh;
 
     public GiangVienModel() {
     }
 
-    public GiangVienModel(String maGV, String hoGV, String tenGV, String ngaySinh, int SDT, String email, String maNganh) {
+    public GiangVienModel(String maGV, String hoGV, String tenGV, String ngaySinh, String sdt, String email, String maNganh) {
         this.maGV = maGV;
-        HoGV = hoGV;
-        TenGV = tenGV;
-        NgaySinh = ngaySinh;
-        this.SDT = SDT;
-        Email = email;
+        this.hoGV = hoGV;
+        this.tenGV = tenGV;
+        this.ngaySinh = ngaySinh;
+        this.sdt = sdt;
+        this.email = email;
         this.maNganh = maNganh;
     }
 
@@ -33,43 +33,43 @@ public class GiangVienModel implements Serializable {
     }
 
     public String getHoGV() {
-        return HoGV;
+        return hoGV;
     }
 
     public void setHoGV(String hoGV) {
-        HoGV = hoGV;
+        this.hoGV = hoGV;
     }
 
     public String getTenGV() {
-        return TenGV;
+        return tenGV;
     }
 
     public void setTenGV(String tenGV) {
-        TenGV = tenGV;
+        this.tenGV = tenGV;
     }
 
     public String getNgaySinh() {
-        return NgaySinh;
+        return ngaySinh;
     }
 
     public void setNgaySinh(String ngaySinh) {
-        NgaySinh = ngaySinh;
+        this.ngaySinh = ngaySinh;
     }
 
-    public int getSDT() {
-        return SDT;
+    public String getSdt() {
+        return sdt;
     }
 
-    public void setSDT(int SDT) {
-        this.SDT = SDT;
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getMaNganh() {

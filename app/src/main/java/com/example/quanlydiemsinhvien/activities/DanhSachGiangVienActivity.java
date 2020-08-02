@@ -32,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DanhSachGiangVienActivity extends AppCompatActivity implements OnItemClickToAddGiangVienListener, OnItemClickToEditGiangVienListener, OnItemClickToDeleteListener {
     public static Intent intent;
@@ -151,17 +152,22 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
                 gv.setTenGV(giangVien.getTenGV());
                 gv.setHoGV(giangVien.getHoGV());
                 gv.setNgaySinh(giangVien.getNgaySinh());
-                gv.setSDT((int) giangVien.getSDT());
+                gv.setSdt(giangVien.getSdt());
                 gv.setEmail(giangVien.getEmail());
                 gv.setMaNganh(giangVien.getMaNganh());
 
-                reference.child(gv.getMaGV()).child("maGV").setValue(gv.getMaGV());
-                reference.child(gv.getMaGV()).child("TenGV").setValue(gv.getTenGV());
-                reference.child(gv.getMaGV()).child("HoGV").setValue(gv.getHoGV());
-                reference.child(gv.getMaGV()).child("NgaySinh").setValue(gv.getNgaySinh());
-                reference.child(gv.getMaGV()).child("SDT").setValue(gv.getSDT());
-                reference.child(gv.getMaGV()).child("Email").setValue(gv.getEmail());
-                reference.child(gv.getMaGV()).child("maNganh").setValue(gv.getMaNganh());
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("maGV", gv.getMaGV());
+                map.put("tenGV", gv.getTenGV());
+                map.put("hoGV", gv.getHoGV());
+                map.put("ngaySinh", gv.getNgaySinh());
+                map.put("sdt", gv.getSdt());
+                map.put("email", gv.getEmail());
+                map.put("maNganh", gv.getMaNganh());
+
+                HashMap<String, Object> mapLink = new HashMap<>();
+                mapLink.put("/" + gv.getMaGV() + "/", map);
+                reference.updateChildren(mapLink);
             }
             break;
         }

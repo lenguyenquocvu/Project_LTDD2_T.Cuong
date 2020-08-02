@@ -30,6 +30,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/edtMaGVLayout"
             style="@style/ThemLayout">
 
             <TextView
@@ -121,7 +122,7 @@
 
             <TextView
                 style="@style/TextViewAttributeName"
-                android:text="@string/txtMaNganh"/>
+                android:text="@string/txtNganh"/>
 
             <Spinner
                 android:id="@+id/spinnerMaNganh"

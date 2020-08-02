@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,7 +44,7 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
     private EditText edtSDT;
     private static Spinner spnMaNganh;
 
-    public static ArrayList<NganhModel> spinnerItems;
+    public static ArrayList<NganhModel> spinnerItems = new ArrayList<NganhModel>();
 
     private OnItemClickToAddSinhVienListener addSinhVienListener;
     private SinhVienModel sinhVien;
@@ -72,7 +73,6 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
         spinnerDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                spinnerItems = new ArrayList<NganhModel>();
 
                 for (DataSnapshot areaSnapshot : snapshot.getChildren()) {
                     NganhModel nganh = new NganhModel();
@@ -100,10 +100,10 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
             edtTenSV.setText(sinhVien.getTenSV());
             edtHoSV.setText(sinhVien.getHoSV());
             edtNgaySinh.setText(sinhVien.getNgaySinh());
-            edtSDT.setText(sinhVien.getSDT() + "");
+            edtSDT.setText(sinhVien.getSdt() + "");
             edtDiaChi.setText(sinhVien.getDiaChi());
             edtEmail.setText(sinhVien.getEmail());
-            //spnMaNganh.setSelection(getPositionOfMaNganh(giangVien.getMaNganh()));
+            spnMaNganh.setSelection(getPositionOfMaNganh(sinhVien.getMaNganh()));
             builder.setTitle("Chỉnh sửa sinh viên");
         } else {
             edtMaSV.setEnabled(true);
@@ -115,30 +115,50 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (getArguments() == null) {
-                    sinhVien = new SinhVienModel();
+                    if(edtMaSV.getText().toString().isEmpty() ||
+                            edtHoSV.getText().toString().isEmpty() ||
+                            edtTenSV.getText().toString().isEmpty() ||
+                            edtSDT.getText().toString().isEmpty() ||
+                            edtNgaySinh.getText().toString().isEmpty() ||
+                            edtDiaChi.getText().toString().isEmpty()){
+                        Toast.makeText(getContext(), "Không thể thêm sinh viên! Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_LONG).show();
+                    }else{
 
-                    sinhVien.setMaSV(edtMaSV.getText().toString());
-                    sinhVien.setTenSV(edtTenSV.getText().toString());
-                    sinhVien.setHoSV(edtHoSV.getText().toString());
-                    sinhVien.setNgaySinh(edtNgaySinh.getText().toString());
-                    sinhVien.setSDT(edtSDT.getText().toString());
-                    sinhVien.setDiaChi(edtDiaChi.getText().toString());
-                    sinhVien.setEmail(edtEmail.getText().toString());
-                    sinhVien.setMaNganh(getSelectedMaNganh());
-                    addSinhVienListener.applySinhVien(sinhVien);
+                        sinhVien = new SinhVienModel();
+
+                        sinhVien.setMaSV(edtMaSV.getText().toString());
+                        sinhVien.setTenSV(edtTenSV.getText().toString());
+                        sinhVien.setHoSV(edtHoSV.getText().toString());
+                        sinhVien.setNgaySinh(edtNgaySinh.getText().toString());
+                        sinhVien.setSdt(edtSDT.getText().toString());
+                        sinhVien.setDiaChi(edtDiaChi.getText().toString());
+                        sinhVien.setEmail(edtEmail.getText().toString());
+                        sinhVien.setMaNganh(getSelectedMaNganh());
+                        addSinhVienListener.applySinhVien(sinhVien);
+                    }
                 } else {
-                    sinhVien.setMaSV(edtMaSV.getText().toString());
-                    sinhVien.setTenSV(edtTenSV.getText().toString());
-                    sinhVien.setHoSV(edtHoSV.getText().toString());
-                    sinhVien.setNgaySinh(edtNgaySinh.getText().toString());
-                    sinhVien.setSDT(edtSDT.getText().toString());
-                    sinhVien.setDiaChi(edtDiaChi.getText().toString());
-                    sinhVien.setEmail(edtEmail.getText().toString());
-                    sinhVien.setMaNganh(getSelectedMaNganh());
-                    int position = getArguments().getInt(SinhVienSwipeRecyclerViewAdapter.KEY_POSITION);
-                    editSinhVienListener = (OnItemClickToEditSinhVienListener) getActivity();
-                    editSinhVienListener.onItemClicked(sinhVien, position);
-                    getArguments().clear();
+                    if(edtMaSV.getText().toString().isEmpty() ||
+                            edtHoSV.getText().toString().isEmpty() ||
+                            edtTenSV.getText().toString().isEmpty() ||
+                            edtSDT.getText().toString().isEmpty() ||
+                            edtNgaySinh.getText().toString().isEmpty() ||
+                            edtDiaChi.getText().toString().isEmpty()){
+                        Toast.makeText(getContext(), "Không thể chỉnh sửa! Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_LONG).show();
+                    }else{
+                        sinhVien.setMaSV(edtMaSV.getText().toString());
+                        sinhVien.setTenSV(edtTenSV.getText().toString());
+                        sinhVien.setHoSV(edtHoSV.getText().toString());
+                        sinhVien.setNgaySinh(edtNgaySinh.getText().toString());
+                        sinhVien.setSdt(edtSDT.getText().toString());
+                        sinhVien.setDiaChi(edtDiaChi.getText().toString());
+                        sinhVien.setEmail(edtEmail.getText().toString());
+                        sinhVien.setMaNganh(getSelectedMaNganh());
+                        int position = getArguments().getInt(SinhVienSwipeRecyclerViewAdapter.KEY_POSITION);
+                        editSinhVienListener = (OnItemClickToEditSinhVienListener) getActivity();
+                        editSinhVienListener.onItemClicked(sinhVien, position);
+                        getArguments().clear();
+                    }
+
                 }
             }
         })

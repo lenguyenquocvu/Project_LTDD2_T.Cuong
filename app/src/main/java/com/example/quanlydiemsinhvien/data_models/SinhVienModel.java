@@ -4,25 +4,25 @@ import java.io.Serializable;
 
 public class SinhVienModel implements Serializable {
     String maSV;
-    String TenSV;
-    String HoSV;
-    String NgaySinh;
-    String SDT;
-    String DiaChi;
-    String Email;
+    String tenSV;
+    String hoSV;
+    String ngaySinh;
+    String sdt;
+    String diaChi;
+    String email;
     String maNganh;
 
     public SinhVienModel() {
     }
 
-    public SinhVienModel(String maSV, String tenSV, String hoSV, String ngaySinh, String SDT, String diaChi, String email, String maNganh) {
+    public SinhVienModel(String maSV, String tenSV, String hoSV, String ngaySinh, String sdt, String diaChi, String email, String maNganh) {
         this.maSV = maSV;
-        TenSV = tenSV;
-        HoSV = hoSV;
-        NgaySinh = ngaySinh;
-        this.SDT = SDT;
-        DiaChi = diaChi;
-        Email = email;
+        this.tenSV = tenSV;
+        this.hoSV = hoSV;
+        this.ngaySinh = ngaySinh;
+        this.sdt = sdt;
+        this.diaChi = diaChi;
+        this.email = email;
         this.maNganh = maNganh;
     }
 
@@ -35,51 +35,51 @@ public class SinhVienModel implements Serializable {
     }
 
     public String getTenSV() {
-        return TenSV;
+        return tenSV;
     }
 
     public void setTenSV(String tenSV) {
-        TenSV = tenSV;
+        this.tenSV = tenSV;
     }
 
     public String getHoSV() {
-        return HoSV;
+        return hoSV;
     }
 
     public void setHoSV(String hoSV) {
-        HoSV = hoSV;
+        this.hoSV = hoSV;
     }
 
     public String getNgaySinh() {
-        return NgaySinh;
+        return ngaySinh;
     }
 
     public void setNgaySinh(String ngaySinh) {
-        NgaySinh = ngaySinh;
+        this.ngaySinh = ngaySinh;
     }
 
-    public String getSDT() {
-        return SDT;
+    public String getSdt() {
+        return sdt;
     }
 
-    public void setSDT(String SDT) {
-        this.SDT = SDT;
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
     }
 
     public String getDiaChi() {
-        return DiaChi;
+        return diaChi;
     }
 
     public void setDiaChi(String diaChi) {
-        DiaChi = diaChi;
+        this.diaChi = diaChi;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getMaNganh() {

@@ -9,23 +9,24 @@ import android.widget.TextView;
 
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.data_models.Accounts;
+import com.example.quanlydiemsinhvien.data_models.SinhVien;
 
 import java.util.ArrayList;
 
 public class SinhVienAdapter extends ArrayAdapter {
     TextView tvIDSinhVien, tvPassword;
-    ArrayList<Accounts> dataAccounts;
+    ArrayList<SinhVien> dataSV;
     Context context;
     int resource;
-    public SinhVienAdapter(Context context, int resource, ArrayList<Accounts> dataAccounts) {
-        super(context, resource, dataAccounts);
+    public SinhVienAdapter(Context context, int resource, ArrayList<SinhVien> dataSV) {
+        super(context, resource, dataSV);
         this.context = context;
         this.resource = resource;
-        this.dataAccounts = dataAccounts;
+        this.dataSV = dataSV;
     }
     @Override
     public int getCount() {
-        return dataAccounts.size();
+        return dataSV.size();
     }
 
     @Override
@@ -34,22 +35,21 @@ public class SinhVienAdapter extends ArrayAdapter {
         if(recycleView==null){
             recycleView = LayoutInflater.from(context).inflate(R.layout.rclist_item_sinhvien,parent,false);
             viewHolder = new ViewHolder();
-            viewHolder.tvIDSinhVien = (TextView)recycleView.findViewById(R.id.tvIDSinhVien);
-            viewHolder.tvPassword = (TextView)recycleView.findViewById(R.id.tvPassword);
 
             recycleView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder) recycleView.getTag();
         }
         //Set text:
-        Accounts accounts = dataAccounts.get(position);
-        tvIDSinhVien.setText(accounts.getId());
-        tvPassword.setText(accounts.getPassword());
+        SinhVien sinhVien = dataSV.get(position);
+        //  tvIDSinhVien.setText(accounts.getId());
         return recycleView;
     }
     public class ViewHolder{
-        private TextView tvIDSinhVien;
-        private TextView tvPassword;
+        private TextView tvMaSV;
+        private TextView tvHoTenSV;
+        private TextView tvMaHP;
+
     }
 
 }

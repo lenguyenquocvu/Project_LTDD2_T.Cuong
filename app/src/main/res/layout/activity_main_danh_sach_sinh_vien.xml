@@ -8,8 +8,8 @@
     android:gravity="center"
     android:background="@drawable/background"
     tools:context=".activity.MainDanhSachSinhVien">
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSinhVien"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:layout_height="wrap_content"/>
 </LinearLayout>

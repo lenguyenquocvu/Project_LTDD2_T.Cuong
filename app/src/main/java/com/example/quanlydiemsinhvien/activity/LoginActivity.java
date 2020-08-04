@@ -65,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String id = edtId.getText().toString();
                 String password = edtPassword.getText().toString();
+                loginForm();
                 if (radAdmin.isChecked()) {
                     getAccountData(ADMIN_TAG);
                     for (Accounts item : listAccounts) {
@@ -74,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this, MainDanhSachAdmin.class);
                             startActivity(intent);
                         } else {
-                            loginForm();
+
                             Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thất bại", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -171,7 +172,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     //Validate Form:
-    private Boolean validateForm() {
+    private boolean validateForm() {
         String valID = edtId.getText().toString();
         String valPassword = edtPassword.getText().toString();
         String noWhiteSpace = "(?=\\+!#%$&*~-/:|.^@)";
@@ -237,7 +238,7 @@ public class LoginActivity extends AppCompatActivity {
                         edtId.requestFocus();
                     }
                 } else {
-                    edtId.setError("no such id exit");
+                    edtId.setError("no such id exits");
                     edtId.requestFocus();
                 }
             }

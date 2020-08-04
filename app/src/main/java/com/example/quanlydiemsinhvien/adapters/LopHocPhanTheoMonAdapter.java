@@ -1,36 +1,36 @@
 package com.example.quanlydiemsinhvien.adapters;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.example.quanlydiemsinhvien.R;
-import com.example.quanlydiemsinhvien.activities.DanhSachChuongTrinhDaoTaoActivity;
 import com.example.quanlydiemsinhvien.activities.DanhSachKhoaHocActivity;
-import com.example.quanlydiemsinhvien.activities.DanhSachLopHPTheoMHActivity;
 import com.example.quanlydiemsinhvien.data_models.LopHocPhan;
+import com.example.quanlydiemsinhvien.dialog.DialogAddOrEditLopHocPhan;
+import com.example.quanlydiemsinhvien.dialog.DialogDeleteLopHocPhan;
 
 import java.util.ArrayList;
 
-public class DanhSachLopHocPhanTheoMonAdapter extends RecyclerSwipeAdapter<DanhSachLopHocPhanTheoMonAdapter.DanhSachLopHocPhanTheoMonViewHolder> {
+public class LopHocPhanTheoMonAdapter extends RecyclerSwipeAdapter<LopHocPhanTheoMonAdapter.DanhSachLopHocPhanTheoMonViewHolder> {
     private ArrayList<LopHocPhan> dsLopHP;
     private Context context;
-    private AlertDialog.Builder myDialog;
-
-    public DanhSachLopHocPhanTheoMonAdapter(Context context, ArrayList<LopHocPhan> dsLopHP) {
+    public static final String MALOP = "maLop";
+    public static final String TENLOP = "tenLop";
+    public static final String EDIT_LHP = "lop hoc phan";
+    public static final String DELETE_LHP = "lop hoc phan delete";
+    public LopHocPhanTheoMonAdapter(Context context, ArrayList<LopHocPhan> dsLopHP) {
         this.dsLopHP = dsLopHP;
         this.context = context;
     }
@@ -63,8 +63,8 @@ public class DanhSachLopHocPhanTheoMonAdapter extends RecyclerSwipeAdapter<DanhS
                 Context ct = v.getContext();
                 Intent intent = DanhSachKhoaHocActivity.intent;
                 intent.setClass(ct, DanhSachKhoaHocActivity.class); // null <=> class danh sach sinh vien cua mot lop hoc phan
-                intent.putExtra("maLop", dsLopHP.get(position).getMaLHP());
-                intent.putExtra("tenLop", dsLopHP.get(position).getTenLHP());
+                intent.putExtra(MALOP, dsLopHP.get(position).getMaLHP());
+                intent.putExtra(TENLOP, dsLopHP.get(position).getTenLHP());
                 ct.startActivity(intent);
             }
         });
@@ -72,30 +72,12 @@ public class DanhSachLopHocPhanTheoMonAdapter extends RecyclerSwipeAdapter<DanhS
         holder.ibtnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Xóa khóa học");
-                builder.setMessage("Bạn có muốn xóa không?");
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mItemManger.removeShownLayouts(holder.swipeLayout);
-                        dsLopHP.remove(position);
-                        notifyItemRemoved(position);
-                        notifyItemRangeChanged(position, dsLopHP.size());
-                        mItemManger.closeAllItems();
-                        Toast.makeText(v.getContext(), "Deleted !", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(DELETE_LHP, chuongTrinhDaoTao);
+                bundle.putInt(KhoaHocAdapter.POSITION_STRING, position);
+                DialogDeleteLopHocPhan deleteLopHocPhan = new DialogDeleteLopHocPhan();
+                deleteLopHocPhan.setArguments(bundle);
+                deleteLopHocPhan.show(((AppCompatActivity)context).getSupportFragmentManager(), "Delete lớp học phần");
             }
         });
 
@@ -104,39 +86,15 @@ public class DanhSachLopHocPhanTheoMonAdapter extends RecyclerSwipeAdapter<DanhS
             public void onClick(View v) {
                 final LopHocPhan lopHocPhan = dsLopHP.get(position);
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                //
 
-                View view = LayoutInflater.from(context).inflate(R.layout.dialog_sua_lop_hoc_phan_layout, null);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(EDIT_LHP, lopHocPhan);
+                DialogAddOrEditLopHocPhan editLopHocPhan = new DialogAddOrEditLopHocPhan();
+                editLopHocPhan.setArguments(bundle);
+                editLopHocPhan.show(((AppCompatActivity)context).getSupportFragmentManager(), "Edit Lop hoc phan");
 
-                EditText edtMaLop = view.findViewById(R.id.edtMaLop);
-                EditText edtTenLop = view.findViewById(R.id.edtTenLop);
-                final EditText edtMaGV = view.findViewById(R.id.edtMaGV);
 
-                edtMaLop.setText(lopHocPhan.getMaLHP());
-                edtTenLop.setText(lopHocPhan.getTenLHP());
-                edtMaGV.setText(lopHocPhan.getMaGV());
-
-                builder.setView(view);
-
-                builder.setTitle("Cập nhật lại lớp học phần");
-
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        lopHocPhan.setMaGV(edtMaGV.getText().toString());
-                        notifyDataSetChanged();
-                    }
-                });
-
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
             }
         });
 

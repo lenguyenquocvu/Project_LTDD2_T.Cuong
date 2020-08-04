@@ -2,9 +2,11 @@ package com.example.quanlydiemsinhvien.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,26 +14,31 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-
 import com.daimajia.swipe.util.Attributes;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.KhoaHocAdapter;
 import com.example.quanlydiemsinhvien.adapters.decorations.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.data_models.KhoaHoc;
+import com.example.quanlydiemsinhvien.data_models.LopHocPhan;
 import com.example.quanlydiemsinhvien.dialog.DialogAddOrEditKhoahoc;
-import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddKhoahocListener;
+import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddListener;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener;
-import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditKhoaHocListener;
+import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public class DanhSachKhoaHocActivity extends AppCompatActivity implements OnItemClickToAddKhoahocListener, OnItemClickToEditKhoaHocListener, OnItemClickToDeleteListener {
+import static com.example.quanlydiemsinhvien.activities.DanhSachChuongTrinhDaoTaoActivity.DB_CTDT_NAME;
+import static com.example.quanlydiemsinhvien.activities.DanhSachLopHPTheoMHActivity.DB_LOPHOCPHAN_NAME;
+
+
+public class DanhSachKhoaHocActivity extends AppCompatActivity implements OnItemClickToAddListener, OnItemClickToEditListener, OnItemClickToDeleteListener {
     RecyclerView rvDsKhoaHoc;
     private ArrayList<KhoaHoc> dsKhoaHoc;
     public static TextView txtNganh;
@@ -40,6 +47,10 @@ public class DanhSachKhoaHocActivity extends AppCompatActivity implements OnItem
     FirebaseDatabase rootNode;
     DatabaseReference reference;
     private KhoaHoc khoaHoc;
+    public static String DB_KHOAHOC_NAME = "KhoaHoc";
+    public static final String ADD_SUCCESS_NOTIFY = "Thêm thành công!";
+    public static final String EDIT_SUCCESS_NOTIFY = "Sửa thành công!";
+    public static final String DELETE_SUCCESS_NOTIFY = "Xóa thành công!";
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +61,7 @@ public class DanhSachKhoaHocActivity extends AppCompatActivity implements OnItem
         dsKhoaHoc = new ArrayList<KhoaHoc>();
         rvDsKhoaHoc = (RecyclerView) findViewById(R.id.rvDanhsachKhoaHoc);
         rootNode = FirebaseDatabase.getInstance();
-        reference = rootNode.getReference("KhoaHoc");
+        reference = rootNode.getReference(DB_KHOAHOC_NAME);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -69,11 +80,9 @@ public class DanhSachKhoaHocActivity extends AppCompatActivity implements OnItem
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.e(DanhSachChuongTrinhDaoTaoActivity.TAG, DialogAddOrEditKhoahoc.CANCEL_STRING, error.toException());
             }
         });
-
-
 
         txtNganh = findViewById(R.id.txtNganh);
 
@@ -83,26 +92,7 @@ public class DanhSachKhoaHocActivity extends AppCompatActivity implements OnItem
         rvDsKhoaHoc.setLayoutManager(linearLayoutManager);
         // Item decoration
         rvDsKhoaHoc.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R.drawable.divider, getTheme())));
-        // Item Animators
-        rvDsKhoaHoc.setItemAnimator(new FadeInLeftAnimator());
-
-
-
-        // Scroll listener
-        rvDsKhoaHoc.addOnScrollListener(onScroll);
     }
-
-    public RecyclerView.OnScrollListener onScroll = new RecyclerView.OnScrollListener() {
-        @Override
-        public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-            super.onScrollStateChanged(recyclerView, newState);
-        }
-
-        @Override
-        public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-            super.onScrolled(recyclerView, dx, dy);
-        }
-    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -114,7 +104,6 @@ public class DanhSachKhoaHocActivity extends AppCompatActivity implements OnItem
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mnu_them: {
-                final KhoaHoc khoaHoc = new KhoaHoc();
                 openDialogAddKhoaHoc();
             }
             break;
@@ -132,40 +121,77 @@ public class DanhSachKhoaHocActivity extends AppCompatActivity implements OnItem
 
     // Thêm khóa học
     @Override
-    public void applyKhoaHoc(KhoaHoc khoaHoc) {
-        dsKhoaHoc.add(0, khoaHoc);
-        ///
-        khoaHocAdapter.notifyItemInserted(0);
-        rvDsKhoaHoc.scrollToPosition(0);
-        khoaHocAdapter.notifyItemRangeChanged(0, dsKhoaHoc.size());
+    public void applyObject(Object object) {
+        khoaHoc = new KhoaHoc();
+        khoaHoc = (KhoaHoc) object;
 
         reference.child(khoaHoc.getMaKH()).setValue(khoaHoc);
+        khoaHocAdapter.notifyDataSetChanged();
+        Toast.makeText(DanhSachKhoaHocActivity.this, ADD_SUCCESS_NOTIFY, Toast.LENGTH_SHORT).show();
     }
 
     // Sửa thông tin khóa học
     @Override
-    public void onItemClicked(KhoaHoc khoaHoc, int position) {
-        for(KhoaHoc kh : dsKhoaHoc){
-            if(kh.getMaKH().equals(khoaHoc.getMaKH())){
-                kh.setBatDau(khoaHoc.getBatDau());
-                kh.setKetThuc(khoaHoc.getKetThuc());
+    public void editObject(Object object) {
+        khoaHoc = new KhoaHoc();
+        khoaHoc = (KhoaHoc) object;
 
-                reference.child(kh.getMaKH()).child("batDau").setValue(kh.getBatDau());
-                reference.child(kh.getMaKH()).child("ketThuc").setValue(kh.getKetThuc());
-            }
-            break;
-        }
-//        khoaHocAdapter.mItemManger.bindView(rvDsKhoaHoc.getChildAt(position), position);
+        String maKH = khoaHoc.getMaKH();
+        Map<String, Object> khoaHocValues = khoaHoc.toMap();
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put(maKH, khoaHocValues);
+
+        reference.updateChildren(childUpdates);
         khoaHocAdapter.notifyDataSetChanged();
+        Toast.makeText(DanhSachKhoaHocActivity.this, EDIT_SUCCESS_NOTIFY, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void deleteKhoaHoc(Object object) {
-        KhoaHoc khoaHoc = (KhoaHoc) object;
+    public void deleteObject(Object object, int position) {
         dsKhoaHoc.remove(object);
+        khoaHoc = (KhoaHoc) object;
 
-        reference.child(((KhoaHoc) object).getMaKH()).removeValue();
+        String maNganh = txtNganh.getText().toString();
+        final DatabaseReference referenceLHP = rootNode.getReference(DB_LOPHOCPHAN_NAME);
 
+        DatabaseReference referenceCTDT = rootNode.getReference(DB_CTDT_NAME).child(maNganh).child(khoaHoc.getMaKH());
+        referenceCTDT.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot!=null){
+                    for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                        final String key = dataSnapshot.getKey();
+                        referenceLHP.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if(snapshot != null){
+                                    for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                                        if(dataSnapshot.getValue(LopHocPhan.class).getMaMH().equals(key)){
+                                            dataSnapshot.getRef().removeValue();
+                                        }
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Log.e(DanhSachChuongTrinhDaoTaoActivity.TAG, DialogAddOrEditKhoahoc.CANCEL_STRING, error.toException());
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        referenceCTDT.removeValue();
+//        reference.child(((KhoaHoc) object).getMaKH()).removeValue();
+        rvDsKhoaHoc.removeViewAt(position);
         khoaHocAdapter.notifyDataSetChanged();
+        Toast.makeText(DanhSachKhoaHocActivity.this, DELETE_SUCCESS_NOTIFY, Toast.LENGTH_SHORT).show();
     }
 }

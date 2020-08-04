@@ -1,18 +1,17 @@
 package com.example.quanlydiemsinhvien.adapters;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.daimajia.swipe.SwipeLayout;
@@ -21,16 +20,17 @@ import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.activities.DanhSachKhoaHocActivity;
 import com.example.quanlydiemsinhvien.activities.DanhSachLopHPTheoMHActivity;
 import com.example.quanlydiemsinhvien.data_models.MonHoc;
+import com.example.quanlydiemsinhvien.dialog.DialogDeleteChuongTrinhDaoTao;
 
 import java.util.ArrayList;
+
+import static com.example.quanlydiemsinhvien.adapters.KhoaHocAdapter.POSITION_STRING;
 
 public class ChuongTrinhDaoTaoAdapter extends RecyclerSwipeAdapter<ChuongTrinhDaoTaoAdapter.ChuongTrinhDaoTaoViewHolder> {
     private ArrayList<MonHoc> dsCTDT;
     private Context context;
     private AlertDialog.Builder myDialog;
 
-    private final int SHOW_MENU = 1;
-    private final int HIDE_MENU = 0;
 
     public ChuongTrinhDaoTaoAdapter(Context context, ArrayList<MonHoc> dsCTDT) {
         this.dsCTDT = dsCTDT;
@@ -61,38 +61,7 @@ public class ChuongTrinhDaoTaoAdapter extends RecyclerSwipeAdapter<ChuongTrinhDa
         holder.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
         // Drag from right
         holder.swipeLayout.addDrag(SwipeLayout.DragEdge.Right, holder.swipeLayout.findViewById(R.id.right_wrapper));
-        //swipeListener of swipeLayout but not use now so input by comment above
-//        holder.swipeLayout.addSwipeListener(new SwipeLayout.SwipeListener() {
-//            @Override
-//            public void onStartOpen(SwipeLayout layout) {
-//
-//            }
-//
-//            @Override
-//            public void onOpen(SwipeLayout layout) {
-//
-//            }
-//
-//            @Override
-//            public void onStartClose(SwipeLayout layout) {
-//
-//            }
-//
-//            @Override
-//            public void onClose(SwipeLayout layout) {
-//
-//            }
-//
-//            @Override
-//            public void onUpdate(SwipeLayout layout, int leftOffset, int topOffset) {
-//
-//            }
-//
-//            @Override
-//            public void onHandRelease(SwipeLayout layout, float xvel, float yvel) {
-//
-//            }
-//        });
+
 
         holder.swipeLayout.getSurfaceView().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,73 +82,16 @@ public class ChuongTrinhDaoTaoAdapter extends RecyclerSwipeAdapter<ChuongTrinhDa
             }
         });
 
-//        holder.edit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                final MonHoc monHoc = dsCTDT.get(position);
-//
-//                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//
-//                View view = LayoutInflater.from(context).inflate(R.layout.dialog_sua_mon_hoc__ctdt_layout, null);
-//
-//                EditText edtMaMH = view.findViewById(R.id.edtMaMH);
-//                EditText edtTenMH = view.findViewById(R.id.edtTenMH);
-//                EditText edtSoTinChi = view.findViewById(R.id.edtSoTinChi);
-//
-//                edtMaMH.setText(monHoc.getMaMH());
-//                edtTenMH.setText(monHoc.getTenMH());
-//                edtSoTinChi.setText(monHoc.getSoTinChi() + "");
-//
-//                builder.setView(view);
-//
-//                builder.setTitle("Cập nhật lại môn học");
-//
-//                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        notifyDataSetChanged();
-//                    }
-//                });
-//
-//                AlertDialog alertDialog = builder.create();
-//                alertDialog.show();
-//            }
-//        });
 
         holder.ibtnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Xóa khóa học");
-                builder.setMessage("Bạn có muốn xóa không?");
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mItemManger.removeShownLayouts(holder.swipeLayout);
-                        dsCTDT.remove(position);
-                        notifyItemRemoved(position);
-                        notifyItemRangeChanged(position, dsCTDT.size());
-                        mItemManger.closeAllItems();
-                        Toast.makeText(v.getContext(), "Deleted !", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+                Bundle bundle = new Bundle();
+                bundle.putString("maMH", dsCTDT.get(position).getMaMH());
+                bundle.putInt(POSITION_STRING, position);
+                DialogDeleteChuongTrinhDaoTao deleteChuongTrinhDaoTao = new DialogDeleteChuongTrinhDaoTao();
+                deleteChuongTrinhDaoTao.setArguments(bundle);
+                deleteChuongTrinhDaoTao.show(((AppCompatActivity) context).getSupportFragmentManager(), "Xóa môn học");
             }
         });
         mItemManger.bindView(holder.itemView, position);
@@ -206,7 +118,8 @@ public class ChuongTrinhDaoTaoAdapter extends RecyclerSwipeAdapter<ChuongTrinhDa
         protected TextView soTinChi;
         protected SwipeLayout swipeLayout;
         protected ImageButton ibtnDelete;
-//        protected TextView edit;
+
+        //        protected TextView edit;
         public ChuongTrinhDaoTaoViewHolder(@NonNull View itemView) {
             super(itemView);
             txtMaMH = (TextView) itemView.findViewById(R.id.edtMaMH);

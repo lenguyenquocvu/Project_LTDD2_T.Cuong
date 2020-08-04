@@ -2,7 +2,6 @@ package com.example.quanlydiemsinhvien.data_models;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class ChuongTrinhDaoTao {
     private KhoaHoc khoaHoc;

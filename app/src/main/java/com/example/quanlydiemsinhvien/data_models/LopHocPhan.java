@@ -1,6 +1,12 @@
 package com.example.quanlydiemsinhvien.data_models;
 
-public class LopHocPhan {
+import com.google.firebase.database.Exclude;
+
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
+public class LopHocPhan implements Serializable {
     private String maLHP;
     private String TenLHP;
     private String maGV;
@@ -76,5 +82,18 @@ public class LopHocPhan {
 
     public void setKetThuc(boolean ketThuc) {
         KetThuc = ketThuc;
+    }
+
+    @Exclude
+    public Map<String, Object> toMap(){
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("maLHP", getMaLHP());
+        result.put("TenLHP", getTenLHP());
+        result.put("maGV", getMaGV());
+        result.put("maMH", getMaMH());
+        result.put("maNH", getMaNH());
+        result.put("maHK", getMaHK());
+        result.put("KetThuc", isKetThuc());
+        return result;
     }
 }

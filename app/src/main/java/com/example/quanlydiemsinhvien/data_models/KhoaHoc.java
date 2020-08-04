@@ -1,6 +1,10 @@
 package com.example.quanlydiemsinhvien.data_models;
 
+import com.google.firebase.database.Exclude;
+
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class KhoaHoc implements Serializable {
     private String maKH;
@@ -47,5 +51,14 @@ public class KhoaHoc implements Serializable {
                 ", batDau='" + batDau + '\'' +
                 ", ketThuc='" + ketThuc + '\'' +
                 '}';
+    }
+
+    @Exclude
+    public Map<String, Object> toMap(){
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("maKH", getMaKH());
+        result.put("batDau", getBatDau());
+        result.put("ketThuc", getKetThuc());
+        return result;
     }
 }

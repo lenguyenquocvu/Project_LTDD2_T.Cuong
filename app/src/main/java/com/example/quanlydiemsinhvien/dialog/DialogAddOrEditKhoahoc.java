@@ -11,23 +11,23 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.quanlydiemsinhvien.R;
+import com.example.quanlydiemsinhvien.adapters.KhoaHocAdapter;
 import com.example.quanlydiemsinhvien.data_models.KhoaHoc;
-import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddKhoahocListener;
-import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditKhoaHocListener;
-
-import java.util.ArrayList;
+import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddListener;
+import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditListener;
 
 public class DialogAddOrEditKhoahoc extends DialogFragment {
     private EditText edtBatdau;
     private EditText edtKetthuc;
-    private OnItemClickToAddKhoahocListener listener;
+    private OnItemClickToAddListener listener;
     EditText edtMaKH;
     KhoaHoc khoaHoc;
-    private OnItemClickToEditKhoaHocListener editKhoaHocListener;
+    private OnItemClickToEditListener editKhoaHocListener;
+    public static final String OK_STRING = "OK";
+    public static final String CANCEL_STRING = "Cancel";
 
     @NonNull
     @Override
@@ -42,7 +42,7 @@ public class DialogAddOrEditKhoahoc extends DialogFragment {
         builder.setView(view);
 
         if (getArguments() != null) {
-            khoaHoc = (KhoaHoc) getArguments().getSerializable("khoa hoc");
+            khoaHoc = (KhoaHoc) getArguments().getSerializable(KhoaHocAdapter.EDIT_KHOAHOC);
             edtMaKH.setEnabled(false);
             edtMaKH.setText(khoaHoc.getMaKH());
             edtBatdau.setText(khoaHoc.getBatDau() + "");
@@ -54,7 +54,7 @@ public class DialogAddOrEditKhoahoc extends DialogFragment {
         }
 
 
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(OK_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (getArguments() == null) {
@@ -64,19 +64,18 @@ public class DialogAddOrEditKhoahoc extends DialogFragment {
                     khoaHoc.setBatDau(Integer.parseInt(edtBatdau.getText().toString()));
                     khoaHoc.setKetThuc(Integer.parseInt(edtKetthuc.getText().toString()));
 
-                    listener.applyKhoaHoc(khoaHoc);
+                    listener.applyObject(khoaHoc);
                 } else {
                     khoaHoc.setMaKH(edtMaKH.getText().toString());
                     khoaHoc.setBatDau(Integer.parseInt(edtBatdau.getText().toString()));
                     khoaHoc.setKetThuc(Integer.parseInt(edtKetthuc.getText().toString()));
-                    int position = getArguments().getInt("position");
-                    editKhoaHocListener = (OnItemClickToEditKhoaHocListener) getActivity();
-                    editKhoaHocListener.onItemClicked(khoaHoc, position);
                     getArguments().clear();
+                    editKhoaHocListener = (OnItemClickToEditListener) getActivity();
+                    editKhoaHocListener.editObject(khoaHoc);
                 }
             }
         })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(CANCEL_STRING, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dismiss();
@@ -91,7 +90,7 @@ public class DialogAddOrEditKhoahoc extends DialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            listener = (OnItemClickToAddKhoahocListener) context;
+            listener = (OnItemClickToAddListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + "Error!");
         }

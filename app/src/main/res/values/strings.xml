@@ -1,4 +1,7 @@
 <resources>
+
+    <string name="app_name">Manage Student Grades</string>
+
     <string name="app_name">QuanLyDiemSinhVien</string>
     <string name="title_activity_quan_ly">QuanLyActivity</string>
     <!--
@@ -17,4 +20,5 @@
     <string name="themMenuItem">Thêm</string>
     <string name="thoatMenuItem">Thoát</string>
     <string name="menuTitle">Option menu</string>
+
 </resources>

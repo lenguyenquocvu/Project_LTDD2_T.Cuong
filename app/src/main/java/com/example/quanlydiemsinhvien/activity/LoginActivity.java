@@ -89,12 +89,10 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this, MainDanhSachPhongDaoTao.class);
                             startActivity(intent);
                         } else {
-                            loginForm();
-                            Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thất bại", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thất bại", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else if (radGiangVien.isChecked()) {
-                    loginForm();
                     getAccountData(GIANGVIEN_TAG);
                     for (Accounts item : listAccounts) {
                         Log.d("==>", item.getId() + " " + item.getPassword());
@@ -107,7 +105,6 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 } else if (radSinhVien.isChecked()) {
-                    loginForm();
                     getAccountData(SINHVIEN_TAG);
                     for (Accounts item : listAccounts) {
                         Log.d("==>", item.getId() + " " + item.getPassword());

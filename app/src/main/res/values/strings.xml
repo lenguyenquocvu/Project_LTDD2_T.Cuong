@@ -54,6 +54,7 @@
 
 
 
+
     <string name="dsKhoaHoc">Danh sách Khóa học</string>
     <string name="khK17">K17</string>
     <string name="k17Info">2017-2020</string>
@@ -134,6 +135,39 @@
         <item>Uranus</item>
         <item>Neptune</item>
     </string-array>
+
+    <string name="txtHoGV">Họ GV</string>
+    <string name="hintHoGV">Nhập họ giảng viên</string>
+
+    <string name="txtTenGV">Tên GV</string>
+    <string name="hintTenGV">Nhập tên giảng viên</string>
+
+    <string name="txtSdtGV">Số điện thoại</string>
+    <string name="hintSdtGV">Nhập số điện thoại</string>
+
+    <string name="txtEmail">Email</string>
+    <string name="hintEmail">Nhập email</string>
+
+    <string name="txtNgaySinh">Ngày sinh</string>
+    <string name="hintNgaySinh">Nhập ngày sinh</string>
+
+    <string name="txtNganh">Ngành</string>
+
+    <string name="txtMaSV">Mã SV</string>
+    <string name="hintMaSV">Nhập mã sinh viên</string>
+
+    <string name="txtHoSV">Họ SV</string>
+    <string name="hintHoSV">Nhập họ sinh viên</string>
+
+    <string name="txtTenSV">Tên SV</string>
+    <string name="hintTenSV">Nhập tên sinh viên</string>
+
+    <string name="txtSdtSV">Số điện thoại</string>
+    <string name="hintSdtSV">Nhập số điện thoại</string>
+
+    <string name="txtDiaChiSV">Địa chỉ</string>
+    <string name="hintDiaChiSV">Nhập Địa chỉ</string>
+
 
     <!-- End Nganh layout-->
 

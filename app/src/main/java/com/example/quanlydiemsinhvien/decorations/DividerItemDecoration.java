@@ -1,8 +1,8 @@
-<<<<<<< HEAD:app/src/main/java/com/example/quanlydiemsinhvien/divider/DividerItemDecoration.java
+
 package com.example.quanlydiemsinhvien.divider;
-=======
+
 package com.example.quanlydiemsinhvien.decorations;
->>>>>>> origin/Huong:app/src/main/java/com/example/quanlydiemsinhvien/decorations/DividerItemDecoration.java
+
 
 import android.content.Context;
 import android.content.res.TypedArray;

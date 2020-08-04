@@ -1,20 +1,14 @@
-<<<<<<< HEAD:app/src/main/java/com/example/quanlydiemsinhvien/divider/DividerItemDecoration.java
-package com.example.quanlydiemsinhvien.divider;
-=======
-package com.example.quanlydiemsinhvien.decorations;
->>>>>>> origin/Huong:app/src/main/java/com/example/quanlydiemsinhvien/decorations/DividerItemDecoration.java
+package com.daimajia.swipedemo.adapter.util;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 

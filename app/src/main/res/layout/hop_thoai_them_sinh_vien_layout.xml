@@ -5,12 +5,6 @@
     android:layout_height="500dp"
     android:orientation="vertical">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9"
-
 <!--    <LinearLayout-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="0dp"-->
@@ -32,94 +26,105 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="8"
-
         android:layout_margin="10dp"
         android:orientation="vertical">
 
         <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
-
-            android:id="@+id/edtMaGVLayout"
             style="@style/ThemLayout">
 
-
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="Ma GV"/>
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtMaSV"/>
 
             <EditText
-                android:id="@+id/edtMaGV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"/>
+                android:id="@+id/edtMaSV"
+                style="@style/EditTextAttributeName"
+                android:focusable="auto"
+                android:hint="@string/hintMaSV" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+            style="@style/ThemLayout">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="Ma GV"/>
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtHoSV"/>
 
             <EditText
-                android:id="@+id/edtHoGV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"/>
+                android:id="@+id/edtHoSV"
+                android:hint="@string/hintHoSV"
+                style="@style/EditTextAttributeName"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+            style="@style/ThemLayout">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="Ma GV"/>
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtTenSV"/>
 
             <EditText
-                android:id="@+id/edtTenGV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"/>
+                android:id="@+id/edtTenSV"
+                android:hint="@string/hintTenSV"
+                style="@style/EditTextAttributeName"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+            style="@style/ThemLayout">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="Ma GV"/>
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtSdtSV"/>
 
             <EditText
-
-                android:id="@+id/edtSDTGV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"/>
+                android:id="@+id/edtSdtSV"
+                android:hint="@string/hintSdtSV"
+                android:inputType="phone"
+                style="@style/EditTextAttributeName"/>
 
         </LinearLayout>
 
+        <LinearLayout
+            style="@style/ThemLayout">
 
-                android:id="@+id/edtDate"
+            <TextView
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtDiaChiSV"/>
+
+            <EditText
+                android:id="@+id/edtDiaChiSV"
+                android:hint="@string/hintDiaChiSV"
+                style="@style/EditTextAttributeName"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ThemLayout">
+
+            <TextView
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtEmail"/>
+
+            <EditText
+                android:id="@+id/edtEmailSV"
+                android:hint="@string/hintEmail"
+                android:inputType="textEmailAddress"
+                style="@style/EditTextAttributeName"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ThemLayout">
+
+            <TextView
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtNgaySinh"/>
+
+            <EditText
+                android:id="@+id/editTextDate"
                 android:hint="@string/hintNgaySinh"
                 style="@style/EditTextDate" />
 
@@ -147,15 +152,14 @@
 <!--        android:orientation="horizontal">-->
 
 <!--        <Button-->
-<!--            android:id="@+id/btnThemGV"-->
+<!--            android:id="@+id/btnThemSV"-->
 <!--            android:text="@string/themDialogButton"-->
 <!--            style="@style/ButtonThemDialog"/>-->
 
 <!--        <Button-->
-<!--            android:id="@+id/btnThoatGV"-->
+<!--            android:id="@+id/btnThoatSV"-->
 <!--            android:text="@string/thoatDialogButton"-->
 <!--            style="@style/ButtonThoatDialog"/>-->
-
 
 <!--    </LinearLayout>-->
 

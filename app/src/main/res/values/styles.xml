@@ -85,4 +85,19 @@
         <item name="android:textColor">@color/textColorItemRecyclerViewOdd</item>
     </style>
 
+    <style name="btnEditAnđelete">
+        <item name="android:layout_width">@dimen/width_0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="divLayoutTo1per1_Horizontal">
+        <item name="android:layout_width">@dimen/width_0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
 </resources>

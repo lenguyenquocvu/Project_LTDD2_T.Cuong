@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    
+<com.daimajia.swipe.SwipeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:swipe="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/swipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        swipe:leftEdgeSwipeOffset="0dp"
+        swipe:rightEdgeSwipeOffset="0dp">
+        <LinearLayout
+            android:id="@+id/right_wrapper"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+            <TextView
+                android:id="@+id/edit"
+                style="@style/btnEditAnđelete"
+                android:text="Edit"
+                android:background="#0776a5"
+                android:textColor="#fff"
+                android:clickable="true"/>
+
+            <ImageButton
+                android:id="@+id/ibtnDelete"
+                style="@style/btnEditAnđelete"
+                android:background="#003c54"
+                android:src="@drawable/ic_delete_white_24dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="?android:selectableItemBackground"
+            android:paddingLeft="@dimen/paddingLeftLayout"
+            android:elevation="@dimen/cardElevation">
+
+            <TextView
+                android:id="@+id/txtKhoaKhoc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/khK17"
+                android:textSize="@dimen/khoahocSize"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"
+                android:layout_margin="@dimen/dsKhoaHocMargin" />
+
+            <TextView
+                android:id="@+id/txtKhoaHocInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/k17Info"
+                android:textColor="@color/colorBlack"
+                android:layout_margin="@dimen/dsKhoaHocMargin" />
+        </LinearLayout>
+    </com.daimajia.swipe.SwipeLayout>

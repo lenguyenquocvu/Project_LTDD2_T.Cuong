@@ -3,6 +3,13 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.example.quanlydiemsinhvien">
 
+
+
+    <dist:module dist:instant="true" />
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,6 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
 
         <activity android:name=".activities.DSLopActivity">
 
@@ -24,12 +32,16 @@
         <activity android:name=".phongdaotao.DanhSachGiangVienActivity" ></activity>
         <activity android:name=".phongdaotao.QuanLyActivity">
 
+
+        <activity android:name=".activities.DanhSachKhoaHocActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
 
         <activity android:name=".activities.DSSinhVienActivity">
 
@@ -48,6 +60,10 @@
         <uses-library
             android:name="com.google.android.wearable"
             android:required="false" />
+
+
+        <activity android:name=".activities.DanhSachChuongTrinhDaoTaoActivity"></activity>
+        <activity android:name=".activities.DanhSachLopHPTheoMHActivity"></activity>
 
     </application>
 

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:swipe="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    swipe:leftEdgeSwipeOffset="0dp"
+    swipe:rightEdgeSwipeOffset="0dp">
+    <LinearLayout
+        android:id="@+id/right_wrapper"
+        android:layout_width="160dp"
+        android:layout_height="match_parent"
+        android:weightSum="2">
+        <TextView
+            android:id="@+id/edit"
+            style="@style/btnEditAnđelete"
+            android:background="#0776a5"
+            android:text="Edit"
+            android:textColor="#fff"
+            android:clickable="true"/>
+
+        <ImageButton
+            android:id="@+id/ibtnDelete"
+            style="@style/btnEditAnđelete"
+            android:background="#003c54"
+            android:src="@drawable/ic_delete_white_24dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="?android:selectableItemBackground"
+        android:paddingLeft="@dimen/paddingLeftLayout"
+        android:elevation="@dimen/cardElevation">
+
+        <TextView
+            android:id="@+id/edtMaLop"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/khK17"
+            android:textSize="@dimen/khoahocSize"
+            android:textStyle="bold"
+            android:textColor="@color/colorBlack"
+            android:layout_marginLeft="@dimen/marginLeftLayout"/>
+
+        <TextView
+            android:id="@+id/edtTenLop"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:text="@string/k17Info"
+            android:textColor="@color/colorBlack"
+            android:layout_marginLeft="@dimen/marginLeftLayout"/>
+
+        <TextView
+            android:id="@+id/txtMaGV"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/k17Info"
+            android:textColor="@color/colorBlack"
+            android:layout_marginLeft="@dimen/marginLeftLayout"/>
+    </LinearLayout>
+
+
+</com.daimajia.swipe.SwipeLayout>

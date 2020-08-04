@@ -3,8 +3,6 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.example.quanlydiemsinhvien">
 
-    <dist:module dist:instant="true" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,17 +10,40 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".activity.MainDanhSachSinhVien"></activity>
         <activity android:name=".activity.MainDanhSachGiangVien" />
         <activity android:name=".activity.MainDanhSachPhongDaoTao" />
         <activity android:name=".activity.MainDanhSachAdmin" />
         <activity android:name=".activity.LoginActivity">
+
+
+        <activity android:name=".phongdaotao.DanhSachGiangVienActivity" ></activity>
+        <activity android:name=".phongdaotao.QuanLyActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--
+               Set to true if your app is Standalone, that is, it does not require the handheld
+               app to run.
+        -->
+        <activity android:name=".MainActivity" />
+
+        <meta-data
+            android:name="com.google.android.wearable.standalone"
+            android:value="true" />
+
+        <uses-library
+            android:name="com.google.android.wearable"
+            android:required="false" />
     </application>
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <dist:module dist:instant="true" />
 
 </manifest>

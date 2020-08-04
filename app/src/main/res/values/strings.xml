@@ -1,11 +1,31 @@
 <resources>
     <string name="app_name">QuanLyDiemSinhVien</string>
-    <string name="txtMaSV">Mã Sinh Viên</string>
-    <string name="txtTenSV">Tên Sinh Viên</string>
-    <string name="txtDiemSV">Diểm</string>
+
+    <!--    Danh sach lop ma giang vien day     -->
     <string name="txtTenGV">Tên Giảng Viên</string>
-    <string name="txtMaGV">Mã Sinh Viên</string>
     <string name="txtTimKiem">Tim kiếm mã lớp...</string>
     <string name="txtMaLHP">Mã lớp học phần</string>
     <string name="txtTenLHP">Tên lớp học phần</string>
+    <string name="txtMaGV">Mã giáo viên</string>
+    <string name="txtMaNH">Mã năm học</string>
+    <string name="txtMaMH">Mã môn học</string>
+    <string name="txtMaHK">Mã học kì</string>
+    <string name="txtKetThuc">Kết thúc</string>
+    <string name="titleSinhVien">Thêm sinh viên</string>
+    <string name="btnThemSV">Thêm sinh viên</string>
+    <string name="btnCancel">Thoát</string>
+    <!--    End     -->
+
+    <!--    Danh sach sinh vien trong mot lop   -->
+    <string name="txtMaSV">Mã Sinh Viên</string>
+    <string name="txtTenSV">Tên Sinh Viên</string>
+    <string name="txtDiemSV">Diểm</string>
+    <string name="btnEdit">Sửa</string>
+    <string name="btnDelete">Xóa</string>
+    <string name="btnThemLop">Thêm lớp học phần</string>
+    <string name="titleLop">Thêm lớp học phần</string>
+    <!--    End     -->
+
+
+
 </resources>

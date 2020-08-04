@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
     <LinearLayout
@@ -26,8 +27,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Ma sinh vien"
-                android:id="@+id/txtMaSV"
+                android:text="@string/txtMaLHP"
+                android:id="@+id/txtMaLHP"
                 android:gravity="center"></TextView>
         </LinearLayout>
 

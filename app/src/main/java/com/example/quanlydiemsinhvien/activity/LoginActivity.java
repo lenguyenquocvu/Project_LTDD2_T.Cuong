@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(intent);
                         } else {
 
-                            Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thất bại", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thất bại", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -94,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 } else if (radGiangVien.isChecked()) {
+                    loginForm();
                     getAccountData(GIANGVIEN_TAG);
                     for (Accounts item : listAccounts) {
                         Log.d("==>", item.getId() + " " + item.getPassword());
@@ -102,11 +103,11 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this, MainDanhSachGiangVien.class);
                             startActivity(intent);
                         } else {
-                            loginForm();
-                            Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thất bại", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thất bại", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else if (radSinhVien.isChecked()) {
+                    loginForm();
                     getAccountData(SINHVIEN_TAG);
                     for (Accounts item : listAccounts) {
                         Log.d("==>", item.getId() + " " + item.getPassword());
@@ -115,13 +116,12 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this, MainDanhSachSinhVien.class);
                             startActivity(intent);
                         } else {
-                            loginForm();
-                            Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thất bại", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thất bại", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else {
                     validateForm();
-                    Toast.makeText(LoginActivity.this, "Vùi lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
                 }
             }
         });

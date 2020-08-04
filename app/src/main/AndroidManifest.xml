@@ -19,6 +19,7 @@
         android:theme="@style/AppTheme">
 
 
+
         <activity android:name=".activities.DSLopActivity">
 
 
@@ -35,12 +36,16 @@
 
         <activity android:name=".activities.DanhSachKhoaHocActivity">
 
+
+        <activity android:name=".activities.KhoaActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
 
 
         <activity android:name=".activities.DSSinhVienActivity">
@@ -64,6 +69,11 @@
 
         <activity android:name=".activities.DanhSachChuongTrinhDaoTaoActivity"></activity>
         <activity android:name=".activities.DanhSachLopHPTheoMHActivity"></activity>
+
+
+        <activity android:name=".activities.NganhActivity">
+
+        </activity>
 
     </application>
 

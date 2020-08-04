@@ -6,6 +6,7 @@
 
 
 
+
     <!--    Danh sach lop ma giang vien day     -->
     <string name="txtTenGV">Tên Giảng Viên</string>
     <string name="txtTimKiem">Tim kiếm mã lớp...</string>
@@ -72,5 +73,69 @@
     <string name="btnEdit">Edit</string>
     <string name="btnDelete">Delete</string>
     <string name="txtMonHoc">Môn học:</string>
+
+    <!-- String of the Khoa Layout-->
+    <string name="actionBarTitle">Danh sách Khoa</string>
+    <string name="ten_khoa">Tên Khoa</string>
+    <string name="ma_khoa">Mã Khoa</string>
+    <string name="ngay_thanh_lap">Ngày Thành Lập</string>
+    <string name="item_menu_them">Thêm</string>
+
+    <!-- Swipe for Edit and Delete button -->
+    <string name="btnEdit">Edit</string>
+    <string name="btnDelete">Delete</string>
+
+    <!-- Dialog Add Khoa -->
+    <string name="titleAddKhoa">Thêm Khoa Mới</string>
+    <string name="hintEdtMaKhoa">Nhập mã Khoa...</string>
+    <string name="hintEdtTenKhoa">Nhập tên Khoa...</string>
+    <string name="hintEdtNgayThanhLap">Ngày thành lập ...</string>
+    <string name="btnThem">Thêm</string>
+    <string name="btnCancel">Cancel</string>
+
+    <!-- Dialog Remove Khoa -->
+    <string name="titleRemoveKhoa">Thông báo xoá</string>
+    <string name="contentRemove">Bạn có muốn xoá Khoa này không?</string>
+    <string name="btnXoa">Xoá</string>
+
+    <!-- Dialog Edit Khoa-->
+    <string name="titleEditKhoa">Chỉnh sửa Khoa</string>
+    <string name="btnSua">Sửa</string>
+
+
+    <!-- End Khoa layout -->
+
+
+
+    <!-- String of the Nganh Layout -->
+    <string name="titleForActionBarOfNganh">Danh sách Ngành của Khoa</string>
+    <string name="ten_nganh">Tên Ngành</string>
+    <string name="ma_nganh">Mã Ngành</string>
+
+    <!-- Dialog Add Nganh -->
+    <string name="titleAddNganh">Thêm Ngành Mới</string>
+    <string name="hintEdtMaNganh">Nhập mã Ngành...</string>
+    <string name="hintEdtTenNganh">Nhập tên Ngành...</string>
+
+    <!-- Dialog Delete Nganh -->
+    <string name="titileDeleteNganh">Thông báo xoá </string>
+    <string name="contentRemoveNganh">Bạn có muốn xoá Ngành này không?</string>
+
+    <!-- Dialog Edit Nganh-->
+    <string name="titileEditNganh">Chỉnh sửa ngành</string>
+
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+
+    <!-- End Nganh layout-->
+
 
 </resources>

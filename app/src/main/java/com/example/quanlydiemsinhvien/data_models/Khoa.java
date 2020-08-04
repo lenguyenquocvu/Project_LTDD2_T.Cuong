@@ -1,5 +1,9 @@
 package com.example.quanlydiemsinhvien.data_models;
 
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Khoa {
     private String maKhoa;
     private String tenKhoa;
@@ -7,6 +11,14 @@ public class Khoa {
 
     public Khoa() {
     }
+
+
+
+    public Khoa(String tenKhoa, String ngayThanhLap) {
+        this.tenKhoa = tenKhoa;
+        this.ngayThanhLap = ngayThanhLap;
+    }
+
 
     public Khoa(String maKhoa, String tenKhoa, String ngayThanhLap) {
         this.maKhoa = maKhoa;
@@ -38,5 +50,25 @@ public class Khoa {
         this.ngayThanhLap = ngayThanhLap;
     }
 
+
+}
+
+
+    @Override
+    public String toString() {
+        return "Khoa{" +
+                "maKhoa='" + maKhoa + '\'' +
+                ", tenKhoa='" + tenKhoa + '\'' +
+                ", ngayThanhLap='" + ngayThanhLap + '\'' +
+                '}';
+    }
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("maKhoa", maKhoa);
+        result.put("tenKhoa", tenKhoa);
+        result.put("ngayThanhLap", ngayThanhLap);
+        return result;
+    }
 }
 

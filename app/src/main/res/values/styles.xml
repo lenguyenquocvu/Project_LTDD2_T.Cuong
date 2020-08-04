@@ -12,6 +12,7 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+
     <style name="MyActionBarStyle" parent="@style/Widget.AppCompat.ActionBar.Solid">
         <item name="background">@color/actionBarBackground</item>
         <item name="titleTextStyle">@style/TitleActionBarStyle</item>
@@ -100,4 +101,48 @@
     android:layout_width="0dp"
     android:layout_height="match_parent"
     android:layout_weight="1"
+
+    <!-- Style of Khoa. -->
+    <style name="textview_on_item_khoa_recyclerview">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical|center</item>
+    </style>
+
+    <style name="title_for_table_khoa">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:gravity">center|center_vertical</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/colorBackgroundTitleTableKhoa</item>
+
+    </style>
+
+    <style name="textview_on_table_khoa">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/fontSizeOnCarViewKhoa</item>
+    </style>
+
+    <!-- Dialog Them -->
+    <style name="child_linear_dialog">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="item_on_dialog">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="textview_on_dialog">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/fontSizeTextViewDialog</item>
+
+    </style>
+    <!-- End Style of Khoa.-->
+
+
 </resources>

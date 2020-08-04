@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+
     <color name="backgroundColor">#ffffff</color>
     <color name="btnColor">#3B5998</color>
     <color name="titleColor">#3B5998</color>
@@ -22,5 +23,14 @@
     <color name="colorBlack">#000000</color>
     <color name="backgroundColor">#E8E8E0</color>
     <color name="backgroundColorPress">#DBDBD3</color>
+
+    <!-- Color of the Khoa Layout -->
+    <color name="colorBackgroundTitleTableKhoa">#FFFFFF</color>
+
+    <!-- Color for Swipe -->
+    <color name="colorBackgroundBtnEdit">#007bff </color>
+    <color name="colorBackgroundBtnDelete">#ff0d00</color>
+
+
 
 </resources>

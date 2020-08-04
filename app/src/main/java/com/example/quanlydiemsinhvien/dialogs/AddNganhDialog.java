@@ -36,7 +36,7 @@ public class AddNganhDialog extends DialogFragment {
         /* Set content for dialog */
         // Set Dialog layout
         LayoutInflater inflater = requireActivity().getLayoutInflater();
-        final View view  = inflater.inflate(R.layout.dialog_them_nganh, null);
+        final View view = inflater.inflate(R.layout.dialog_them_nganh, null);
         builder.setView(view);
 
         // Set title for Dialog
@@ -59,10 +59,13 @@ public class AddNganhDialog extends DialogFragment {
                 String maKhoaCuaNganh = tvMaKhoa.getText().toString();
 
                 // Write to firebase server
-                myDatabase = new NganhDatabase();
-                myDatabase.writeNewNganh(maKhoaCuaNganh, maNganh, tenNganh);
-
-                Toast.makeText(getActivity(), "Thêm Ngành " + tenNganh + " thành công! ", Toast.LENGTH_SHORT).show();
+                if (maNganh.isEmpty() || tenNganh.isEmpty()) {
+                    Toast.makeText(getActivity(), "Mã Ngành hoặc Tên Ngành không được để trống!", Toast.LENGTH_SHORT).show();
+                } else {
+                    myDatabase = new NganhDatabase();
+                    myDatabase.writeNewNganh(maKhoaCuaNganh, maNganh, tenNganh);
+                    Toast.makeText(getActivity(), "Thêm Ngành " + tenNganh + " thành công! ", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

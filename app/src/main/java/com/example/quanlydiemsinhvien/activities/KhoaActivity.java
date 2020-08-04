@@ -18,7 +18,6 @@ import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.KhoaAdapter;
 import com.example.quanlydiemsinhvien.data_models.Khoa;
 import com.example.quanlydiemsinhvien.dialogs.AddKhoaDialog;
-import com.example.quanlydiemsinhvien.dialogs.AddNganhDialog;
 import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.firebase_data.KhoaDatabase;
 import com.google.firebase.database.DataSnapshot;

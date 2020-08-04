@@ -58,14 +58,13 @@ public class AddKhoaDialog extends DialogFragment {
                 Khoa khoa = new Khoa(maKhoa, tenKhoa, ngayThanhLap);
 
                 // Add new khoa to data base
-                KhoaDatabase mDatabase = new KhoaDatabase();
-                mDatabase.writeNewKhoa(khoa.getMaKhoa(), khoa.getTenKhoa(), khoa.getNgayThanhLap());
-
-                // Add the khoa into the RecyclerView
-                /*KhoaActivity.dataKhoa.add(khoa);
-                KhoaActivity.khoaAdapter.notifyDataSetChanged();*/
-
-                Toast.makeText(getActivity(), khoa.getMaKhoa(), Toast.LENGTH_SHORT).show();
+                if (maKhoa.isEmpty() || tenKhoa.isEmpty()) {
+                    Toast.makeText(getActivity(), "Mã Khoa hoặc Tên Khoa bị rỗng!", Toast.LENGTH_SHORT).show();
+                } else {
+                    KhoaDatabase mDatabase = new KhoaDatabase();
+                    mDatabase.writeNewKhoa(khoa.getMaKhoa(), khoa.getTenKhoa(), khoa.getNgayThanhLap());
+                    Toast.makeText(getActivity(), " Thêm Khoa " + khoa.getMaKhoa() + " thành công!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

@@ -7,7 +7,6 @@ public class Nganh {
     private String maKhoa;
     private String maNganh;
     private String tenNganh;
-    private Khoa khoa;
 
     public Nganh() {
     }
@@ -21,12 +20,6 @@ public class Nganh {
         this.maKhoa = maKhoa;
         this.maNganh = maNganh;
         this.tenNganh = tenNganh;
-    }
-
-    public Nganh(String maNganh, String tenNganh, Khoa khoa) {
-        this.maNganh = maNganh;
-        this.tenNganh = tenNganh;
-        this.khoa = khoa;
     }
 
     public String getMaNganh() {

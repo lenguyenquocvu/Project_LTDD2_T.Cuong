@@ -1,7 +1,5 @@
 package com.example.quanlydiemsinhvien.firebase_data;
 
-import android.util.Log;
-
 import com.example.quanlydiemsinhvien.data_models.Khoa;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -43,7 +41,6 @@ public class KhoaDatabase {
 
     // Update the Khoa
     public void updateAKhoa(String maKhoa, String tenKhoa, String ngayThanhLap) {
-        String key = mDataRef.child(KHOATAG).push().getKey();
 
         Khoa updateKhoa = new Khoa(maKhoa, tenKhoa, ngayThanhLap);
         Map<String, Object> postValue = updateKhoa.toMap();
@@ -53,6 +50,5 @@ public class KhoaDatabase {
 
         mDataRef.updateChildren(childUpdates);
 
-        Log.d(KHOATAG, key);
     }
 }

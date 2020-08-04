@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity android:name=".activities.DSLopActivity">
+
+
         <activity android:name=".activity.MainDanhSachSinhVien"></activity>
         <activity android:name=".activity.MainDanhSachGiangVien" />
         <activity android:name=".activity.MainDanhSachPhongDaoTao" />
@@ -27,6 +30,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".activities.DSSinhVienActivity">
+
+        </activity>
+
         <!--
                Set to true if your app is Standalone, that is, it does not require the handheld
                app to run.
@@ -40,6 +48,7 @@
         <uses-library
             android:name="com.google.android.wearable"
             android:required="false" />
+
     </application>
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />

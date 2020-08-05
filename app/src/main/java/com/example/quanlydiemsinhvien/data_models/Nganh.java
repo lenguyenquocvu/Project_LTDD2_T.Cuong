@@ -1,8 +1,5 @@
 package com.example.quanlydiemsinhvien.data_models;
 
-
-
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +16,6 @@ public class Nganh {
         this.maNganh = maNganh;
         this.tenNganh = tenNganh;
     };
-
 
 
     public Nganh(String maKhoa, String maNganh, String tenNganh) {

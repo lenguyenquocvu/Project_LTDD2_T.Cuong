@@ -14,12 +14,6 @@
 
         <!-- Vũ -->
         <activity android:name=".activities.DanhSachKhoaHocActivity" >
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activities.DanhSachChuongTrinhDaoTaoActivity"></activity>
         <activity android:name=".activities.DanhSachLopHPTheoMHActivity"></activity>
@@ -35,7 +29,13 @@
         </activity>
 
         <!-- Tâm -->
-        <activity android:name=".activities.LoginActivity" ></activity>
+        <activity android:name=".activities.LoginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activities.DSSinhVienActivity"></activity>
         <activity android:name=".activities.MainDanhSachPhongDaoTao" ></activity>
         <activity android:name=".activities.MainDanhSachAdmin" ></activity>

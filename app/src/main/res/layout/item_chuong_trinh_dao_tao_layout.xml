@@ -14,17 +14,6 @@
         android:layout_height="match_parent"
         android:weightSum="1">
 
-        <!--<TextView
-            android:id="@+id/edit"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#0776a5"
-            android:clickable="true"
-            android:gravity="center"
-            android:text="Edit"
-            android:textColor="#fff" /> -->
-
         <ImageButton
             android:id="@+id/ibtnDelete"
             style="@style/SwipeItemStyle"

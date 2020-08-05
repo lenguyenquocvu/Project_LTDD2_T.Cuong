@@ -12,7 +12,6 @@
     <color name="center_background_color">#3B5998</color>
     <color name="end_background_color">#DFE3EE</color>
     <color name="textColorItemRecyclerViewEven">#ffffff</color>
-    <color name="textColorItemRecyclerViewOdd">#3B5998</color>
     <color name="recyclerViewItemEvenColor">#3B5998</color>
     <color name="recyclerViewItemOddColor">#ffffff</color>
     <color name="actionBarBackground">#DFE3EE</color>

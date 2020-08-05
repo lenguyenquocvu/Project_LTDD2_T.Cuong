@@ -1,12 +1,30 @@
 package com.example.quanlydiemsinhvien.data_models;
 
-public class SinhVien {
-    private String maSV;
-    private String hoTenSV;
-    private String maHP;
-    private String tenHP;
-    private String soTC;
-    private String diemMH;
+import java.io.Serializable;
+
+public class SinhVien implements Serializable {
+    String maSV;
+    String tenSV;
+    String hoSV;
+    String ngaySinh;
+    String sdt;
+    String diaChi;
+    String email;
+    String maNganh;
+
+    public SinhVien() {
+    }
+
+    public SinhVien(String maSV, String tenSV, String hoSV, String ngaySinh, String sdt, String diaChi, String email, String maNganh) {
+        this.maSV = maSV;
+        this.tenSV = tenSV;
+        this.hoSV = hoSV;
+        this.ngaySinh = ngaySinh;
+        this.sdt = sdt;
+        this.diaChi = diaChi;
+        this.email = email;
+        this.maNganh = maNganh;
+    }
 
     public String getMaSV() {
         return maSV;
@@ -16,55 +34,59 @@ public class SinhVien {
         this.maSV = maSV;
     }
 
-    public String getHoTenSV() {
-        return hoTenSV;
+    public String getTenSV() {
+        return tenSV;
     }
 
-    public void setHoTenSV(String hoTenSV) {
-        this.hoTenSV = hoTenSV;
+    public void setTenSV(String tenSV) {
+        this.tenSV = tenSV;
     }
 
-    public String getMaHP() {
-        return maHP;
+    public String getHoSV() {
+        return hoSV;
     }
 
-    public void setMaHP(String maHP) {
-        this.maHP = maHP;
+    public void setHoSV(String hoSV) {
+        this.hoSV = hoSV;
     }
 
-    public String getTenHP() {
-        return tenHP;
+    public String getNgaySinh() {
+        return ngaySinh;
     }
 
-    public void setTenHP(String tenHP) {
-        this.tenHP = tenHP;
+    public void setNgaySinh(String ngaySinh) {
+        this.ngaySinh = ngaySinh;
     }
 
-    public String getSoTC() {
-        return soTC;
+    public String getSdt() {
+        return sdt;
     }
 
-    public void setSoTC(String soTC) {
-        this.soTC = soTC;
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
     }
 
-    public String getDiemMH() {
-        return diemMH;
+    public String getDiaChi() {
+        return diaChi;
     }
 
-    public void setDiemMH(String diemMH) {
-        this.diemMH = diemMH;
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
     }
 
-    @Override
-    public String toString() {
-        return "SinhVien{" +
-                "maSV='" + maSV + '\'' +
-                ", hoTenSV='" + hoTenSV + '\'' +
-                ", maHP='" + maHP + '\'' +
-                ", tenHP='" + tenHP + '\'' +
-                ", soTC='" + soTC + '\'' +
-                ", diemMH='" + diemMH + '\'' +
-                '}';
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMaNganh() {
+        return maNganh;
+    }
+
+    public void setMaNganh(String maNganh) {
+        this.maNganh = maNganh;
     }
 }

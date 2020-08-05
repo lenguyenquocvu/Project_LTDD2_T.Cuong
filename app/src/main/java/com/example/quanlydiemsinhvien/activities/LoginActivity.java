@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     public static final String GIANGVIEN_TAG = "accountGiangVien";
     public static final String PDT_TAG = "accountPDT";
     DatabaseReference myDatabase = FirebaseDatabase.getInstance().getReference();
-
+    public static Intent intent;
     //On Create:
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,8 @@ public class LoginActivity extends AppCompatActivity {
         radGiangVien = findViewById(R.id.radGiangVien);
         radSinhVien = findViewById(R.id.radSinhVien);
         radioGroup = findViewById(R.id.radioGroup);
-
+        intent = getIntent();
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         // User click Login button
         btnDangNhap.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("==>", item.getId() + " " + item.getPassword());
                         if (id.equals(item.getId()) && password.equals(item.getPassword())) {
                             Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thành công", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, MainDanhSachPhongDaoTao.class);
+                            intent.setClass(LoginActivity.this, QuanLyActivity.class);
                             startActivity(intent);
                         } else {
                             //Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thất bại", Toast.LENGTH_SHORT).show();

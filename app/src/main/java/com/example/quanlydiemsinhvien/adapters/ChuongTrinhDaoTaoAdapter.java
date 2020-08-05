@@ -19,6 +19,7 @@ import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.activities.DanhSachKhoaHocActivity;
 import com.example.quanlydiemsinhvien.activities.DanhSachLopHPTheoMHActivity;
+import com.example.quanlydiemsinhvien.activities.LoginActivity;
 import com.example.quanlydiemsinhvien.data_models.MonHoc;
 import com.example.quanlydiemsinhvien.dialogs.DialogDeleteChuongTrinhDaoTao;
 
@@ -67,7 +68,7 @@ public class ChuongTrinhDaoTaoAdapter extends RecyclerSwipeAdapter<ChuongTrinhDa
             @Override
             public void onClick(View v) {
                 Context ct = v.getContext();
-                Intent intent = DanhSachKhoaHocActivity.intent;
+                Intent intent = LoginActivity.intent;
                 intent.setClass(ct, DanhSachLopHPTheoMHActivity.class);
                 intent.putExtra("tenMH", dsCTDT.get(position).getTenMH());
                 intent.putExtra("maMH", dsCTDT.get(position).getMaMH());

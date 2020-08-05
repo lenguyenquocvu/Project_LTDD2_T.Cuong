@@ -18,6 +18,7 @@ import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.activities.DanhSachChuongTrinhDaoTaoActivity;
 import com.example.quanlydiemsinhvien.activities.DanhSachKhoaHocActivity;
+import com.example.quanlydiemsinhvien.activities.LoginActivity;
 import com.example.quanlydiemsinhvien.data_models.KhoaHoc;
 import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditKhoahoc;
 import com.example.quanlydiemsinhvien.dialogs.DialogDeleteKhoaHoc;
@@ -62,7 +63,7 @@ public class KhoaHocAdapter extends RecyclerSwipeAdapter<KhoaHocAdapter.KhoaHocV
             @Override
             public void onClick(View v) {
                 Context ct = v.getContext();
-                Intent intent = DanhSachKhoaHocActivity.intent;
+                Intent intent = LoginActivity.intent;
                 intent.setClass(ct, DanhSachChuongTrinhDaoTaoActivity.class);
                 intent.putExtra(MANGANH_STRING, DanhSachKhoaHocActivity.txtNganh.getText().toString());
                 intent.putExtra(MAKH_STRING, dsKhoaHoc.get(position).getMaKH());

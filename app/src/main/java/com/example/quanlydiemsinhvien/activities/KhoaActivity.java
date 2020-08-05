@@ -81,7 +81,6 @@ public class KhoaActivity extends AppCompatActivity {
         // Use linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
     }
 
     // Create a menu on action bar

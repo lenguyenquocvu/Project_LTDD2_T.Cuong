@@ -87,7 +87,6 @@ public class DanhSachLopHPTheoMHActivity extends AppCompatActivity implements On
                     }
                 }
                 lopHocPhanTheoMonAdapter = new LopHocPhanTheoMonAdapter(DanhSachLopHPTheoMHActivity.this, dsLopHPTheoMH_after_click);
-                rvLopHPTheoMH.setHasFixedSize(true);
                 rvLopHPTheoMH.setAdapter(lopHocPhanTheoMonAdapter);
                 ((LopHocPhanTheoMonAdapter) lopHocPhanTheoMonAdapter).setMode(Attributes.Mode.Single);
             }

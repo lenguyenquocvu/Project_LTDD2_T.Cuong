@@ -68,7 +68,6 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
                     dsSinhVien.add(sinhVien);
                 }
                 mAdapter  = new SinhVienSwipeRecyclerViewAdapter(DanhSachSinhVienActivity.this, dsSinhVien);
-                recyclerView.setHasFixedSize(true);
                 recyclerView.setAdapter(mAdapter);
                 ((SinhVienSwipeRecyclerViewAdapter) mAdapter).setMode(Attributes.Mode.Single);
             }

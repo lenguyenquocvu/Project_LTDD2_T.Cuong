@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
 
         <!-- Vũ -->
-        <activity android:name=".activities.DanhSachKhoaHocActivity" />
+        <activity android:name=".activities.DanhSachKhoaHocActivity"></activity>
         <activity android:name=".activities.DanhSachChuongTrinhDaoTaoActivity"></activity>
         <activity android:name=".activities.DanhSachLopHPTheoMHActivity"></activity>
 
@@ -29,24 +29,17 @@
 
         <!-- Hương -->
         <activity android:name=".activities.MainDanhSachSinhVien"></activity>
-        <activity android:name=".activities.MainDanhSachGiangVien" />
-        <activity android:name=".activities.QuanLyActivity">
-
-            <!-- <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter> -->
-        </activity>
+        <activity android:name=".activities.MainDanhSachGiangVien" ></activity>
+        <activity android:name=".activities.QuanLyActivity"></activity>
 
         <!-- Tâm -->
-        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.LoginActivity" ></activity>
         <activity android:name=".activities.DSSinhVienActivity"></activity>
-        <activity android:name=".activities.MainDanhSachPhongDaoTao" />
-        <activity android:name=".activities.MainDanhSachAdmin" />
+        <activity android:name=".activities.MainDanhSachPhongDaoTao" ></activity>
+        <activity android:name=".activities.MainDanhSachAdmin" ></activity>
 
         <!-- Triều -->
-        <activity android:name=".activities.DSLopActivity" />
+        <activity android:name=".activities.DSLopActivity" ></activity>
         <activity android:name=".activities.DanhSachGiangVienActivity"></activity>
         <activity android:name=".activities.DanhSachSinhVienActivity"></activity>
 

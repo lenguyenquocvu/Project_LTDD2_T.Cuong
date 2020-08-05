@@ -14,16 +14,13 @@
         android:weightSum="2">
         <TextView
             android:id="@+id/edit"
-            style="@style/btnEditAnđelete"
-            android:background="#0776a5"
+            style="@style/SwipeItemStyle"
             android:text="Edit"
-            android:textColor="#fff"
             android:clickable="true"/>
 
         <ImageButton
             android:id="@+id/ibtnDelete"
-            style="@style/btnEditAnđelete"
-            android:background="#003c54"
+            style="@style/SwipeItemStyle"
             android:src="@drawable/ic_delete_white_24dp" />
     </LinearLayout>
     <LinearLayout
@@ -40,9 +37,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/khK17"
-            android:textSize="@dimen/khoahocSize"
             android:textStyle="bold"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/textColorItemRecyclerViewEven"
             android:layout_marginLeft="@dimen/marginLeftLayout"/>
 
         <TextView
@@ -51,7 +47,7 @@
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:text="@string/k17Info"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/textColorItemRecyclerViewEven"
             android:layout_marginLeft="@dimen/marginLeftLayout"/>
 
         <TextView
@@ -60,7 +56,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/k17Info"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/textColorItemRecyclerViewEven"
             android:layout_marginLeft="@dimen/marginLeftLayout"/>
     </LinearLayout>
 

@@ -56,8 +56,6 @@ public class DSLopActivity extends AppCompatActivity implements AddLop {
         //Get View from layout
         recyclerView = (RecyclerView) findViewById(R.id.recycler_dslop);
 
-        //Improve performace if changes in content do not change the layout size of the RecyclerView
-        recyclerView.setHasFixedSize(true);
 
         //Item decoration
        // recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R.drawable.divider, getTheme()));

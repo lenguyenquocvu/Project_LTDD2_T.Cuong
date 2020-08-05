@@ -17,6 +17,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.quanlydiemsinhvien.R;
+import com.example.quanlydiemsinhvien.activities.DanhSachGiangVienActivity;
+import com.example.quanlydiemsinhvien.activities.DanhSachSinhVienActivity;
 import com.example.quanlydiemsinhvien.adapters.GiangVienSwipeRecyclerViewAdapter;
 import com.example.quanlydiemsinhvien.adapters.SinhVienSwipeRecyclerViewAdapter;
 import com.example.quanlydiemsinhvien.data_models.GiangVienModel;
@@ -73,7 +75,7 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
         spinnerDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                spinnerItems.clear();
                 for (DataSnapshot areaSnapshot : snapshot.getChildren()) {
                     NganhModel nganh = new NganhModel();
                     nganh = areaSnapshot.getValue(NganhModel.class);
@@ -103,7 +105,7 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
             edtSDT.setText(sinhVien.getSdt() + "");
             edtDiaChi.setText(sinhVien.getDiaChi());
             edtEmail.setText(sinhVien.getEmail());
-            spnMaNganh.setSelection(getPositionOfMaNganh(sinhVien.getMaNganh()));
+            //spnMaNganh.setSelection(getPositionOfMaNganh(sinhVien.getMaNganh()));
             builder.setTitle("Chỉnh sửa sinh viên");
         } else {
             edtMaSV.setEnabled(true);
@@ -122,10 +124,10 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
                             edtNgaySinh.getText().toString().isEmpty() ||
                             edtDiaChi.getText().toString().isEmpty()){
                         Toast.makeText(getContext(), "Không thể thêm sinh viên! Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_LONG).show();
-                    }else{
-
+                    } else if (!checkMaGV(edtMaSV.getText().toString())) {
+                        Toast.makeText(getContext(), "Thêm không thành công! Mã sinh viên đã tồn tại!", Toast.LENGTH_LONG).show();
+                    } else{
                         sinhVien = new SinhVienModel();
-
                         sinhVien.setMaSV(edtMaSV.getText().toString());
                         sinhVien.setTenSV(edtTenSV.getText().toString());
                         sinhVien.setHoSV(edtHoSV.getText().toString());
@@ -192,13 +194,21 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
         }
         return maNganh;
     }
-    public static int getPositionOfMaNganh(String maNganh){
-        int position = 0;
-        for(int i = 0; i < spinnerItems.size(); i++){
-            if(maNganh == spinnerItems.get(i).getMaNganh()){
-                position = i;
+//    public static int getPositionOfMaNganh(String maNganh){
+//        int position = 0;
+//        for(int i = 0; i < spinnerItems.size(); i++){
+//            if(maNganh == spinnerItems.get(i).getMaNganh()){
+//                position = i;
+//            }
+//        }
+//        return position;
+//    }
+    public static boolean checkMaGV (String maSV) {
+        for (SinhVienModel sv : DanhSachSinhVienActivity.dsSinhVien){
+            if(maSV.equals(sv.getMaSV().toString())){
+                return false;
             }
         }
-        return position;
+        return true;
     }
 }

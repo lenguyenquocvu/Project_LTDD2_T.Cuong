@@ -1,12 +1,10 @@
 package com.example.quanlydiemsinhvien.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,17 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.daimajia.swipe.util.Attributes;
 import com.example.quanlydiemsinhvien.R;
-import com.example.quanlydiemsinhvien.adapters.GiangVienSwipeRecyclerViewAdapter;
 import com.example.quanlydiemsinhvien.adapters.SinhVienSwipeRecyclerViewAdapter;
-import com.example.quanlydiemsinhvien.data_models.GiangVienModel;
+import com.example.quanlydiemsinhvien.data_models.AccountSinhVien;
 import com.example.quanlydiemsinhvien.data_models.SinhVienModel;
-import com.example.quanlydiemsinhvien.decorations.DividerItemDecoration;
-import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditGiangVien;
+import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditSinhVien;
-import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddGiangVienListener;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddSinhVienListener;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener;
-import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditGiangVienListener;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditSinhVienListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -49,6 +43,7 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
+    DatabaseReference accSVReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +55,7 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
         intent = getIntent();
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("SinhVien");
+        accSVReference = rootNode.getReference("accountSinhVien");
 
         tvEmptyView = (TextView) findViewById(R.id.empty_view);
         recyclerView = findViewById(R.id.list_student_recycler_view);
@@ -136,6 +132,7 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
         dsSinhVien.remove(object);
 
         reference.child(((SinhVienModel) object).getMaSV()).removeValue();
+        accSVReference.child(((SinhVienModel) object).getMaSV()).removeValue();
 
         mAdapter.notifyDataSetChanged();
     }
@@ -144,6 +141,7 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
     public void applySinhVien(SinhVienModel sinhVien) {
         dsSinhVien.add(0,sinhVien);
         reference.child(sinhVien.getMaSV()).setValue(sinhVien);
+        accSVReference.child(sinhVien.getMaSV()).setValue(new AccountSinhVien(sinhVien.getMaSV(), sinhVien.getMaSV()));
     }
 
     @Override

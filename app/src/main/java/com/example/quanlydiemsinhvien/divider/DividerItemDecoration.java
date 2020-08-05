@@ -1,4 +1,4 @@
-package com.example.quanlydiemsinhvien.decorations;
+package com.example.quanlydiemsinhvien.divider;
 
 import android.content.Context;
 import android.content.res.TypedArray;

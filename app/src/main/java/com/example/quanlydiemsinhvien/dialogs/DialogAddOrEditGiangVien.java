@@ -21,6 +21,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.quanlydiemsinhvien.R;
+import com.example.quanlydiemsinhvien.activities.DanhSachGiangVienActivity;
 import com.example.quanlydiemsinhvien.adapters.GiangVienSwipeRecyclerViewAdapter;
 import com.example.quanlydiemsinhvien.data_models.GiangVienModel;
 import com.example.quanlydiemsinhvien.data_models.NganhModel;
@@ -70,31 +71,31 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
         edtSDT = view.findViewById(R.id.edtSdtGV);
         spnMaNganh = view.findViewById(R.id.spinnerMaNganh);
 
-        edtMaGV.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() == 0) {
-                    edtMaGV.setError("Bạn bắt buộc phải nhập usernam");
-                } else {
-                    edtMaGV.setError(null);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+//        edtMaGV.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                if (s.length() == 0) {
+//                    edtMaGV.setError("Bạn bắt buộc phải nhập Mã giảng viên!");
+//                } else {
+//                    edtMaGV.setError(null);
+//                }
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
 
         spinnerDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                spinnerItems.clear();
 
                 for (DataSnapshot areaSnapshot : snapshot.getChildren()) {
                     NganhModel nganh = new NganhModel();
@@ -127,7 +128,7 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
             edtNgaySinh.setText(giangVien.getNgaySinh());
             edtSDT.setText(giangVien.getSdt() + "");
             edtEmail.setText(giangVien.getEmail());
-            spnMaNganh.setSelection(getPositionOfNganh(giangVien.getMaNganh()));
+            //spnMaNganh.setSelection(getPositionOfNganh(giangVien.getMaNganh()));
             builder.setTitle("Chỉnh sửa giảng viên");
 //            Log.d("position", "position " + getPositionOfMaNganh(giangVien.getMaNganh(), spinnerItems));
         } else {
@@ -146,7 +147,9 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
                             edtSDT.getText().toString().isEmpty() ||
                             edtNgaySinh.getText().toString().isEmpty()){
                         Toast.makeText(getContext(), "Không thể thêm giảng viên! Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_LONG).show();
-                    }else{
+                    } else if (!checkMaGV(edtMaGV.getText().toString())) {
+                        Toast.makeText(getContext(), "Thêm không thành công! Mã giảng viên đã tồn tại!", Toast.LENGTH_LONG).show();
+                    } else {
                         giangVien = new GiangVienModel();
                         giangVien.setMaGV(edtMaGV.getText().toString());
                         giangVien.setTenGV(edtTenGV.getText().toString());
@@ -205,19 +208,28 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
     public static String getSelectedMaNganh(){
         String maNganh = "";
         for(int i = 0; i < spinnerItems.size(); i++){
-            if(spnMaNganh.getSelectedItem().toString() == spinnerItems.get(i).getTenNganh()){
+            if(spnMaNganh.getSelectedItem().toString().equals(spinnerItems.get(i).getTenNganh())){
                 maNganh = spinnerItems.get(i).getMaNganh();
             }
         }
         return maNganh;
     }
-    public static int getPositionOfNganh(String maNganh){
-        int postion = 0;
-        for(int i = 0; i < spinnerItems.size(); i++){
-            if(maNganh.equals(spinnerItems.get(i).getMaNganh())){
-                postion = i;
+//    public static int getPositionOfNganh(String maNganh){
+//        int postion = 0;
+//        for(int i = 0; i < spinnerItems.size(); i++){
+//            if(maNganh.equals(spinnerItems.get(i).getMaNganh())){
+//                postion = i;
+//            }
+//        }
+//        return postion;
+//    }
+
+    public static boolean checkMaGV (String maGV) {
+        for (GiangVienModel gv : DanhSachGiangVienActivity.dsGiangVien){
+            if(maGV.equals(gv.getMaGV().toString())){
+                return false;
             }
         }
-        return postion;
+        return true;
     }
 }

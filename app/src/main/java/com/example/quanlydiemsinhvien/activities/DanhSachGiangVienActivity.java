@@ -5,22 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.daimajia.swipe.util.Attributes;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.GiangVienSwipeRecyclerViewAdapter;
+import com.example.quanlydiemsinhvien.data_models.AccountGiangVien;
 import com.example.quanlydiemsinhvien.data_models.GiangVienModel;
-import com.example.quanlydiemsinhvien.decorations.DividerItemDecoration;
+import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditGiangVien;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddGiangVienListener;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener;
@@ -45,6 +43,7 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
+    DatabaseReference accGVReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +56,7 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
         dsGiangVien = new ArrayList<GiangVienModel>();
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("GiangVien");
+        accGVReference = rootNode.getReference("accountGiangVien");
 
         tvEmptyView = (TextView) findViewById(R.id.empty_view);
         recyclerView = findViewById(R.id.list_teacher_recycler_view);
@@ -132,6 +132,8 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
     public void applyGiangVien(GiangVienModel giangVien) {
         dsGiangVien.add(0,giangVien);
         reference.child(giangVien.getMaGV()).setValue(giangVien);
+
+        accGVReference.child(giangVien.getMaGV()).setValue(new AccountGiangVien(giangVien.getMaGV(), giangVien.getMaGV()));
     }
 
     @Override
@@ -140,6 +142,7 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
         dsGiangVien.remove(object);
 
         reference.child(((GiangVienModel) object).getMaGV()).removeValue();
+        accGVReference.child(((GiangVienModel) object).getMaGV()).removeValue();
 
         mAdapter.notifyDataSetChanged();
     }

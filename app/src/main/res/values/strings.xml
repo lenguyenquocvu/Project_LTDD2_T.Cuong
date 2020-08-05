@@ -60,7 +60,7 @@
     <string name="txtDiaChiSV">Địa chỉ</string>
     <string name="hintDiaChiSV">Nhập Địa chỉ</string>
 
-    <string name="swipeEdit">Chỉnh sửa</string>
+    <string name="swipeEdit">Edit</string>
     <string name="swipeDelete">Xóa</string>
 
     <string name="btnCapNhatDialog">Cập nhật</string>

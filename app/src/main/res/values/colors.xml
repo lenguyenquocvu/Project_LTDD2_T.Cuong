@@ -4,7 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
-
     <color name="btnColor">#3B5998</color>
     <color name="titleColor">#3B5998</color>
     <color name="textColorButton">#ffffff</color>
@@ -28,7 +27,4 @@
     <!-- Color for Swipe -->
     <color name="colorBackgroundBtnEdit">#007bff </color>
     <color name="colorBackgroundBtnDelete">#ff0d00</color>
-
-
-
 </resources>

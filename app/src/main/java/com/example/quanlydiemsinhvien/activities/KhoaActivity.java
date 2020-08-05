@@ -50,7 +50,6 @@ public class KhoaActivity extends AppCompatActivity {
         // Get View from layout
         recyclerView = findViewById(R.id.khoa_recylerview);
 
-
         // Item decoration
         recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R.drawable.divider, getTheme())));
 
@@ -82,7 +81,6 @@ public class KhoaActivity extends AppCompatActivity {
         // Use linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
     }
 
     // Create a menu on action bar

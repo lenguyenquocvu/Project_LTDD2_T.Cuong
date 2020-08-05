@@ -13,20 +13,20 @@
         android:theme="@style/AppTheme">
 
         <!-- Vũ -->
-        <activity android:name=".activities.DanhSachKhoaHocActivity" >
-        </activity>
+
+        <activity android:name=".activities.DanhSachKhoaHocActivity"></activity>
         <activity android:name=".activities.DanhSachChuongTrinhDaoTaoActivity"></activity>
         <activity android:name=".activities.DanhSachLopHPTheoMHActivity"></activity>
 
         <!-- Hiệu -->
-        <activity android:name=".activities.KhoaActivity" ></activity>
+        <activity android:name=".activities.KhoaActivity">
+        </activity>
         <activity android:name=".activities.NganhActivity"></activity>
 
         <!-- Hương -->
         <activity android:name=".activities.MainDanhSachSinhVien"></activity>
         <activity android:name=".activities.MainDanhSachGiangVien" ></activity>
-        <activity android:name=".activities.QuanLyActivity">
-        </activity>
+        <activity android:name=".activities.QuanLyActivity"></activity>
 
         <!-- Tâm -->
         <activity android:name=".activities.LoginActivity" >

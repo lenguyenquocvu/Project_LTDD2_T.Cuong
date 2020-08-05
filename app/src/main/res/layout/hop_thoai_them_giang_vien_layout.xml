@@ -5,120 +5,112 @@
     android:layout_height="500dp"
     android:orientation="vertical">
 
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:gravity="center"-->
+    <!--        android:background="@color/titleDialogBackgroundColor"-->
+    <!--        android:layout_weight="1">-->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9"
+    <!--        <TextView-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="@string/titleThemDialog"-->
+    <!--            android:textColor="@color/titleDialogColor"-->
+    <!--            android:textAllCaps="true"-->
+    <!--            android:textStyle="bold"></TextView>-->
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:gravity="center"-->
-<!--        android:background="@color/titleDialogBackgroundColor"-->
-<!--        android:layout_weight="1">-->
-
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/titleThemDialog"-->
-<!--            android:textColor="@color/titleDialogColor"-->
-<!--            android:textAllCaps="true"-->
-<!--            android:textStyle="bold"></TextView>-->
-
-<!--    </LinearLayout>-->
+    <!--    </LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="8"
-
         android:layout_margin="10dp"
         android:orientation="vertical">
 
         <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
-
             android:id="@+id/edtMaGVLayout"
             style="@style/ThemLayout">
 
-
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="Ma GV"/>
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtMaGV"/>
 
             <EditText
                 android:id="@+id/edtMaGV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"/>
+                style="@style/EditTextAttributeName"
+                android:focusable="auto"
+                android:hint="@string/hintMaGV" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+            style="@style/ThemLayout">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="Ma GV"/>
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtHoGV"/>
 
             <EditText
                 android:id="@+id/edtHoGV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"/>
+                android:hint="@string/hintHoGV"
+                style="@style/EditTextAttributeName"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+            style="@style/ThemLayout">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="Ma GV"/>
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtTenGV"/>
 
             <EditText
                 android:id="@+id/edtTenGV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"/>
+                android:hint="@string/hintTenGV"
+                style="@style/EditTextAttributeName"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+            style="@style/ThemLayout">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="Ma GV"/>
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtSdtGV"/>
 
             <EditText
-
-                android:id="@+id/edtSDTGV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"/>
+                android:id="@+id/edtSdtGV"
+                android:hint="@string/hintSdtGV"
+                android:inputType="phone"
+                style="@style/EditTextAttributeName"/>
 
         </LinearLayout>
 
+        <LinearLayout
+            style="@style/ThemLayout">
 
+            <TextView
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtEmail"/>
+
+            <EditText
+                android:id="@+id/edtEmailGV"
+                android:hint="@string/hintEmail"
+                android:inputType="textEmailAddress"
+                style="@style/EditTextAttributeName"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ThemLayout">
+
+            <TextView
+                style="@style/TextViewAttributeName"
+                android:text="@string/txtNgaySinh"/>
+
+            <EditText
                 android:id="@+id/edtDate"
                 android:hint="@string/hintNgaySinh"
                 style="@style/EditTextDate" />
@@ -140,23 +132,22 @@
 
     </LinearLayout>
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_weight="1"-->
-<!--        android:orientation="horizontal">-->
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_weight="1"-->
+    <!--        android:orientation="horizontal">-->
 
-<!--        <Button-->
-<!--            android:id="@+id/btnThemGV"-->
-<!--            android:text="@string/themDialogButton"-->
-<!--            style="@style/ButtonThemDialog"/>-->
+    <!--        <Button-->
+    <!--            android:id="@+id/btnThemGV"-->
+    <!--            android:text="@string/themDialogButton"-->
+    <!--            style="@style/ButtonThemDialog"/>-->
 
-<!--        <Button-->
-<!--            android:id="@+id/btnThoatGV"-->
-<!--            android:text="@string/thoatDialogButton"-->
-<!--            style="@style/ButtonThoatDialog"/>-->
+    <!--        <Button-->
+    <!--            android:id="@+id/btnThoatGV"-->
+    <!--            android:text="@string/thoatDialogButton"-->
+    <!--            style="@style/ButtonThoatDialog"/>-->
 
-
-<!--    </LinearLayout>-->
+    <!--    </LinearLayout>-->
 
 </LinearLayout>

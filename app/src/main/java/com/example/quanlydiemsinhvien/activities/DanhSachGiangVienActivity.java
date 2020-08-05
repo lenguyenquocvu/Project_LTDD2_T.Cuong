@@ -19,11 +19,12 @@ import android.widget.Toast;
 import com.daimajia.swipe.util.Attributes;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.GiangVienSwipeRecyclerViewAdapter;
+import com.example.quanlydiemsinhvien.adapters.decorations.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.data_models.GiangVienModel;
-import com.example.quanlydiemsinhvien.decorations.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditGiangVien;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddGiangVienListener;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener;
+import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener_Huong;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditGiangVienListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,7 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DanhSachGiangVienActivity extends AppCompatActivity implements OnItemClickToAddGiangVienListener, OnItemClickToEditGiangVienListener, OnItemClickToDeleteListener {
+public class DanhSachGiangVienActivity extends AppCompatActivity implements OnItemClickToAddGiangVienListener, OnItemClickToEditGiangVienListener, OnItemClickToDeleteListener_Huong {
     public static Intent intent;
     public static ArrayList<GiangVienModel> dsGiangVien;
 
@@ -173,4 +174,5 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
         }
         mAdapter.notifyDataSetChanged();
     }
+
 }

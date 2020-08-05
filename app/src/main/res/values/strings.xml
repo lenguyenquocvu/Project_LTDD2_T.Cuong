@@ -2,10 +2,6 @@
 
     <string name="app_name">Manage Student Grades</string>
 
-    <string name="app_name">QuanLyDiemSinhVien</string>
-
-
-
 
     <!--    Danh sach lop ma giang vien day     -->
     <string name="txtTenGV">Tên Giảng Viên</string>
@@ -25,7 +21,7 @@
     <!--    Danh sach sinh vien trong mot lop   -->
     <string name="txtMaSV">Mã Sinh Viên</string>
     <string name="txtTenSV">Tên Sinh Viên</string>
-    <string name="txtDiemSV">Diểm</string>
+    <string name="txtDiemSV">Điểm</string>
     <string name="btnEdit">Sửa</string>
     <string name="btnDelete">Xóa</string>
     <string name="btnThemLop">Thêm lớp học phần</string>
@@ -60,19 +56,19 @@
     <string name="k17Info">2017-2020</string>
     <string name="txtKH">Khóa học:</string>
     <string name="txtBatDau">Bắt đầu:</string>
-    <string name="txtKetThuc">Kết thúc:</string>
+
     <string name="txtOK">OK</string>
     <string name="txtCTDT">Chương trình đào tạo</string>
     <string name="txtDSLopHP">Danh sách lớp học phần (theo môn học)</string>
     <string name="txtMaLop">Mã lớp HP:</string>
     <string name="txtTenLopHP">Tên lớp HP:</string>
-    <string name="txtMaGV">Mã giảng viên:</string>
+
     <string name="titleMenuThem">Thêm</string>
     <string name="lblMonHoc">Môn học:</string>
     <string name="lblTenMonHoc">Tên môn học:</string>
     <string name="lblSoTC">Số tín chỉ:</string>
-    <string name="btnEdit">Edit</string>
-    <string name="btnDelete">Delete</string>
+
+
     <string name="txtMonHoc">Môn học:</string>
 
     <!-- String of the Khoa Layout-->
@@ -83,8 +79,8 @@
     <string name="item_menu_them">Thêm</string>
 
     <!-- Swipe for Edit and Delete button -->
-    <string name="btnEdit">Edit</string>
-    <string name="btnDelete">Delete</string>
+
+
 
     <!-- Dialog Add Khoa -->
     <string name="titleAddKhoa">Thêm Khoa Mới</string>
@@ -92,7 +88,7 @@
     <string name="hintEdtTenKhoa">Nhập tên Khoa...</string>
     <string name="hintEdtNgayThanhLap">Ngày thành lập ...</string>
     <string name="btnThem">Thêm</string>
-    <string name="btnCancel">Cancel</string>
+
 
     <!-- Dialog Remove Khoa -->
     <string name="titleRemoveKhoa">Thông báo xoá</string>
@@ -136,10 +132,24 @@
         <item>Neptune</item>
     </string-array>
 
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+
+
+    <string name="themDialogButton">Thêm</string>
+    <string name="thoatDialogButton">Thoát</string>
+
+
+    <string name="titleThemDialog">Thêm Giảng Viên</string>
+    <string name="titleChinhSuaDialog">Chỉnh sửa thông tin</string>
+
+    <string name="hintMaGV">Nhập mã giảng viên</string>
+
     <string name="txtHoGV">Họ GV</string>
     <string name="hintHoGV">Nhập họ giảng viên</string>
 
-    <string name="txtTenGV">Tên GV</string>
     <string name="hintTenGV">Nhập tên giảng viên</string>
 
     <string name="txtSdtGV">Số điện thoại</string>
@@ -153,13 +163,12 @@
 
     <string name="txtNganh">Ngành</string>
 
-    <string name="txtMaSV">Mã SV</string>
+
     <string name="hintMaSV">Nhập mã sinh viên</string>
 
     <string name="txtHoSV">Họ SV</string>
     <string name="hintHoSV">Nhập họ sinh viên</string>
 
-    <string name="txtTenSV">Tên SV</string>
     <string name="hintTenSV">Nhập tên sinh viên</string>
 
     <string name="txtSdtSV">Số điện thoại</string>
@@ -168,7 +177,10 @@
     <string name="txtDiaChiSV">Địa chỉ</string>
     <string name="hintDiaChiSV">Nhập Địa chỉ</string>
 
+    <string name="swipeEdit">Chỉnh sửa</string>
+    <string name="swipeDelete">Xóa</string>
 
+    <string name="btnCapNhatDialog">Cập nhật</string>
     <!-- End Nganh layout-->
 
 

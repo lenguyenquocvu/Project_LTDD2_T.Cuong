@@ -21,24 +21,23 @@
 
 
 
-        <activity android:name=".activities.DSLopActivity">
+        <activity android:name=".activities.DSLopActivity"/>
 
 
         <activity android:name=".activity.MainDanhSachSinhVien"></activity>
         <activity android:name=".activity.MainDanhSachGiangVien" />
         <activity android:name=".activity.MainDanhSachPhongDaoTao" />
         <activity android:name=".activity.MainDanhSachAdmin" />
-        <activity android:name=".activity.LoginActivity">
+        <activity android:name=".activity.LoginActivity"/>
 
 
-        <activity android:name=".phongdaotao.DanhSachGiangVienActivity" ></activity>
-        <activity android:name=".phongdaotao.QuanLyActivity">
 
 
-        <activity android:name=".activities.DanhSachKhoaHocActivity">
+
+        <activity android:name=".activities.DanhSachKhoaHocActivity"/>
 
 
-        <activity android:name=".activities.KhoaActivity">
+        <activity android:name=".activities.KhoaActivity"/>
 
 
         <activity android:name=".activities.DanhSachGiangVienActivity" ></activity>
@@ -62,7 +61,6 @@
                Set to true if your app is Standalone, that is, it does not require the handheld
                app to run.
         -->
-        <activity android:name=".MainActivity" />
 
         <meta-data
             android:name="com.google.android.wearable.standalone"

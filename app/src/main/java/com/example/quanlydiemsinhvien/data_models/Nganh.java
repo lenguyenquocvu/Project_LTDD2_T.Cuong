@@ -1,10 +1,7 @@
 package com.example.quanlydiemsinhvien.data_models;
 
 
-public class Nganh {
-    private String maNganh;
-    private String tenNganh;
-    private Khoa khoa;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,10 +21,6 @@ public class Nganh {
     };
 
 
-    public Nganh(String maNganh, String tenNganh, Khoa khoa) {
-        this.maNganh = maNganh;
-        this.tenNganh = tenNganh;
-        this.khoa = khoa;
 
     public Nganh(String maKhoa, String maNganh, String tenNganh) {
         this.maKhoa = maKhoa;

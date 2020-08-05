@@ -19,14 +19,15 @@ import com.daimajia.swipe.util.Attributes;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.GiangVienSwipeRecyclerViewAdapter;
 import com.example.quanlydiemsinhvien.adapters.SinhVienSwipeRecyclerViewAdapter;
+import com.example.quanlydiemsinhvien.adapters.decorations.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.data_models.GiangVienModel;
 import com.example.quanlydiemsinhvien.data_models.SinhVienModel;
-import com.example.quanlydiemsinhvien.decorations.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditGiangVien;
 import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditSinhVien;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddGiangVienListener;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddSinhVienListener;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener;
+import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener_Huong;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditGiangVienListener;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditSinhVienListener;
 import com.google.firebase.database.DataSnapshot;
@@ -38,7 +39,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DanhSachSinhVienActivity extends AppCompatActivity implements OnItemClickToAddSinhVienListener, OnItemClickToDeleteListener, OnItemClickToEditSinhVienListener {
+public class DanhSachSinhVienActivity extends AppCompatActivity implements OnItemClickToAddSinhVienListener, OnItemClickToDeleteListener_Huong, OnItemClickToEditSinhVienListener {
     public static Intent intent;
     public static ArrayList<SinhVienModel> dsSinhVien;
 
@@ -177,4 +178,5 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
         }
         mAdapter.notifyDataSetChanged();
     }
+
 }

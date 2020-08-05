@@ -1,5 +1,4 @@
 
-package com.example.quanlydiemsinhvien.divider;
 
 package com.example.quanlydiemsinhvien.decorations;
 

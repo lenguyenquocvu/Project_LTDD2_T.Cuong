@@ -50,9 +50,6 @@ public class KhoaActivity extends AppCompatActivity {
         // Get View from layout
         recyclerView = findViewById(R.id.khoa_recylerview);
 
-        // Improve performance if changes in content do not change the layout size of the RecyclerView
-        recyclerView.setHasFixedSize(true);
-
         // Item decoration
         recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R.drawable.divider, getTheme())));
 

@@ -57,15 +57,12 @@ public class NganhActivity extends AppCompatActivity {
         data = intent.getBundleExtra(KEY_DATA);
         getMaKhoaCuaNganh = data.getString(KEY_MAKHOA);
         getTenKhoa = data.getString(KEY_TENKHOA);
-        //Log.d("intent", getMaKhoaCuaNganh + " " + getTenKhoa);
 
         // Set title for action Nganh
         setTitle(getTenKhoa);
 
         // Get all from view
         recyclerView = findViewById(R.id.nganh_recylerview);
-
-        recyclerView.setHasFixedSize(true);
 
         // Item decoration
         recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R.drawable.divider, getTheme())));

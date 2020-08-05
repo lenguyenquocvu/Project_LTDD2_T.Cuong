@@ -4,12 +4,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -23,8 +20,8 @@ import androidx.fragment.app.DialogFragment;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.activities.DanhSachGiangVienActivity;
 import com.example.quanlydiemsinhvien.adapters.GiangVienSwipeRecyclerViewAdapter;
-import com.example.quanlydiemsinhvien.data_models.GiangVienModel;
-import com.example.quanlydiemsinhvien.data_models.NganhModel;
+import com.example.quanlydiemsinhvien.data_models.GiangVien;
+import com.example.quanlydiemsinhvien.data_models.Nganh;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddGiangVienListener;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditGiangVienListener;
 import com.google.firebase.database.DataSnapshot;
@@ -44,12 +41,12 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
     private EditText edtSDT;
     private static Spinner spnMaNganh;
 
-    static ArrayAdapter<NganhModel> arrayAdapterNganh;
+    static ArrayAdapter<Nganh> arrayAdapterNganh;
 
-    public static ArrayList<NganhModel> spinnerItems = new ArrayList<NganhModel>();
+    public static ArrayList<Nganh> spinnerItems = new ArrayList<Nganh>();
 
     private OnItemClickToAddGiangVienListener addGiangVienListener;
-    private GiangVienModel giangVien;
+    private GiangVien giangVien;
     private OnItemClickToEditGiangVienListener editGiangVienListener;
 
     private DatabaseReference spinnerDatabase;
@@ -98,16 +95,20 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
                 spinnerItems.clear();
 
                 for (DataSnapshot areaSnapshot : snapshot.getChildren()) {
-                    NganhModel nganh = new NganhModel();
-                    nganh = areaSnapshot.getValue(NganhModel.class);
+                    Nganh nganh = new Nganh();
+                    nganh = areaSnapshot.getValue(Nganh.class);
                     spinnerItems.add(nganh);
                 }
 
-                arrayAdapterNganh = new ArrayAdapter<NganhModel>(getActivity(), android.R.layout.simple_spinner_item, spinnerItems);
+                arrayAdapterNganh = new ArrayAdapter<Nganh>(getActivity(), android.R.layout.simple_spinner_item, spinnerItems);
                 arrayAdapterNganh.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spnMaNganh.setAdapter(arrayAdapterNganh);
 
-                Log.d("-->","Size of Nganh" + spinnerItems.size());
+//                Log.d("-->","Size of Nganh" + spinnerItems.size());
+                if (getArguments() != null) {
+                    giangVien = (GiangVien) getArguments().getSerializable(GiangVienSwipeRecyclerViewAdapter.KEY_GIANGVIEN);
+                    spnMaNganh.setSelection(arrayAdapterNganh.getPosition(getNganh(giangVien.getMaNganh(), spinnerItems)));
+                }
             }
 
             @Override
@@ -120,7 +121,7 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
         builder.setView(view);
 
         if (getArguments() != null) {
-            giangVien = (GiangVienModel) getArguments().getSerializable(GiangVienSwipeRecyclerViewAdapter.KEY_GIANGVIEN);
+            giangVien = (GiangVien) getArguments().getSerializable(GiangVienSwipeRecyclerViewAdapter.KEY_GIANGVIEN);
             edtMaGV.setEnabled(false);
             edtMaGV.setText(giangVien.getMaGV());
             edtTenGV.setText(giangVien.getTenGV());
@@ -150,7 +151,7 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
                     } else if (!checkMaGV(edtMaGV.getText().toString())) {
                         Toast.makeText(getContext(), "Thêm không thành công! Mã giảng viên đã tồn tại!", Toast.LENGTH_LONG).show();
                     } else {
-                        giangVien = new GiangVienModel();
+                        giangVien = new GiangVien();
                         giangVien.setMaGV(edtMaGV.getText().toString());
                         giangVien.setTenGV(edtTenGV.getText().toString());
                         giangVien.setHoGV(edtHoGV.getText().toString());
@@ -214,18 +215,18 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
         }
         return maNganh;
     }
-//    public static int getPositionOfNganh(String maNganh){
-//        int postion = 0;
-//        for(int i = 0; i < spinnerItems.size(); i++){
-//            if(maNganh.equals(spinnerItems.get(i).getMaNganh())){
-//                postion = i;
-//            }
-//        }
-//        return postion;
-//    }
+    public static Nganh getNganh(String maNganh, ArrayList<Nganh> dsNganh){
+        Nganh nganh = null;
+        for(Nganh nganh1 : dsNganh){
+            if(maNganh.equals(nganh1.getMaNganh())){
+                nganh = nganh1;
+            }
+        }
+        return nganh;
+    }
 
     public static boolean checkMaGV (String maGV) {
-        for (GiangVienModel gv : DanhSachGiangVienActivity.dsGiangVien){
+        for (GiangVien gv : DanhSachGiangVienActivity.dsGiangVien){
             if(maGV.equals(gv.getMaGV().toString())){
                 return false;
             }

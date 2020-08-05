@@ -2,7 +2,7 @@ package com.example.quanlydiemsinhvien.data_models;
 
 import java.io.Serializable;
 
-public class SinhVienModel implements Serializable {
+public class SinhVien implements Serializable {
     String maSV;
     String tenSV;
     String hoSV;
@@ -11,11 +11,12 @@ public class SinhVienModel implements Serializable {
     String diaChi;
     String email;
     String maNganh;
+    String maKH;
 
-    public SinhVienModel() {
+    public SinhVien() {
     }
 
-    public SinhVienModel(String maSV, String tenSV, String hoSV, String ngaySinh, String sdt, String diaChi, String email, String maNganh) {
+    public SinhVien(String maSV, String tenSV, String hoSV, String ngaySinh, String sdt, String diaChi, String email, String maNganh, String maKH) {
         this.maSV = maSV;
         this.tenSV = tenSV;
         this.hoSV = hoSV;
@@ -24,6 +25,7 @@ public class SinhVienModel implements Serializable {
         this.diaChi = diaChi;
         this.email = email;
         this.maNganh = maNganh;
+        this.maKH = maKH;
     }
 
     public String getMaSV() {
@@ -88,5 +90,13 @@ public class SinhVienModel implements Serializable {
 
     public void setMaNganh(String maNganh) {
         this.maNganh = maNganh;
+    }
+
+    public String getMaKH() {
+        return maKH;
+    }
+
+    public void setMaKH(String maKH) {
+        this.maKH = maKH;
     }
 }

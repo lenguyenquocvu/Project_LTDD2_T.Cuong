@@ -2,7 +2,7 @@ package com.example.quanlydiemsinhvien.data_models;
 
 import java.io.Serializable;
 
-public class GiangVienModel implements Serializable {
+public class GiangVien implements Serializable {
     String maGV;
     String hoGV;
     String tenGV;
@@ -11,10 +11,10 @@ public class GiangVienModel implements Serializable {
     String email;
     String maNganh;
 
-    public GiangVienModel() {
+    public GiangVien() {
     }
 
-    public GiangVienModel(String maGV, String hoGV, String tenGV, String ngaySinh, String sdt, String email, String maNganh) {
+    public GiangVien(String maGV, String hoGV, String tenGV, String ngaySinh, String sdt, String email, String maNganh) {
         this.maGV = maGV;
         this.hoGV = hoGV;
         this.tenGV = tenGV;

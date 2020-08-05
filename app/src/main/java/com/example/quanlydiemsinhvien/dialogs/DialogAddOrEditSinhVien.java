@@ -4,6 +4,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -17,16 +20,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.quanlydiemsinhvien.R;
-import com.example.quanlydiemsinhvien.activities.DanhSachGiangVienActivity;
 import com.example.quanlydiemsinhvien.activities.DanhSachSinhVienActivity;
-import com.example.quanlydiemsinhvien.adapters.GiangVienSwipeRecyclerViewAdapter;
 import com.example.quanlydiemsinhvien.adapters.SinhVienSwipeRecyclerViewAdapter;
-import com.example.quanlydiemsinhvien.data_models.GiangVienModel;
-import com.example.quanlydiemsinhvien.data_models.NganhModel;
-import com.example.quanlydiemsinhvien.data_models.SinhVienModel;
-import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddGiangVienListener;
+import com.example.quanlydiemsinhvien.data_models.KhoaHoc;
+import com.example.quanlydiemsinhvien.data_models.Nganh;
+import com.example.quanlydiemsinhvien.data_models.SinhVien;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddSinhVienListener;
-import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditGiangVienListener;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditSinhVienListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,24 +43,29 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
     private EditText edtDiaChi;
     private EditText edtEmail;
     private EditText edtSDT;
+    private Spinner spnMaKH;
     private static Spinner spnMaNganh;
 
-    public static ArrayList<NganhModel> spinnerItems = new ArrayList<NganhModel>();
+    public static ArrayList<Nganh> spinnerItems = new ArrayList<Nganh>();
+    public ArrayList<String> spinnerKH = new ArrayList<>();
+    public static ArrayAdapter<String> arrayAdapterKH;
 
     private OnItemClickToAddSinhVienListener addSinhVienListener;
-    private SinhVienModel sinhVien;
+    private SinhVien sinhVien;
     private OnItemClickToEditSinhVienListener editSinhVienListener;
 
-    private DatabaseReference spinnerDatabase;
+    private DatabaseReference spinnerNganhDatabase;
+    private DatabaseReference spinnerMaKHDatabase;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.hop_thoai_them_sinh_vien_layout, null);
 
-        spinnerDatabase = FirebaseDatabase.getInstance().getReference("Nganh");
+        spinnerNganhDatabase = FirebaseDatabase.getInstance().getReference("Nganh");
+        spinnerMaKHDatabase = FirebaseDatabase.getInstance().getReference("KhoaHoc");
 
         edtMaSV = view.findViewById(R.id.edtMaSV);
         edtTenSV = view.findViewById(R.id.edtTenSV);
@@ -70,21 +74,28 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
         edtEmail = view.findViewById(R.id.edtEmailSV);
         edtSDT = view.findViewById(R.id.edtSdtSV);
         edtDiaChi = view.findViewById(R.id.edtDiaChiSV);
+        spnMaKH = view.findViewById(R.id.spinnerMaKhoaHoc);
         spnMaNganh = view.findViewById(R.id.spinnerMaNganh);
 
-        spinnerDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        spinnerNganhDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 spinnerItems.clear();
                 for (DataSnapshot areaSnapshot : snapshot.getChildren()) {
-                    NganhModel nganh = new NganhModel();
-                    nganh = areaSnapshot.getValue(NganhModel.class);
+                    Nganh nganh = new Nganh();
+                    nganh = areaSnapshot.getValue(Nganh.class);
                     spinnerItems.add(nganh);
                 }
 
-                ArrayAdapter<NganhModel> arrayAdapter = new ArrayAdapter<NganhModel>(getActivity(), android.R.layout.simple_spinner_item, spinnerItems);
+                ArrayAdapter<Nganh> arrayAdapter = new ArrayAdapter<Nganh>(getActivity(), android.R.layout.simple_spinner_item, spinnerItems);
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spnMaNganh.setAdapter(arrayAdapter);
+
+                if (getArguments() != null) {
+                    sinhVien = (SinhVien) getArguments().getSerializable(SinhVienSwipeRecyclerViewAdapter.KEY_SINHVIEN);
+                    spnMaNganh.setSelection(arrayAdapter.getPosition(getNganh(sinhVien.getMaNganh(), spinnerItems)));
+//                    Log.d("Nganh", "" + getPositionOfMaNganh(sinhVien.getMaNganh(), spinnerItems));
+                }
             }
 
             @Override
@@ -93,10 +104,34 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
             }
         });
 
-        builder.setView(view);
+        spinnerMaKHDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                spinnerKH.clear();
+                for (DataSnapshot areaSnapshot : snapshot.getChildren()) {
+                    KhoaHoc khoaHoc = new KhoaHoc();
+                    khoaHoc = areaSnapshot.getValue(KhoaHoc.class);
+                    spinnerKH.add(khoaHoc.getMaKH());
+                }
+//                Log.d("KH", "" + spinnerKH);
+                arrayAdapterKH = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, spinnerKH);
+                arrayAdapterKH.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spnMaKH.setAdapter(arrayAdapterKH);
 
+                if (getArguments() != null) {
+                    sinhVien = (SinhVien) getArguments().getSerializable(SinhVienSwipeRecyclerViewAdapter.KEY_SINHVIEN);
+                    spnMaKH.setSelection(arrayAdapterKH.getPosition(sinhVien.getMaKH()));
+//                    Log.d("KH", "" + arrayAdapterKH.getPosition(sinhVien.getMaKH()));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         if (getArguments() != null) {
-            sinhVien = (SinhVienModel) getArguments().getSerializable(SinhVienSwipeRecyclerViewAdapter.KEY_SINHVIEN);
+            sinhVien = (SinhVien) getArguments().getSerializable(SinhVienSwipeRecyclerViewAdapter.KEY_SINHVIEN);
             edtMaSV.setEnabled(false);
             edtMaSV.setText(sinhVien.getMaSV());
             edtTenSV.setText(sinhVien.getTenSV());
@@ -105,12 +140,14 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
             edtSDT.setText(sinhVien.getSdt() + "");
             edtDiaChi.setText(sinhVien.getDiaChi());
             edtEmail.setText(sinhVien.getEmail());
-            //spnMaNganh.setSelection(getPositionOfMaNganh(sinhVien.getMaNganh()));
             builder.setTitle("Chỉnh sửa sinh viên");
         } else {
             edtMaSV.setEnabled(true);
             builder.setTitle("Thêm sinh viên");
         }
+        builder.setView(view);
+
+
 
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -124,10 +161,13 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
                             edtNgaySinh.getText().toString().isEmpty() ||
                             edtDiaChi.getText().toString().isEmpty()){
                         Toast.makeText(getContext(), "Không thể thêm sinh viên! Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_LONG).show();
-                    } else if (!checkMaGV(edtMaSV.getText().toString())) {
+                    } else if (!checkMaSV(edtMaSV.getText().toString())) {
                         Toast.makeText(getContext(), "Thêm không thành công! Mã sinh viên đã tồn tại!", Toast.LENGTH_LONG).show();
+                    } else if (!checkMaSVTheoKH(edtMaSV.getText().toString(), spnMaKH.getSelectedItem().toString())){
+//                        Log.d("maSV", "" + edtMaSV.getText().toString().substring(0, 2) + " " + spnMaKH.getSelectedItem().toString().substring(1));
+                        Toast.makeText(getContext(), "Thêm không thành công! Mã sinh viên phải thuộc khóa " + spnMaKH.getSelectedItem().toString() + "!", Toast.LENGTH_LONG).show();
                     } else{
-                        sinhVien = new SinhVienModel();
+                        sinhVien = new SinhVien();
                         sinhVien.setMaSV(edtMaSV.getText().toString());
                         sinhVien.setTenSV(edtTenSV.getText().toString());
                         sinhVien.setHoSV(edtHoSV.getText().toString());
@@ -136,6 +176,7 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
                         sinhVien.setDiaChi(edtDiaChi.getText().toString());
                         sinhVien.setEmail(edtEmail.getText().toString());
                         sinhVien.setMaNganh(getSelectedMaNganh());
+                        sinhVien.setMaKH(spnMaKH.getSelectedItem().toString());
                         addSinhVienListener.applySinhVien(sinhVien);
                     }
                 } else {
@@ -155,6 +196,7 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
                         sinhVien.setDiaChi(edtDiaChi.getText().toString());
                         sinhVien.setEmail(edtEmail.getText().toString());
                         sinhVien.setMaNganh(getSelectedMaNganh());
+                        sinhVien.setMaKH(spnMaKH.getSelectedItem().toString());
                         int position = getArguments().getInt(SinhVienSwipeRecyclerViewAdapter.KEY_POSITION);
                         editSinhVienListener = (OnItemClickToEditSinhVienListener) getActivity();
                         editSinhVienListener.onItemClicked(sinhVien, position);
@@ -194,21 +236,30 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
         }
         return maNganh;
     }
-//    public static int getPositionOfMaNganh(String maNganh){
-//        int position = 0;
-//        for(int i = 0; i < spinnerItems.size(); i++){
-//            if(maNganh == spinnerItems.get(i).getMaNganh()){
-//                position = i;
-//            }
-//        }
-//        return position;
-//    }
-    public static boolean checkMaGV (String maSV) {
-        for (SinhVienModel sv : DanhSachSinhVienActivity.dsSinhVien){
+    public static Nganh getNganh(String maNganh, ArrayList<Nganh> dsNganh){
+        Nganh nganh = null;
+        for(Nganh nganh1 : dsNganh){
+            if(maNganh.equals(nganh1.getMaNganh())){
+                nganh = nganh1;
+            }
+        }
+        return nganh;
+    }
+    public static boolean checkMaSV (String maSV) {
+        for (SinhVien sv : DanhSachSinhVienActivity.dsSinhVien){
             if(maSV.equals(sv.getMaSV().toString())){
                 return false;
             }
         }
         return true;
     }
+
+    public static boolean checkMaSVTheoKH (String maSV, String maKH){
+        if(maSV.substring(0, 2).equals(maKH.substring(1))){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

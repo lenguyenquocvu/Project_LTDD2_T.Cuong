@@ -11,6 +11,7 @@ import com.example.quanlydiemsinhvien.R;
 
 public class QuanLyActivity extends AppCompatActivity {
     Button btnKhoa, btnGiangVien, btnSinhVien;
+    private Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,10 +22,11 @@ public class QuanLyActivity extends AppCompatActivity {
         btnGiangVien = findViewById(R.id.btnGiangVien);
         btnSinhVien = findViewById(R.id.btnSinhVien);
 
+        intent = getIntent();
         btnGiangVien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(QuanLyActivity.this, DanhSachGiangVienActivity.class);
+                intent.setClass(QuanLyActivity.this, DanhSachGiangVienActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }
@@ -33,7 +35,7 @@ public class QuanLyActivity extends AppCompatActivity {
         btnSinhVien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(QuanLyActivity.this, DanhSachSinhVienActivity.class);
+                intent.setClass(QuanLyActivity.this, DanhSachSinhVienActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }

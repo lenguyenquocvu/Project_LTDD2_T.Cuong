@@ -60,6 +60,8 @@
     <string name="txtDiaChiSV">Địa chỉ</string>
     <string name="hintDiaChiSV">Nhập Địa chỉ</string>
 
+    <string name="txtMaKhoaHoc">Mã khóa học</string>
+
     <string name="swipeEdit">Edit</string>
     <string name="swipeDelete">Xóa</string>
 

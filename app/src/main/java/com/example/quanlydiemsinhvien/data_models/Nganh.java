@@ -1,14 +1,14 @@
 package com.example.quanlydiemsinhvien.data_models;
 
-public class NganhModel {
+public class Nganh {
     String maKhoa;
     String maNganh;
     String tenNganh;
 
-    public NganhModel() {
+    public Nganh() {
     }
 
-    public NganhModel(String maKhoa, String maNganh, String tenNganh) {
+    public Nganh(String maKhoa, String maNganh, String tenNganh) {
         this.maKhoa = maKhoa;
         this.maNganh = maNganh;
         this.tenNganh = tenNganh;

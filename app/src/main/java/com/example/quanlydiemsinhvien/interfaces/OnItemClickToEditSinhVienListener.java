@@ -1,8 +1,8 @@
 package com.example.quanlydiemsinhvien.interfaces;
 
 
-import com.example.quanlydiemsinhvien.data_models.SinhVienModel;
+import com.example.quanlydiemsinhvien.data_models.SinhVien;
 
 public interface OnItemClickToEditSinhVienListener {
-    void onItemClicked(SinhVienModel sinhVien, int position);
+    void onItemClicked(SinhVien sinhVien, int position);
 }

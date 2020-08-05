@@ -17,7 +17,8 @@ import com.daimajia.swipe.util.Attributes;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.SinhVienSwipeRecyclerViewAdapter;
 import com.example.quanlydiemsinhvien.data_models.AccountSinhVien;
-import com.example.quanlydiemsinhvien.data_models.SinhVienModel;
+import com.example.quanlydiemsinhvien.data_models.LopHocPhan;
+import com.example.quanlydiemsinhvien.data_models.SinhVien;
 import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditSinhVien;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddSinhVienListener;
@@ -34,7 +35,7 @@ import java.util.HashMap;
 
 public class DanhSachSinhVienActivity extends AppCompatActivity implements OnItemClickToAddSinhVienListener, OnItemClickToDeleteListener, OnItemClickToEditSinhVienListener {
     public static Intent intent;
-    public static ArrayList<SinhVienModel> dsSinhVien;
+    public static ArrayList<SinhVien> dsSinhVien;
 
     private RecyclerView recyclerView;
     private TextView tvEmptyView;
@@ -44,6 +45,8 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
     FirebaseDatabase rootNode;
     DatabaseReference reference;
     DatabaseReference accSVReference;
+    DatabaseReference lhpReference;
+    DatabaseReference dssvMotLopReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +54,13 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
         setContentView(R.layout.danh_sach_sinh_vien_layout);
         setTitle("Quản lý sinh viên");
 
-        dsSinhVien = new ArrayList<SinhVienModel>();
+        dsSinhVien = new ArrayList<SinhVien>();
         intent = getIntent();
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("SinhVien");
         accSVReference = rootNode.getReference("accountSinhVien");
+        lhpReference = rootNode.getReference("LopHocPhan");
+        dssvMotLopReference = rootNode.getReference("DSSVMotLop");
 
         tvEmptyView = (TextView) findViewById(R.id.empty_view);
         recyclerView = findViewById(R.id.list_student_recycler_view);
@@ -66,8 +71,8 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dsSinhVien.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    SinhVienModel sinhVien = new SinhVienModel();
-                    sinhVien = dataSnapshot.getValue(SinhVienModel.class);
+                    SinhVien sinhVien = new SinhVien();
+                    sinhVien = dataSnapshot.getValue(SinhVien.class);
                     dsSinhVien.add(sinhVien);
                 }
                 mAdapter  = new SinhVienSwipeRecyclerViewAdapter(DanhSachSinhVienActivity.this, dsSinhVien);
@@ -127,26 +132,42 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
         addOrEditSinhVien.show(getSupportFragmentManager(), "Thêm sinh viên");
     }
     @Override
-    public void delete(Object object) {
-        SinhVienModel sinhVien = (SinhVienModel) object;
+    public void delete(final Object object) {
+        SinhVien sinhVien = (SinhVien) object;
         dsSinhVien.remove(object);
 
-        reference.child(((SinhVienModel) object).getMaSV()).removeValue();
-        accSVReference.child(((SinhVienModel) object).getMaSV()).removeValue();
+        reference.child(((SinhVien) object).getMaSV()).removeValue();
+        accSVReference.child(((SinhVien) object).getMaSV()).removeValue();
+
+        dssvMotLopReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    dssvMotLopReference.child(((dataSnapshot.getKey()+ "/" +
+                            dataSnapshot.child(((SinhVien) object).getMaSV()).getKey()))).removeValue();
+//                    Log.d("lhp", "" + dssvMotLopReference.child(((dataSnapshot.getKey()+ "/" + dataSnapshot.child(((SinhVien) object).getMaSV()).getKey()))));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void applySinhVien(SinhVienModel sinhVien) {
+    public void applySinhVien(SinhVien sinhVien) {
         dsSinhVien.add(0,sinhVien);
         reference.child(sinhVien.getMaSV()).setValue(sinhVien);
         accSVReference.child(sinhVien.getMaSV()).setValue(new AccountSinhVien(sinhVien.getMaSV(), sinhVien.getMaSV()));
     }
 
     @Override
-    public void onItemClicked(SinhVienModel sinhVien, int position) {
-        for(SinhVienModel sv : dsSinhVien){
+    public void onItemClicked(SinhVien sinhVien, int position) {
+        for(SinhVien sv : dsSinhVien){
             if(sv.getMaSV().equals(sinhVien.getMaSV())){
                 sv.setMaSV(sinhVien.getMaSV());
                 sv.setTenSV(sinhVien.getTenSV());

@@ -1,47 +1,33 @@
 package com.example.quanlydiemsinhvien.adapters;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.example.quanlydiemsinhvien.R;
-import com.example.quanlydiemsinhvien.data_models.GiangVienModel;
-import com.example.quanlydiemsinhvien.data_models.NganhModel;
+import com.example.quanlydiemsinhvien.data_models.GiangVien;
 import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditGiangVien;
 import com.example.quanlydiemsinhvien.dialogs.DialogDeleteGiangVien;
-import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditGiangVienListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class GiangVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<GiangVienSwipeRecyclerViewAdapter.SimpleViewHolder> {
     private Context mContext;
-    private ArrayList<GiangVienModel> giangVienList;
+    private ArrayList<GiangVien> giangVienList;
 
     public static String KEY_GIANGVIEN = "GiangVien";
     public static String KEY_POSITION = "position";
 
-    public GiangVienSwipeRecyclerViewAdapter(Context context, ArrayList<GiangVienModel> objects) {
+    public GiangVienSwipeRecyclerViewAdapter(Context context, ArrayList<GiangVien> objects) {
         this.mContext = context;
         this.giangVienList = objects;
     }
@@ -54,7 +40,7 @@ public class GiangVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<Gian
 
     @Override
     public void onBindViewHolder(final SimpleViewHolder viewHolder, final int position) {
-        final GiangVienModel giangVien = giangVienList.get(position);
+        final GiangVien giangVien = giangVienList.get(position);
 
         viewHolder.tvName.setText((giangVien.getHoGV() + " " + giangVien.getTenGV()));
         viewHolder.tvId.setText(giangVien.getMaGV());
@@ -81,7 +67,7 @@ public class GiangVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<Gian
         viewHolder.tvEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final GiangVienModel giangVien = giangVienList.get(position);
+                final GiangVien giangVien = giangVienList.get(position);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(KEY_GIANGVIEN, giangVien);
                 bundle.putInt(KEY_POSITION, position);

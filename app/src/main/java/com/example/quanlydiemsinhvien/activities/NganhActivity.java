@@ -65,8 +65,6 @@ public class NganhActivity extends AppCompatActivity {
         // Get all from view
         recyclerView = findViewById(R.id.nganh_recylerview);
 
-        recyclerView.setHasFixedSize(true);
-
         // Item decoration
         recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R.drawable.divider, getTheme())));
 

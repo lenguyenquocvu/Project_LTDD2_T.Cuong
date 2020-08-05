@@ -27,11 +27,7 @@
 
         <ImageButton
             android:id="@+id/ibtnDelete"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#003c54"
-            android:gravity="center"
+            style="@style/SwipeItemStyle"
             android:src="@drawable/ic_delete_white_24dp" />
     </LinearLayout>
 
@@ -50,8 +46,7 @@
             android:layout_marginLeft="@dimen/marginLeftLayout"
             android:layout_weight="1"
             android:text="@string/khK17"
-            android:textColor="@color/colorBlack"
-            android:textSize="@dimen/khoahocSize"
+            android:textColor="@color/textColorItemRecyclerViewEven"
             android:textStyle="bold" />
 
         <TextView
@@ -61,7 +56,7 @@
             android:layout_marginLeft="@dimen/marginLeftLayout"
             android:layout_weight="4"
             android:text="@string/k17Info"
-            android:textColor="@color/colorBlack" />
+            android:textColor="@color/textColorItemRecyclerViewEven" />
 
         <TextView
             android:id="@+id/SoTinChi"
@@ -70,6 +65,6 @@
             android:layout_marginLeft="@dimen/marginLeftLayout"
             android:layout_weight="1"
             android:text="@string/k17Info"
-            android:textColor="@color/colorBlack" />
+            android:textColor="@color/textColorItemRecyclerViewEven"/>
     </LinearLayout>
 </com.daimajia.swipe.SwipeLayout>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    
+
 <com.daimajia.swipe.SwipeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:swipe="http://schemas.android.com/apk/res-auto"
@@ -16,7 +16,7 @@
             android:weightSum="2">
             <TextView
                 android:id="@+id/edit"
-                style="@style/btnEditAnđelete"
+                style="@style/SwipeItemStyle"
                 android:text="Edit"
                 android:background="#0776a5"
                 android:textColor="#fff"
@@ -24,7 +24,7 @@
 
             <ImageButton
                 android:id="@+id/ibtnDelete"
-                style="@style/btnEditAnđelete"
+                style="@style/SwipeItemStyle"
                 android:background="#003c54"
                 android:src="@drawable/ic_delete_white_24dp" />
         </LinearLayout>
@@ -41,9 +41,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/khK17"
-                android:textSize="@dimen/khoahocSize"
                 android:textStyle="bold"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/textColorItemRecyclerViewEven"
                 android:layout_margin="@dimen/dsKhoaHocMargin" />
 
             <TextView
@@ -51,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/k17Info"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/textColorItemRecyclerViewEven"
                 android:layout_margin="@dimen/dsKhoaHocMargin" />
         </LinearLayout>
     </com.daimajia.swipe.SwipeLayout>

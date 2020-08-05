@@ -19,8 +19,8 @@ import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.activities.DanhSachChuongTrinhDaoTaoActivity;
 import com.example.quanlydiemsinhvien.activities.DanhSachKhoaHocActivity;
 import com.example.quanlydiemsinhvien.data_models.KhoaHoc;
-import com.example.quanlydiemsinhvien.dialog.DialogAddOrEditKhoahoc;
-import com.example.quanlydiemsinhvien.dialog.DialogDeleteKhoaHoc;
+import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditKhoahoc;
+import com.example.quanlydiemsinhvien.dialogs.DialogDeleteKhoaHoc;
 
 import java.util.ArrayList;
 
@@ -32,10 +32,12 @@ public class KhoaHocAdapter extends RecyclerSwipeAdapter<KhoaHocAdapter.KhoaHocV
     public static final String POSITION_STRING = "position";
     public static final String MAKH_STRING = "maKH";
     public static final String MANGANH_STRING = "maNganh";
+
     public KhoaHocAdapter(Context context, ArrayList<KhoaHoc> dsKhoaHoc) {
         this.dsKhoaHoc = dsKhoaHoc;
         this.context = context;
     }
+
     @NonNull
     @Override
     public KhoaHocViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -69,7 +71,6 @@ public class KhoaHocAdapter extends RecyclerSwipeAdapter<KhoaHocAdapter.KhoaHocV
         });
 
 
-
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +78,7 @@ public class KhoaHocAdapter extends RecyclerSwipeAdapter<KhoaHocAdapter.KhoaHocV
                 bundle.putSerializable(EDIT_KHOAHOC, khoaHoc);
                 DialogAddOrEditKhoahoc editKhoahoc = new DialogAddOrEditKhoahoc();
                 editKhoahoc.setArguments(bundle);
-                editKhoahoc.show(((AppCompatActivity)context).getSupportFragmentManager(), "Edit");
+                editKhoahoc.show(((AppCompatActivity) context).getSupportFragmentManager(), "Edit");
 
             }
         });
@@ -90,14 +91,13 @@ public class KhoaHocAdapter extends RecyclerSwipeAdapter<KhoaHocAdapter.KhoaHocV
                 bundle.putInt(POSITION_STRING, position);
                 DialogDeleteKhoaHoc deleteKhoaHoc = new DialogDeleteKhoaHoc();
                 deleteKhoaHoc.setArguments(bundle);
-                deleteKhoaHoc.show(((AppCompatActivity)context).getSupportFragmentManager(), "Delete khóa học");
+                deleteKhoaHoc.show(((AppCompatActivity) context).getSupportFragmentManager(), "Delete khóa học");
 
             }
         });
         mItemManger.bindView(holder.itemView, position);
 
     }
-
 
 
     @Override
@@ -111,13 +111,13 @@ public class KhoaHocAdapter extends RecyclerSwipeAdapter<KhoaHocAdapter.KhoaHocV
     }
 
 
-
     public static class KhoaHocViewHolder extends RecyclerView.ViewHolder {
         protected TextView txtKhoaHoc;
         protected TextView txtKhoaHocInfo;
         protected ImageButton ibtnDelete;
         protected TextView edit;
         protected SwipeLayout swipeLayout;
+
         public KhoaHocViewHolder(@NonNull View itemView) {
             super(itemView);
             swipeLayout = itemView.findViewById(R.id.swipe);

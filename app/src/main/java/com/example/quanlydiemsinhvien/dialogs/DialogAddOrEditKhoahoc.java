@@ -1,4 +1,4 @@
-package com.example.quanlydiemsinhvien.dialog;
+package com.example.quanlydiemsinhvien.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;

@@ -18,8 +18,8 @@ import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.activities.DanhSachKhoaHocActivity;
 import com.example.quanlydiemsinhvien.data_models.LopHocPhan;
-import com.example.quanlydiemsinhvien.dialog.DialogAddOrEditLopHocPhan;
-import com.example.quanlydiemsinhvien.dialog.DialogDeleteLopHocPhan;
+import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditLopHocPhan;
+import com.example.quanlydiemsinhvien.dialogs.DialogDeleteLopHocPhan;
 
 import java.util.ArrayList;
 
@@ -30,6 +30,7 @@ public class LopHocPhanTheoMonAdapter extends RecyclerSwipeAdapter<LopHocPhanThe
     public static final String TENLOP = "tenLop";
     public static final String EDIT_LHP = "lop hoc phan";
     public static final String DELETE_LHP = "lop hoc phan delete";
+
     public LopHocPhanTheoMonAdapter(Context context, ArrayList<LopHocPhan> dsLopHP) {
         this.dsLopHP = dsLopHP;
         this.context = context;
@@ -77,7 +78,7 @@ public class LopHocPhanTheoMonAdapter extends RecyclerSwipeAdapter<LopHocPhanThe
                 bundle.putInt(KhoaHocAdapter.POSITION_STRING, position);
                 DialogDeleteLopHocPhan deleteLopHocPhan = new DialogDeleteLopHocPhan();
                 deleteLopHocPhan.setArguments(bundle);
-                deleteLopHocPhan.show(((AppCompatActivity)context).getSupportFragmentManager(), "Delete lớp học phần");
+                deleteLopHocPhan.show(((AppCompatActivity) context).getSupportFragmentManager(), "Delete lớp học phần");
             }
         });
 
@@ -92,7 +93,7 @@ public class LopHocPhanTheoMonAdapter extends RecyclerSwipeAdapter<LopHocPhanThe
                 bundle.putSerializable(EDIT_LHP, lopHocPhan);
                 DialogAddOrEditLopHocPhan editLopHocPhan = new DialogAddOrEditLopHocPhan();
                 editLopHocPhan.setArguments(bundle);
-                editLopHocPhan.show(((AppCompatActivity)context).getSupportFragmentManager(), "Edit Lop hoc phan");
+                editLopHocPhan.show(((AppCompatActivity) context).getSupportFragmentManager(), "Edit Lop hoc phan");
 
 
             }
@@ -119,6 +120,7 @@ public class LopHocPhanTheoMonAdapter extends RecyclerSwipeAdapter<LopHocPhanThe
         protected ImageButton ibtnDelete;
         protected TextView edit;
         protected SwipeLayout swipeLayout;
+
         public DanhSachLopHocPhanTheoMonViewHolder(@NonNull View itemView) {
             super(itemView);
             txtMaLop = (TextView) itemView.findViewById(R.id.edtMaLop);

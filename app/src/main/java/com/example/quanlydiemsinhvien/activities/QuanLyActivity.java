@@ -1,16 +1,17 @@
 package com.example.quanlydiemsinhvien.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.quanlydiemsinhvien.R;
 
 public class QuanLyActivity extends AppCompatActivity {
     Button btnKhoa, btnGiangVien, btnSinhVien;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

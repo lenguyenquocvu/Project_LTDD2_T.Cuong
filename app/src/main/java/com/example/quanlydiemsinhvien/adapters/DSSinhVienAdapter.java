@@ -20,19 +20,20 @@ import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.data_models.DanhSachSinhVien;
-//import com.example.quanlydiemsinhvien.firebase_data.DSSVienDatabase;
 
 import java.util.ArrayList;
 
+//import com.example.quanlydiemsinhvien.firebase_data.DSSVienDatabase;
+
 public class DSSinhVienAdapter extends RecyclerSwipeAdapter<DSSinhVienAdapter.ViewHolder> {
-    public static final String KEY_MASV ="ma_sv";
-    public static final String KEY_TENSV ="ten_sv";
+    public static final String KEY_MASV = "ma_sv";
+    public static final String KEY_TENSV = "ten_sv";
     public static final String KEY_DATA = "data";
     ArrayList<DanhSachSinhVien> listSV = new ArrayList<DanhSachSinhVien>();
 
     private ArrayList<DanhSachSinhVien> danhsachsinhvien;
     private Context context;
-    public  static Intent intent;
+    public static Intent intent;
     private Bundle bundle;
 
 //    private ArrayList<DanhSachSinhVien> danhsachsinhvien;
@@ -55,6 +56,7 @@ public class DSSinhVienAdapter extends RecyclerSwipeAdapter<DSSinhVienAdapter.Vi
         private TextView edit;
         private ImageButton ibtnDelete;
         private SwipeLayout swipeLayout;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mTxtMaSV = (TextView) itemView.findViewById(R.id.txtMaSV);
@@ -69,7 +71,7 @@ public class DSSinhVienAdapter extends RecyclerSwipeAdapter<DSSinhVienAdapter.Vi
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(context).inflate(R.layout.item_dssv_layout,parent,false);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.item_dssv_layout, parent, false);
         ViewHolder viewHolder = new ViewHolder(itemView);
         return viewHolder;
     }
@@ -79,7 +81,7 @@ public class DSSinhVienAdapter extends RecyclerSwipeAdapter<DSSinhVienAdapter.Vi
         final DanhSachSinhVien aCard = listSV.get(position);
         holder.mTxtMaSV.setText(aCard.getMaSV());
         holder.mTxtTenSV.setText(aCard.getTenSV());
-        holder.mTxtDiemSV.setText(aCard.getDiem()+"");
+        holder.mTxtDiemSV.setText(aCard.getDiem() + "");
 
         //Set mode swipe
         holder.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
@@ -93,7 +95,7 @@ public class DSSinhVienAdapter extends RecyclerSwipeAdapter<DSSinhVienAdapter.Vi
             }
         });
 
-        holder.edit.setOnClickListener(new View.OnClickListener(){
+        holder.edit.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -101,11 +103,11 @@ public class DSSinhVienAdapter extends RecyclerSwipeAdapter<DSSinhVienAdapter.Vi
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-                View v = LayoutInflater.from(context).inflate(R.layout.suadiem_layout,null);
+                View v = LayoutInflater.from(context).inflate(R.layout.suadiem_layout, null);
 
                 final EditText edtDiemSV = v.findViewById(R.id.edtDiemSV);
 
-                edtDiemSV.setText(danhSachSinhVien.getDiem()+"");
+                edtDiemSV.setText(danhSachSinhVien.getDiem() + "");
 
                 builder.setView(v);
 

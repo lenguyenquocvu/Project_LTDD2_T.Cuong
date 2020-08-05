@@ -1,12 +1,10 @@
 package com.example.quanlydiemsinhvien.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,18 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.daimajia.swipe.util.Attributes;
 import com.example.quanlydiemsinhvien.R;
-import com.example.quanlydiemsinhvien.adapters.GiangVienSwipeRecyclerViewAdapter;
 import com.example.quanlydiemsinhvien.adapters.SinhVienSwipeRecyclerViewAdapter;
-import com.example.quanlydiemsinhvien.adapters.decorations.DividerItemDecoration;
-import com.example.quanlydiemsinhvien.data_models.GiangVienModel;
 import com.example.quanlydiemsinhvien.data_models.SinhVienModel;
-import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditGiangVien;
 import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditSinhVien;
-import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddGiangVienListener;
+import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddSinhVienListener;
-import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener_Huong;
-import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditGiangVienListener;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditSinhVienListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

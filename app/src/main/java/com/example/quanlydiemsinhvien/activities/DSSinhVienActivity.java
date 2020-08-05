@@ -1,6 +1,5 @@
 package com.example.quanlydiemsinhvien.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,7 +8,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,19 +16,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.daimajia.swipe.util.Attributes;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.DSSinhVienAdapter;
-import com.example.quanlydiemsinhvien.adapters.decorations.DividerItemDecoration;
-import com.example.quanlydiemsinhvien.data_models.DanhSachLop;
+
 import com.example.quanlydiemsinhvien.data_models.DanhSachSinhVien;
 import com.example.quanlydiemsinhvien.dialogs.Dialog_Add_SV;
-//import com.example.quanlydiemsinhvien.firebase_data.DSSVienDatabase;
+import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.interfaces.AddSV;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import static com.example.quanlydiemsinhvien.activities.DSLopActivity.LOPTAG;
+//import com.example.quanlydiemsinhvien.firebase_data.DSSVienDatabase;
 
 public class DSSinhVienActivity extends AppCompatActivity implements AddSV {
 //    public static final String SINHVIENTAG = "SinhVien";

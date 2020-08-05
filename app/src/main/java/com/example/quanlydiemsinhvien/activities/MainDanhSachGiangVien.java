@@ -1,8 +1,8 @@
-package com.example.quanlydiemsinhvien.activity;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.quanlydiemsinhvien.activities;
 
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quanlydiemsinhvien.R;
 

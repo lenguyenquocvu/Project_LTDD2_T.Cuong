@@ -4,12 +4,6 @@
     package="com.example.quanlydiemsinhvien">
 
 
-
-    <dist:module dist:instant="true" />
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,30 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <!-- Vũ -->
+        <activity android:name=".activities.DanhSachKhoaHocActivity" />
+        <activity android:name=".activities.DanhSachChuongTrinhDaoTaoActivity"></activity>
+        <activity android:name=".activities.DanhSachLopHPTheoMHActivity"></activity>
 
+        <!-- Hiệu -->
+        <activity android:name=".activities.KhoaActivity" />
+        <activity android:name=".activities.NganhActivity"></activity>
 
-
-        <activity android:name=".activities.DSLopActivity"/>
-
-
-        <activity android:name=".activity.MainDanhSachSinhVien"></activity>
-        <activity android:name=".activity.MainDanhSachGiangVien" />
-        <activity android:name=".activity.MainDanhSachPhongDaoTao" />
-        <activity android:name=".activity.MainDanhSachAdmin" />
-        <activity android:name=".activity.LoginActivity"/>
-
-
-
-
-
-        <activity android:name=".activities.DanhSachKhoaHocActivity"/>
-
-
-        <activity android:name=".activities.KhoaActivity"/>
-
-
-        <activity android:name=".activities.DanhSachGiangVienActivity" ></activity>
-        <activity android:name=".activities.DanhSachSinhVienActivity" ></activity>
+        <!-- Hương -->
+        <activity android:name=".activities.MainDanhSachSinhVien"></activity>
+        <activity android:name=".activities.MainDanhSachGiangVien" />
         <activity android:name=".activities.QuanLyActivity">
 
             <intent-filter>
@@ -51,11 +33,16 @@
             </intent-filter>
         </activity>
 
+        <!-- Tâm -->
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.DSSinhVienActivity"></activity>
+        <activity android:name=".activities.MainDanhSachPhongDaoTao" />
+        <activity android:name=".activities.MainDanhSachAdmin" />
 
-
-        <activity android:name=".activities.DSSinhVienActivity">
-
-        </activity>
+        <!-- Triều -->
+        <activity android:name=".activities.DSLopActivity" />
+        <activity android:name=".activities.DanhSachGiangVienActivity"></activity>
+        <activity android:name=".activities.DanhSachSinhVienActivity"></activity>
 
         <!--
                Set to true if your app is Standalone, that is, it does not require the handheld
@@ -71,21 +58,17 @@
             android:required="false" />
 
 
-        <activity android:name=".activities.DanhSachChuongTrinhDaoTaoActivity"></activity>
-        <activity android:name=".activities.DanhSachLopHPTheoMHActivity"></activity>
-
-
-        <activity android:name=".activities.NganhActivity">
-
-        </activity>
-
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <dist:module dist:instant="true" />
 
     <dist:module dist:instant="true" />
 

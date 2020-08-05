@@ -23,4 +23,27 @@
     <dimen name="cardView_Elevation">4dp</dimen>
     <dimen name="hintTextSize">10sp</dimen>
     <dimen name="spinnerItemTextSize">10sp</dimen>
+
+    <dimen name="khoahocSize">20sp</dimen>
+    <dimen name="khoahocInfoSize">15sp</dimen>
+    <dimen name="dsKhoaHocMargin">5dp</dimen>
+    <dimen name="cornerRadiusKhoaHocItem">5dp</dimen>
+    <dimen name="cardElevation">5dp</dimen>
+    <dimen name="marginBottomItem">2dp</dimen>
+    <dimen name="marginLeftLayout">15dp</dimen>
+    <dimen name="paddingLeftLayout">10dp</dimen>
+    <dimen name="width_0dp">0dp</dimen>
+
+    <!-- Value of the Khoa layout-->
+    <dimen name="heightCarViewKhoa">70dp</dimen>
+    <dimen name="fontSizeOnCarViewKhoa">20sp</dimen>
+    <dimen name="carViewMargin">3dp</dimen>
+    <dimen name="carViewCorner">5dp</dimen>
+    <dimen name="cardViewElevation">2dp</dimen>
+
+    <!-- Dialog -->
+    <dimen name="marginDialog">20dp</dimen>
+    <dimen name="fontSizeTextViewDialog">15dp</dimen>
+
+    <!-- End Khoa layout -->
 </resources>

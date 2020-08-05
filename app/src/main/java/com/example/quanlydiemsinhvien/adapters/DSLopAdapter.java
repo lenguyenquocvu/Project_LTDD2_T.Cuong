@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +22,6 @@ import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.activities.DSLopActivity;
 import com.example.quanlydiemsinhvien.activities.DSSinhVienActivity;
 import com.example.quanlydiemsinhvien.data_models.DanhSachLop;
-import com.example.quanlydiemsinhvien.data_models.DanhSachSinhVien;
 import com.example.quanlydiemsinhvien.firebase_data.DSLopDatabase;
 
 import java.util.ArrayList;

@@ -1,6 +1,5 @@
 package com.example.quanlydiemsinhvien.adapters;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -48,7 +47,6 @@ public class SinhVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SinhV
 
 
         viewHolder.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
-
 
 
         // Drag From Right
@@ -119,7 +117,7 @@ public class SinhVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SinhV
                 bundle.putInt(KEY_POSITION, position);
                 DialogAddOrEditSinhVien dialogAddOrEditSinhVien = new DialogAddOrEditSinhVien();
                 dialogAddOrEditSinhVien.setArguments(bundle);
-                dialogAddOrEditSinhVien.show(((AppCompatActivity)mContext).getSupportFragmentManager(), "Edit");
+                dialogAddOrEditSinhVien.show(((AppCompatActivity) mContext).getSupportFragmentManager(), "Edit");
                 Toast.makeText(view.getContext(), "Clicked on Edit  " + viewHolder.tvTenSV.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -132,7 +130,7 @@ public class SinhVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SinhV
                 bundle.putSerializable(KEY_SINHVIEN, sinhVien);
                 DialogDeleteSinhVien dialogDeleteSinhVien = new DialogDeleteSinhVien();
                 dialogDeleteSinhVien.setArguments(bundle);
-                dialogDeleteSinhVien.show(((AppCompatActivity)mContext).getSupportFragmentManager(), "Delete");
+                dialogDeleteSinhVien.show(((AppCompatActivity) mContext).getSupportFragmentManager(), "Delete");
 //                mItemManger.removeShownLayouts(viewHolder.swipeLayout);
 //                sinhVienList.remove(position);
 //                notifyItemRemoved(position);

@@ -20,7 +20,7 @@ import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.activities.DanhSachKhoaHocActivity;
 import com.example.quanlydiemsinhvien.activities.DanhSachLopHPTheoMHActivity;
 import com.example.quanlydiemsinhvien.data_models.MonHoc;
-import com.example.quanlydiemsinhvien.dialog.DialogDeleteChuongTrinhDaoTao;
+import com.example.quanlydiemsinhvien.dialogs.DialogDeleteChuongTrinhDaoTao;
 
 import java.util.ArrayList;
 

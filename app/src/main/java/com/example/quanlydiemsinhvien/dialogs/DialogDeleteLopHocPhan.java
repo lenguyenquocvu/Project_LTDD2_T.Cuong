@@ -1,9 +1,8 @@
-package com.example.quanlydiemsinhvien.dialog;
+package com.example.quanlydiemsinhvien.dialogs;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +12,7 @@ import androidx.fragment.app.DialogFragment;
 import com.example.quanlydiemsinhvien.adapters.KhoaHocAdapter;
 import com.example.quanlydiemsinhvien.adapters.LopHocPhanTheoMonAdapter;
 import com.example.quanlydiemsinhvien.data_models.LopHocPhan;
+import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditKhoahoc;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener;
 
 public class DialogDeleteLopHocPhan extends DialogFragment {

@@ -95,7 +95,6 @@ public class KhoaActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.item_menu_them) {
-            Log.d("test", "Item menu Them");
             showAddKhoaDialog();
         }
         return true;

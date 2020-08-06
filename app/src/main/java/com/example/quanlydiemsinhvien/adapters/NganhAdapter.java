@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,7 +54,6 @@ public class NganhAdapter extends RecyclerSwipeAdapter<NganhAdapter.NganhViewHol
         TextView tvEdit;
         TextView tvDelete;
 
-
         public NganhViewHolder(View itemView) {
             super(itemView);
             tvMaNganh = itemView.findViewById(R.id.tvMaNganh);
@@ -89,7 +87,6 @@ public class NganhAdapter extends RecyclerSwipeAdapter<NganhAdapter.NganhViewHol
             @Override
             public void onClick(View view) {
                 showEditNganhDialog(position, theNganh, view);
-                Toast.makeText(view.getContext(), "Edit Nganh " + theNganh.getTenNganh() + "successfully!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -97,7 +94,6 @@ public class NganhAdapter extends RecyclerSwipeAdapter<NganhAdapter.NganhViewHol
             @Override
             public void onClick(View view) {
                 showDeleteNganhDialog(position, theNganh);
-                Toast.makeText(view.getContext(), "Delete Nganh " + theNganh.getTenNganh() + "successfully!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -164,7 +160,6 @@ public class NganhAdapter extends RecyclerSwipeAdapter<NganhAdapter.NganhViewHol
         builder.setNegativeButton(R.string.btnCancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(context, "Cancel edit Nganh button is tapped!", Toast.LENGTH_SHORT).show();
                 dialogInterface.dismiss();
             }
         });
@@ -187,7 +182,6 @@ public class NganhAdapter extends RecyclerSwipeAdapter<NganhAdapter.NganhViewHol
                 myDatabase = new NganhDatabase();
                 myDatabase.removeANganh(theNganh.getMaNganh());
 
-                Toast.makeText(context, "Delete Nganh button is tapped", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -195,7 +189,6 @@ public class NganhAdapter extends RecyclerSwipeAdapter<NganhAdapter.NganhViewHol
         builder.setNegativeButton(R.string.btnCancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(context, "Cancel Nganh button is tapped", Toast.LENGTH_SHORT).show();
             }
         });
 

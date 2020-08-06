@@ -13,7 +13,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -138,7 +137,6 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
         holder.tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Delete" + position + "is tapped!", Toast.LENGTH_SHORT).show();
                 showDialogRemoveKhoa(theKhoa);
             }
         });
@@ -181,7 +179,6 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
         builder.setPositiveButton(R.string.btnXoa, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(context, "Xoa Khoa " + theKhoa.getMaKhoa() + "is tapped!", Toast.LENGTH_SHORT).show();
 
                 // Delete A Khoa to Firebase server
                 mKhoaDatabase.deleteAKhoa(theKhoa.getMaKhoa());
@@ -191,7 +188,6 @@ public class KhoaAdapter extends RecyclerSwipeAdapter<KhoaAdapter.KhoaViewHolder
         builder.setNegativeButton(R.string.btnCancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(context, "Cancel Khoa", Toast.LENGTH_SHORT).show();
             }
         });
 

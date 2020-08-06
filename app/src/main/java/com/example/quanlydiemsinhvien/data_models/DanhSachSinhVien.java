@@ -11,10 +11,23 @@ import java.util.Map;
 public class DanhSachSinhVien {
     private String MaSV;
     private String TenSV;
-    private int Diem;
+    private double Diem;
+    private int lanHoc;
 
     public DanhSachSinhVien() {
 
+    }
+
+    public void setDiem(double diem) {
+        Diem = diem;
+    }
+
+    public int getLanHoc() {
+        return lanHoc;
+    }
+
+    public void setLanHoc(int lanHoc) {
+        this.lanHoc = lanHoc;
     }
 
     public String getMaSV() {
@@ -33,7 +46,7 @@ public class DanhSachSinhVien {
         TenSV = tenSV;
     }
 
-    public int getDiem() {
+    public double getDiem() {
         return Diem;
     }
 
@@ -41,10 +54,11 @@ public class DanhSachSinhVien {
         Diem = diem;
     }
 
-    public DanhSachSinhVien(String maSV, String tenSV, int diem) {
+    public DanhSachSinhVien(String maSV, String tenSV, double diem, int lanHoc) {
         MaSV = maSV;
         TenSV = tenSV;
         Diem = diem;
+        this.lanHoc = lanHoc;
     }
 
     @NonNull
@@ -59,9 +73,8 @@ public class DanhSachSinhVien {
 
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
-        result.put("maSV", MaSV);
-        result.put("tenSV", TenSV);
-        result.put("diemSV", Diem);
+        result.put("diem", getDiem());
+        result.put("lanHoc", getLanHoc());
         return result;
     }
 }

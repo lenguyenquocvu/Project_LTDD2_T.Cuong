@@ -14,9 +14,12 @@
 
         <!-- Vũ -->
 
-        <activity android:name=".activities.DanhSachKhoaHocActivity"></activity>
-        <activity android:name=".activities.DanhSachChuongTrinhDaoTaoActivity"></activity>
-        <activity android:name=".activities.DanhSachLopHPTheoMHActivity"></activity>
+        <activity android:name=".activities.DanhSachKhoaHocActivity" android:label="@string/khoaHoc"></activity>
+        <activity android:name=".activities.DanhSachChuongTrinhDaoTaoActivity" android:label="@string/CTDT"></activity>
+        <activity android:name=".activities.DanhSachLopHPTheoMHActivity" android:label="@string/LHP_MH"></activity>
+        <activity android:name=".activities.DanhSachMonHocActivity" android:label="@string/monHoc">
+        </activity>
+        <activity android:name=".activities.ResetPasswordActivity" android:label="@string/doiMatKhau"/>
 
         <!-- Hiệu -->
         <activity android:name=".activities.KhoaActivity">
@@ -66,8 +69,6 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
     <dist:module dist:instant="true" />
 

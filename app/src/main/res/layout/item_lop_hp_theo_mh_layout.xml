@@ -14,13 +14,13 @@
         android:weightSum="2">
         <TextView
             android:id="@+id/edit"
-            style="@style/SwipeItemStyle"
+            style="@style/SwipeItemEditStyle"
             android:text="Edit"
             android:clickable="true"/>
 
         <ImageButton
             android:id="@+id/ibtnDelete"
-            style="@style/SwipeItemStyle"
+            style="@style/SwipeItemDeleteStyle"
             android:src="@drawable/ic_delete_white_24dp" />
     </LinearLayout>
     <LinearLayout

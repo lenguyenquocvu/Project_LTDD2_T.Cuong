@@ -19,7 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.example.quanlydiemsinhvien.R;
+import com.example.quanlydiemsinhvien.activities.DSSinhVienActivity;
 import com.example.quanlydiemsinhvien.data_models.DanhSachSinhVien;
+import com.example.quanlydiemsinhvien.data_models.SinhVien;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -35,6 +39,8 @@ public class DSSinhVienAdapter extends RecyclerSwipeAdapter<DSSinhVienAdapter.Vi
     private Context context;
     public static Intent intent;
     private Bundle bundle;
+    FirebaseDatabase rootNode;
+    DatabaseReference reference;
 
 //    private ArrayList<DanhSachSinhVien> danhsachsinhvien;
 //    private Context context;
@@ -98,17 +104,22 @@ public class DSSinhVienAdapter extends RecyclerSwipeAdapter<DSSinhVienAdapter.Vi
         holder.edit.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 final DanhSachSinhVien danhSachSinhVien = listSV.get(position);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
                 View v = LayoutInflater.from(context).inflate(R.layout.suadiem_layout, null);
 
+                final TextView maSV = v.findViewById(R.id.maSV);
+                final TextView tenSV = v.findViewById(R.id.tenSV);
                 final EditText edtDiemSV = v.findViewById(R.id.edtDiemSV);
+                final EditText edtLanHoc = v.findViewById(R.id.edtLanHoc);
 
                 edtDiemSV.setText(danhSachSinhVien.getDiem() + "");
-
+                maSV.setText(danhSachSinhVien.getMaSV() + "");
+                tenSV.setText(danhSachSinhVien.getTenSV() + "");
+                edtLanHoc.setText(danhSachSinhVien.getLanHoc() + "");
                 builder.setView(v);
 
                 builder.setTitle("Cập nhật lại điểm sinh viên");
@@ -123,8 +134,14 @@ public class DSSinhVienAdapter extends RecyclerSwipeAdapter<DSSinhVienAdapter.Vi
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        danhSachSinhVien.setDiem(Integer.parseInt(edtDiemSV.getText().toString()));
+                        rootNode = FirebaseDatabase.getInstance();
+                        reference = rootNode.getReference("DSSVMotLop").child(DSSinhVienActivity.maLop);
+                        DanhSachSinhVien sv = new DanhSachSinhVien();
+                        sv.setDiem(Double.parseDouble(edtDiemSV.getText().toString()));
+                        sv.setLanHoc(Integer.parseInt(edtLanHoc.getText().toString()));
+                        reference.child(listSV.get(position).getMaSV()).setValue(sv.toMap());
                         notifyDataSetChanged();
+                        Toast.makeText(view.getContext(), "Thêm thành công!", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -150,12 +167,14 @@ public class DSSinhVienAdapter extends RecyclerSwipeAdapter<DSSinhVienAdapter.Vi
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        mItemManger.removeShownLayouts(holder.swipeLayout);
-                        listSV.remove(position);
-                        notifyItemRemoved(position);
-                        notifyItemRangeChanged(position, listSV.size());
-                        mItemManger.closeAllItems();
-                        Toast.makeText(view.getContext(), "Deleted !", Toast.LENGTH_SHORT).show();
+
+                        DanhSachSinhVien sv = new DanhSachSinhVien();
+                        sv = listSV.get(position);
+                        rootNode = FirebaseDatabase.getInstance();
+                        reference = rootNode.getReference("DSSVMotLop").child(DSSinhVienActivity.maLop);
+                        reference.child(sv.getMaSV()).removeValue();
+                        notifyDataSetChanged();
+                        Toast.makeText(view.getContext(), "Xóa thành công !", Toast.LENGTH_SHORT).show();
                     }
                 });
                 AlertDialog alertDialog = builder.create();

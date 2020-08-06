@@ -1,5 +1,7 @@
 package com.example.quanlydiemsinhvien.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -107,22 +109,45 @@ public class DanhSachLopHPTheoMHActivity extends AppCompatActivity implements On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_them, menu);
+        getMenuInflater().inflate(R.menu.option_menu, menu);
         return true;
     }
 
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.mnu_them: {
+            case R.id.them_item: {
                 openDialogAddLopHocPhan();
+                return true;
             }
-            break;
+            case R.id.thoat_item: {
+                // do your code
+                AlertDialog.Builder builder = new AlertDialog.Builder(DanhSachLopHPTheoMHActivity.this);
+                builder.setTitle("Thoát chương trình");
+                builder.setMessage("Bạn có muốn thoát khỏi chương trình?");
+                builder.setNegativeButton("Đóng", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setPositiveButton("Thoát", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        intent.setClass(getApplicationContext(), LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+//                finishAffinity();
+//                System.exit(0);
+                return true;
+            }
             default:
-                break;
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     private void openDialogAddLopHocPhan() {

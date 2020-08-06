@@ -21,6 +21,7 @@ import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.activities.DSLopActivity;
 import com.example.quanlydiemsinhvien.activities.DSSinhVienActivity;
+import com.example.quanlydiemsinhvien.activities.LoginActivity;
 import com.example.quanlydiemsinhvien.data_models.DanhSachLop;
 import com.example.quanlydiemsinhvien.firebase_data.DSLopDatabase;
 
@@ -34,7 +35,7 @@ public class DSLopAdapter extends RecyclerSwipeAdapter<DSLopAdapter.DSLopViewHol
 
     //    private ArrayList<DanhSachLop> danhsachlop;
     private Context context;
-    public static Intent intent;
+    public Intent intent;
     private Bundle bundle;
 //    private AlertDialog.Builder myDialog;
 
@@ -84,16 +85,16 @@ public class DSLopAdapter extends RecyclerSwipeAdapter<DSLopAdapter.DSLopViewHol
         holder.swipeLayout.getSurfaceView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DanhSachLop recentLop = DSLopActivity.dataLop.get(position);
                 Context context = view.getContext();
 
                 bundle = new Bundle();
-                bundle.putString(KEY_MALOP, recentLop.getMaLHP());
-                bundle.putString(KEY_TENLOP, recentLop.getTenLHP());
+                bundle.putString(KEY_MALOP, aCard.getMaLHP());
+                bundle.putString(KEY_TENLOP, aCard.getTenLHP());
 
-                intent = DSLopActivity.intent;
+                intent = LoginActivity.intent;
                 intent.setClass(context, DSSinhVienActivity.class);
-                intent.putExtra(KEY_DATA, bundle);
+                intent.putExtra(LopHocPhanTheoMonAdapter.MALOP, listLop.get(position).getMaLHP());
+                intent.putExtra(LopHocPhanTheoMonAdapter.TENLOP, listLop.get(position).getTenLHP());
 
                 context.startActivity(intent);
 

@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.quanlydiemsinhvien.R;
 
 public class QuanLyActivity extends AppCompatActivity {
-    Button btnKhoa, btnGiangVien, btnSinhVien;
+    Button btnKhoa, btnGiangVien, btnSinhVien, btnMonHoc;
     private Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +21,7 @@ public class QuanLyActivity extends AppCompatActivity {
         btnKhoa = findViewById(R.id.btnKhoa);
         btnGiangVien = findViewById(R.id.btnGiangVien);
         btnSinhVien = findViewById(R.id.btnSinhVien);
+        btnMonHoc = findViewById(R.id.btnMonHoc);
 
         intent = getIntent();
 
@@ -46,6 +47,15 @@ public class QuanLyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 intent.setClass(QuanLyActivity.this, DanhSachSinhVienActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+            }
+        });
+
+        btnMonHoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.setClass(QuanLyActivity.this, DanhSachMonHocActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }

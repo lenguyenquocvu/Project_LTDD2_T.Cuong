@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">Manage Student Grades</string>
+    <string name="app_name">QUẢN LÝ ĐIỂM SINH VIÊN</string>
     <!--    Danh sach lop ma giang vien day     -->
     <string name="txtTenGV">Tên Giảng Viên</string>
     <string name="txtTimKiem">Tim kiếm mã lớp...</string>
@@ -57,7 +57,7 @@
     <string name="txtTenLopHP">Tên lớp HP:</string>
 
     <string name="titleMenuThem">Thêm</string>
-    <string name="lblMonHoc">Môn học:</string>
+    <string name="lblMonHoc">Mã môn học:</string>
     <string name="lblTenMonHoc">Tên môn học:</string>
     <string name="lblSoTC">Số tín chỉ:</string>
 
@@ -160,10 +160,30 @@
     <string name="txtDiaChiSV">Địa chỉ</string>
     <string name="hintDiaChiSV">Nhập Địa chỉ</string>
 
-    <string name="swipeEdit">Chỉnh sửa</string>
+    <string name="swipeEdit">Sửa</string>
     <string name="swipeDelete">Xóa</string>
 
     <string name="btnCapNhatDialog">Cập nhật</string>
+    <string name="txtDanhSachMH">Danh sánh môn học</string>
+    <string name="ma">Mã</string>
+    <string name="ten">Tên</string>
+    <string name="tinChi">TC</string>
+    <string name="dsMH">DANH SÁCH MÔN HỌC</string>
+    <string name="btnMonHoc">Môn học</string>
+    <string name="maNganh">Mã ngành</string>
+    <string name="txtID">"Tài khoản: "</string>
+    <string name="txtAdmin">Admin</string>
+    <string name="txtPDT">Phòng Đào Tạo</string>
+    <string name="txtGV">Giảng Viên</string>
+    <string name="txtSV">Sinh Viên</string>
+    <string name="hintID">Nhập tài khoản...</string>
+    <string name="lblRestpassword">Đặt lại mật khẩu</string>
+    <string name="btnReset">Đặt lại</string>
     <!-- End Nganh layout-->
-
+    <string name="khoaHoc">KHÓA HỌC</string>
+    <string name="CTDT">CHƯƠNG TRÌNH ĐÀO TẠO</string>
+    <string name="LHP_MH">LỚP HỌC PHẦN THEO MÔN</string>
+    <string name="monHoc">MÔN HỌC</string>
+    <string name="doiMatKhau">ĐỔI MẬT KHẨU</string>
+    <string name="lblLanHoc">Lần học</string>
 </resources>

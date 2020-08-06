@@ -16,15 +16,12 @@
             android:weightSum="2">
             <TextView
                 android:id="@+id/edit"
-                style="@style/SwipeItemStyle"
-                android:text="Edit"
-                android:background="#0776a5"
-                android:textColor="#fff"
-                android:clickable="true"/>
+                android:text="@string/swipeEdit"
+                style="@style/SwipeItemEditStyle"/>
 
             <ImageButton
                 android:id="@+id/ibtnDelete"
-                style="@style/SwipeItemStyle"
+                style="@style/SwipeItemDeleteStyle"
                 android:background="#003c54"
                 android:src="@drawable/ic_delete_white_24dp" />
         </LinearLayout>

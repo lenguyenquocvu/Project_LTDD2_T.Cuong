@@ -19,12 +19,12 @@
         <TextView
             android:id="@+id/tvEdit"
             android:text="@string/swipeEdit"
-            style="@style/SwipeItemStyle"/>
+            style="@style/SwipeItemEditStyle"/>
 
         <TextView
             android:id="@+id/tvDelete"
             android:text="@string/swipeDelete"
-            style="@style/SwipeItemStyle" />
+            style="@style/SwipeItemDeleteStyle" />
     </LinearLayout>
 
     <LinearLayout

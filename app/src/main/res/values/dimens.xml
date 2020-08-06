@@ -30,8 +30,8 @@
     <dimen name="cornerRadiusKhoaHocItem">5dp</dimen>
     <dimen name="cardElevation">5dp</dimen>
     <dimen name="marginBottomItem">2dp</dimen>
-    <dimen name="marginLeftLayout">15dp</dimen>
-    <dimen name="paddingLeftLayout">10dp</dimen>
+    <dimen name="marginLeftLayout">5dp</dimen>
+    <dimen name="paddingLeftLayout">5dp</dimen>
     <dimen name="width_0dp">0dp</dimen>
 
     <!-- Value of the Khoa layout-->

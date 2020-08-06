@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.example.quanlydiemsinhvien.R;
+import com.example.quanlydiemsinhvien.activities.DSLopActivity;
+import com.example.quanlydiemsinhvien.activities.DSSinhVienActivity;
 import com.example.quanlydiemsinhvien.activities.DanhSachKhoaHocActivity;
 import com.example.quanlydiemsinhvien.activities.LoginActivity;
 import com.example.quanlydiemsinhvien.data_models.LopHocPhan;
@@ -64,7 +66,7 @@ public class LopHocPhanTheoMonAdapter extends RecyclerSwipeAdapter<LopHocPhanThe
             public void onClick(View v) {
                 Context ct = v.getContext();
                 Intent intent = LoginActivity.intent;
-                intent.setClass(ct, DanhSachKhoaHocActivity.class); // null <=> class danh sach sinh vien cua mot lop hoc phan
+                intent.setClass(ct, DSSinhVienActivity.class); // null <=> class danh sach sinh vien cua mot lop hoc phan
                 intent.putExtra(MALOP, dsLopHP.get(position).getMaLHP());
                 intent.putExtra(TENLOP, dsLopHP.get(position).getTenLHP());
                 ct.startActivity(intent);

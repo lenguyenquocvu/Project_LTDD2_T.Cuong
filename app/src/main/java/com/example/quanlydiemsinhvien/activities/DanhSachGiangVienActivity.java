@@ -1,5 +1,7 @@
 package com.example.quanlydiemsinhvien.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -115,6 +117,25 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
                 return true;
             case R.id.thoat_item:
                 // do your code
+                AlertDialog.Builder builder = new AlertDialog.Builder(DanhSachGiangVienActivity.this);
+                builder.setTitle("Thoát chương trình");
+                builder.setMessage("Bạn có muốn thoát khỏi chương trình?");
+                builder.setNegativeButton("Đóng", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setPositiveButton("Thoát", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        intent.setClass(getApplicationContext(), LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

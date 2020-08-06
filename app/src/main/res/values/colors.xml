@@ -25,6 +25,6 @@
     <color name="colorBackgroundTitleTableKhoa">#FFFFFF</color>
 
     <!-- Color for Swipe -->
-    <color name="colorBackgroundBtnEdit">#007bff </color>
-    <color name="colorBackgroundBtnDelete">#ff0d00</color>
+    <color name="colorBackgroundBtnEdit">#0776a5 </color>
+    <color name="colorBackgroundBtnDelete">#003c54</color>
 </resources>

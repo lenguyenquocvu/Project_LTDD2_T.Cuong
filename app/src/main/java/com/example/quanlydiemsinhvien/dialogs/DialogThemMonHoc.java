@@ -13,36 +13,27 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.quanlydiemsinhvien.R;
-import com.example.quanlydiemsinhvien.data_models.ChuongTrinhDaoTao;
+import com.example.quanlydiemsinhvien.data_models.MonHoc;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddListener;
-import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditListener;
 
-public class DialogAddChuongTrinhDaoTao extends DialogFragment {
+public class DialogThemMonHoc extends DialogFragment {
     private OnItemClickToAddListener addListener;
-    private OnItemClickToEditListener editListener;
-    private ChuongTrinhDaoTao monHoc;
-    private String maMH;
-
+    private MonHoc monHoc = new MonHoc();
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_sua_mon_hoc__ctdt_layout, null);
+
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View view = inflater.inflate(R.layout.dialog_them_mon_hoc_layout, null);
 
         final EditText edtMaMH = view.findViewById(R.id.edtMaMH);
         final EditText edtTenMH = view.findViewById(R.id.edtTenMH);
         final EditText edtSoTinChi = view.findViewById(R.id.edtSoTinChi);
+        final EditText edtMaNganh = view.findViewById(R.id.edtMaNganh);
 
-        edtMaMH.setEnabled(true);
-        edtTenMH.setVisibility(View.GONE);
-        edtSoTinChi.setVisibility(View.GONE);
-        builder.setTitle("Thêm môn học vào chương trình đào tạo");
-
-
+        builder.setTitle("Thêm môn học");
         builder.setView(view);
-
-
         builder.setNegativeButton(DialogAddOrEditKhoahoc.CANCEL_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -50,15 +41,18 @@ public class DialogAddChuongTrinhDaoTao extends DialogFragment {
             }
         });
 
-        builder.setPositiveButton(DialogAddOrEditKhoahoc.OK_STRING, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Thêm", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                maMH = edtMaMH.getText().toString();
+                monHoc.setMaMH(edtMaMH.getText().toString());
+                monHoc.setTenMH(edtTenMH.getText().toString());
+                monHoc.setSoTinChi(Integer.parseInt(edtSoTinChi.getText().toString()));
+                monHoc.setMaNganh(edtMaNganh.getText().toString());
+
                 addListener = (OnItemClickToAddListener) getActivity();
-                addListener.applyObject(maMH);
+                addListener.applyObject(monHoc);
             }
         });
-
         return builder.create();
     }
 }

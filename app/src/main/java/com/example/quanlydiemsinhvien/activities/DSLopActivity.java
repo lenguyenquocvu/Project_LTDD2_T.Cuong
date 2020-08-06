@@ -1,12 +1,15 @@
 package com.example.quanlydiemsinhvien.activities;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,16 +29,20 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import static com.example.quanlydiemsinhvien.adapters.LopHocPhanTheoMonAdapter.MALOP;
+
 public class DSLopActivity extends AppCompatActivity implements AddLop {
     public static final String LOPTAG = "LopHocPhan";
     public static ArrayList<DanhSachLop> dataLop = new ArrayList<DanhSachLop>();
     public static DSLopAdapter dsLopAdapter;
 
-    public static Intent intent;
+    public Intent intent;
     private Context context = DSLopActivity.this;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-
+    private String maMH;
+    private String maGV;
+    private TextView txtMaGV;
 //    RecyclerView recycler_dslop;
 //    private ArrayList<DanhSachLop> danhsachlop;
 //    TextView txtMaLHP;
@@ -51,12 +58,14 @@ public class DSLopActivity extends AppCompatActivity implements AddLop {
         setContentView(R.layout.danhsachlop_layout);
         setTitle("Danh Sách Lớp");
 
-        intent = getIntent();
-
         //Get View from layout
         recyclerView = (RecyclerView) findViewById(R.id.recycler_dslop);
+        txtMaGV = findViewById(R.id.maGV);
 
 
+        intent = getIntent();
+        maGV = intent.getStringExtra("id");
+        txtMaGV.setText(maGV);
         //Item decoration
        // recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R.drawable.divider, getTheme()));
 
@@ -68,7 +77,9 @@ public class DSLopActivity extends AppCompatActivity implements AddLop {
 
                 for (DataSnapshot node : snapshot.getChildren()) {
                     DanhSachLop danhsachlop = node.getValue(DanhSachLop.class);
-                    dataLop.add(danhsachlop);
+                    if(maGV.equals(danhsachlop.getMaGV())) {
+                        dataLop.add(danhsachlop);
+                    }
                 }
 
                 // Update after changed data
@@ -104,17 +115,41 @@ public class DSLopActivity extends AppCompatActivity implements AddLop {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.add, menu);
+        inflater.inflate(R.menu.menu_thoat, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.item_menu_them) {
-            Log.d("test", "Item menu Them");
-            showAddLopDialog();
+        switch (item.getItemId()) {
+            case R.id.thoat_item: {
+                // do your code
+                AlertDialog.Builder builder = new AlertDialog.Builder(DSLopActivity.this);
+                builder.setTitle("Thoát chương trình");
+                builder.setMessage("Bạn có muốn thoát khỏi chương trình?");
+                builder.setNegativeButton("Đóng", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setPositiveButton("Thoát", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        intent.setClass(getApplicationContext(), LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+//                finishAffinity();
+//                System.exit(0);
+                return true;
+            }
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return true;
     }
     public void showAddLopDialog() {
         DialogFragment lopDialog = new Dialog_Add_Lop();

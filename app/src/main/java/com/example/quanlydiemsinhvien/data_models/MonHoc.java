@@ -1,20 +1,18 @@
 package com.example.quanlydiemsinhvien.data_models;
 
-public class MonHoc {
+import com.google.firebase.database.Exclude;
+
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
+public class MonHoc implements Serializable {
     private String maMH;
     private String TenMH;
     private int SoTinChi;
     private String maNganh;
 
-    public String getMaNganh() {
-        return maNganh;
-    }
 
-    public void setMaNganh(String maNganh) {
-        this.maNganh = maNganh;
-    }
-
-    private boolean showMenu = false;
 
     public MonHoc() {
     }
@@ -50,20 +48,12 @@ public class MonHoc {
         this.SoTinChi = soTinChi;
     }
 
-    public boolean isShowMenu() {
-        return showMenu;
+    public String getMaNganh() {
+        return maNganh;
     }
 
-    public void setShowMenu(boolean showMenu) {
-        this.showMenu = showMenu;
-    }
-
-    public String getMaKH() {
-        return maMH;
-    }
-
-    public void setMaKH(String maKH) {
-        this.maMH = maKH;
+    public void setMaNganh(String maNganh) {
+        this.maNganh = maNganh;
     }
 
     @Override
@@ -73,5 +63,15 @@ public class MonHoc {
                 ", tenMH='" + maMH + '\'' +
                 ", soTinChi=" + SoTinChi +
                 '}';
+    }
+
+    @Exclude
+    public Map<String, Object> toMap(){
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("maMH", getMaMH());
+        result.put("tenMH", getTenMH());
+        result.put("SoTinChi", getSoTinChi());
+        result.put("maNganh", getMaNganh());
+        return result;
     }
 }

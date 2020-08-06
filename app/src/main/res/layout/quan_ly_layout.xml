@@ -39,6 +39,11 @@
             style="@style/QuanLyButton"
             android:text="@string/btnSinhVien"/>
 
+        <Button
+            android:id="@+id/btnMonHoc"
+            style="@style/QuanLyButton"
+            android:text="@string/btnMonHoc" />
+
     </LinearLayout>
 
 </LinearLayout>

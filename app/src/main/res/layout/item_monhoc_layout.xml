@@ -9,15 +9,15 @@
     swipe:rightEdgeSwipeOffset="0dp">
 
     <LinearLayout
-        android:id="@+id/right_wrapper"
+        android:id="@+id/bottom_wrapper"
         android:layout_width="80dp"
         android:layout_height="match_parent"
         android:weightSum="1">
 
-        <ImageButton
-            android:id="@+id/ibtnDelete"
-            style="@style/SwipeItemDeleteStyle"
-            android:src="@drawable/ic_delete_white_24dp" />
+        <TextView
+            android:id="@+id/tvEdit"
+            android:text="@string/swipeEdit"
+            style="@style/SwipeItemEditStyle"/>
     </LinearLayout>
 
     <LinearLayout
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:background="?android:selectableItemBackground"
         android:orientation="horizontal"
-        android:padding="@dimen/paddingLeftLayout">
+        android:paddingRight="@dimen/paddingLeftLayout">
 
         <TextView
             android:id="@+id/edtMaMH"
@@ -43,7 +43,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/marginLeftLayout"
-            android:layout_weight="4"
+            android:layout_weight="3.5"
             android:text="@string/k17Info"
             android:textColor="@color/textColorItemRecyclerViewEven" />
 
@@ -52,8 +52,19 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/marginLeftLayout"
+            android:layout_weight="0.5"
+            android:text="@string/k17Info"
+            android:textColor="@color/textColorItemRecyclerViewEven"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/maNganh"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/marginLeftLayout"
             android:layout_weight="1"
             android:text="@string/k17Info"
-            android:textColor="@color/textColorItemRecyclerViewEven"/>
+            android:textColor="@color/textColorItemRecyclerViewEven"
+            android:gravity="center"/>
     </LinearLayout>
 </com.daimajia.swipe.SwipeLayout>

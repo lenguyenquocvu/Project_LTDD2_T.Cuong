@@ -17,13 +17,15 @@ import androidx.fragment.app.DialogFragment;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.data_models.DanhSachSinhVien;
 import com.example.quanlydiemsinhvien.interfaces.AddSV;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Dialog_Add_SV extends DialogFragment {
     DanhSachSinhVien danhSachSinhVien = new DanhSachSinhVien();
     private EditText edtMaSV;
-    private EditText edtTenSV;
     private AddSV listener;
-
+    FirebaseDatabase rootNode;
+    DatabaseReference referenceSV, referenceSVOfLop;
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -44,13 +46,12 @@ public class Dialog_Add_SV extends DialogFragment {
 
                 // Get all view from layout dialog_them_nganh
                 edtMaSV = dialog.findViewById(R.id.edtMaSV);
-                edtTenSV = dialog.findViewById(R.id.edtTenSV);
+
 
                 String maSV = edtMaSV.getText().toString();
-                String tenSV = edtTenSV.getText().toString();
+
 
                 danhSachSinhVien.setMaSV(maSV);
-                danhSachSinhVien.setTenSV(tenSV);
 
                 listener.applySV(danhSachSinhVien);
                 Toast.makeText(getActivity(), "Them ma sinh vien button is tapped!" + danhSachSinhVien.toString(), Toast.LENGTH_SHORT).show();

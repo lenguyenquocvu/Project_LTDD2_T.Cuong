@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("==>", item.getId() + " " + item.getPassword());
                         if (id.equals(item.getId()) && password.equals(item.getPassword())) {
                             Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thành công", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, MainDanhSachAdmin.class);
+                            intent.setClass(LoginActivity.this, ResetPasswordActivity.class);
                             startActivity(intent);
                         } else {
 
@@ -98,7 +98,8 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("==>", item.getId() + " " + item.getPassword());
                         if (id.equals(item.getId()) && password.equals(item.getPassword())) {
                             Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thành công", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, MainDanhSachGiangVien.class);
+                            intent.setClass(LoginActivity.this, DSLopActivity.class);
+                            intent.putExtra("maGV", id);
                             startActivity(intent);
                         } else {
                             //Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thất bại", Toast.LENGTH_SHORT).show();
@@ -110,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("==>", item.getId() + " " + item.getPassword());
                         if (id.equals(item.getId()) && password.equals(item.getPassword())) {
                             Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thành công", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, MainDanhSachSinhVien.class);
+                            intent.setClass(LoginActivity.this, MainDanhSachSinhVien.class);
                             startActivity(intent);
                         } else {
                             //Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thất bại", Toast.LENGTH_SHORT).show();
@@ -254,7 +255,7 @@ public class LoginActivity extends AppCompatActivity {
                     String passwordDB = snapshot.child(idVal).child("password").getValue(String.class);
                     if (passwordDB.equals(passwordVal)) {
                         String idDB = snapshot.child(idVal).child("id").getValue(String.class);
-                        Intent intent = new Intent(getApplicationContext(), Accounts.class);
+                        Intent intent = new Intent(getApplicationContext(), QuanLyActivity.class);
                         intent.putExtra("id", idDB);
                         intent.putExtra("password", passwordDB);
                         startActivity(intent);
@@ -282,7 +283,7 @@ public class LoginActivity extends AppCompatActivity {
                     String passwordDB = snapshot.child(idVal).child("password").getValue(String.class);
                     if (passwordDB.equals(passwordVal)) {
                         String idDB = snapshot.child(idVal).child("id").getValue(String.class);
-                        Intent intent = new Intent(getApplicationContext(), Accounts.class);
+                        intent.setClass(getApplicationContext(), DSLopActivity.class);
                         intent.putExtra("id", idDB);
                         intent.putExtra("password", passwordDB);
                         startActivity(intent);

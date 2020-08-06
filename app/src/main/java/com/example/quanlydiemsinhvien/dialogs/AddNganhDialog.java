@@ -73,7 +73,6 @@ public class AddNganhDialog extends DialogFragment {
         builder.setNegativeButton(R.string.btnCancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getActivity(), "Cancel on Nganh is tapped!", Toast.LENGTH_SHORT).show();
                 AddNganhDialog.this.dismiss();
             }
         });

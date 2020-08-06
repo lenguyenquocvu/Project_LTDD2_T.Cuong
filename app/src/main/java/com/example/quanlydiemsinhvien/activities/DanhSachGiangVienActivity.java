@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.daimajia.swipe.util.Attributes;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.GiangVienSwipeRecyclerViewAdapter;
-import com.example.quanlydiemsinhvien.data_models.GiangVienModel;
+import com.example.quanlydiemsinhvien.data_models.GiangVien;
 import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditGiangVien;
 import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddGiangVienListener;
@@ -33,7 +33,7 @@ import java.util.HashMap;
 
 public class DanhSachGiangVienActivity extends AppCompatActivity implements OnItemClickToAddGiangVienListener, OnItemClickToEditGiangVienListener, OnItemClickToDeleteListener_Huong {
     public static Intent intent;
-    public static ArrayList<GiangVienModel> dsGiangVien;
+    public static ArrayList<GiangVien> dsGiangVien;
 
     private RecyclerView recyclerView;
     private TextView tvEmptyView;
@@ -51,7 +51,7 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
 
         intent = getIntent();
 
-        dsGiangVien = new ArrayList<GiangVienModel>();
+        dsGiangVien = new ArrayList<GiangVien>();
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("GiangVien");
 
@@ -64,8 +64,8 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dsGiangVien.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    GiangVienModel giangVien = new GiangVienModel();
-                    giangVien = dataSnapshot.getValue(GiangVienModel.class);
+                    GiangVien giangVien = new GiangVien();
+                    giangVien = dataSnapshot.getValue(GiangVien.class);
                     dsGiangVien.add(giangVien);
                 }
                 mAdapter = new GiangVienSwipeRecyclerViewAdapter(DanhSachGiangVienActivity.this, dsGiangVien);
@@ -127,24 +127,24 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
     }
 
     @Override
-    public void applyGiangVien(GiangVienModel giangVien) {
+    public void applyGiangVien(GiangVien giangVien) {
         dsGiangVien.add(0, giangVien);
         reference.child(giangVien.getMaGV()).setValue(giangVien);
     }
 
     @Override
     public void delete(Object object) {
-        GiangVienModel giangVien = (GiangVienModel) object;
+        GiangVien giangVien = (GiangVien) object;
         dsGiangVien.remove(object);
 
-        reference.child(((GiangVienModel) object).getMaGV()).removeValue();
+        reference.child(((GiangVien) object).getMaGV()).removeValue();
 
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void onItemClicked(GiangVienModel giangVien, int position) {
-        for (GiangVienModel gv : dsGiangVien) {
+    public void onItemClicked(GiangVien giangVien, int position) {
+        for (GiangVien gv : dsGiangVien) {
             if (gv.getMaGV().equals(giangVien.getMaGV())) {
                 gv.setMaGV(giangVien.getMaGV());
                 gv.setTenGV(giangVien.getTenGV());

@@ -11,13 +11,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.quanlydiemsinhvien.adapters.SinhVienSwipeRecyclerViewAdapter;
-import com.example.quanlydiemsinhvien.data_models.SinhVienModel;
-import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener;
+import com.example.quanlydiemsinhvien.data_models.SinhVien;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener_Huong;
 
 public class DialogDeleteSinhVien extends DialogFragment {
     private OnItemClickToDeleteListener_Huong listener;
-    private SinhVienModel sinhVien;
+    private SinhVien sinhVien;
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -36,7 +35,7 @@ public class DialogDeleteSinhVien extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if(getArguments() != null){
-                    sinhVien = (SinhVienModel) getArguments().getSerializable(SinhVienSwipeRecyclerViewAdapter.KEY_SINHVIEN);
+                    sinhVien = (SinhVien) getArguments().getSerializable(SinhVienSwipeRecyclerViewAdapter.KEY_SINHVIEN);
                     listener.delete(sinhVien);
                 }
             }

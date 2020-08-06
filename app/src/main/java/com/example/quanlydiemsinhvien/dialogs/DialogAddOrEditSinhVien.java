@@ -17,14 +17,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.quanlydiemsinhvien.R;
-import com.example.quanlydiemsinhvien.adapters.GiangVienSwipeRecyclerViewAdapter;
 import com.example.quanlydiemsinhvien.adapters.SinhVienSwipeRecyclerViewAdapter;
-import com.example.quanlydiemsinhvien.data_models.GiangVienModel;
-import com.example.quanlydiemsinhvien.data_models.NganhModel;
-import com.example.quanlydiemsinhvien.data_models.SinhVienModel;
-import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddGiangVienListener;
+import com.example.quanlydiemsinhvien.data_models.Nganh;
+import com.example.quanlydiemsinhvien.data_models.SinhVien;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddSinhVienListener;
-import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditGiangVienListener;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditSinhVienListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,10 +40,10 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
     private EditText edtSDT;
     private static Spinner spnMaNganh;
 
-    public static ArrayList<NganhModel> spinnerItems = new ArrayList<NganhModel>();
+    public static ArrayList<Nganh> spinnerItems = new ArrayList<Nganh>();
 
     private OnItemClickToAddSinhVienListener addSinhVienListener;
-    private SinhVienModel sinhVien;
+    private SinhVien sinhVien;
     private OnItemClickToEditSinhVienListener editSinhVienListener;
 
     private DatabaseReference spinnerDatabase;
@@ -75,12 +71,12 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot areaSnapshot : snapshot.getChildren()) {
-                    NganhModel nganh = new NganhModel();
-                    nganh = areaSnapshot.getValue(NganhModel.class);
+                    Nganh nganh = new Nganh();
+                    nganh = areaSnapshot.getValue(Nganh.class);
                     spinnerItems.add(nganh);
                 }
 
-                ArrayAdapter<NganhModel> arrayAdapter = new ArrayAdapter<NganhModel>(getActivity(), android.R.layout.simple_spinner_item, spinnerItems);
+                ArrayAdapter<Nganh> arrayAdapter = new ArrayAdapter<Nganh>(getActivity(), android.R.layout.simple_spinner_item, spinnerItems);
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spnMaNganh.setAdapter(arrayAdapter);
             }
@@ -94,7 +90,7 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
         builder.setView(view);
 
         if (getArguments() != null) {
-            sinhVien = (SinhVienModel) getArguments().getSerializable(SinhVienSwipeRecyclerViewAdapter.KEY_SINHVIEN);
+            sinhVien = (SinhVien) getArguments().getSerializable(SinhVienSwipeRecyclerViewAdapter.KEY_SINHVIEN);
             edtMaSV.setEnabled(false);
             edtMaSV.setText(sinhVien.getMaSV());
             edtTenSV.setText(sinhVien.getTenSV());
@@ -124,7 +120,7 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
                         Toast.makeText(getContext(), "Không thể thêm sinh viên! Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_LONG).show();
                     }else{
 
-                        sinhVien = new SinhVienModel();
+                        sinhVien = new SinhVien();
 
                         sinhVien.setMaSV(edtMaSV.getText().toString());
                         sinhVien.setTenSV(edtTenSV.getText().toString());

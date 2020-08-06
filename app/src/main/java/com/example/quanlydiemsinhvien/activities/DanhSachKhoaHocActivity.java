@@ -43,7 +43,7 @@ public class DanhSachKhoaHocActivity extends AppCompatActivity implements OnItem
     private ArrayList<KhoaHoc> dsKhoaHoc;
     public static TextView txtNganh;
     KhoaHocAdapter khoaHocAdapter;
-    public static Intent intent;
+    public Intent intent;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
     private KhoaHoc khoaHoc;
@@ -51,6 +51,8 @@ public class DanhSachKhoaHocActivity extends AppCompatActivity implements OnItem
     public static final String ADD_SUCCESS_NOTIFY = "Thêm thành công!";
     public static final String EDIT_SUCCESS_NOTIFY = "Sửa thành công!";
     public static final String DELETE_SUCCESS_NOTIFY = "Xóa thành công!";
+
+    private String maNganh = "";
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +60,7 @@ public class DanhSachKhoaHocActivity extends AppCompatActivity implements OnItem
 
         intent = getIntent();
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        maNganh = intent.getStringExtra("maNganh");
         dsKhoaHoc = new ArrayList<KhoaHoc>();
         rvDsKhoaHoc = (RecyclerView) findViewById(R.id.rvDanhsachKhoaHoc);
         rootNode = FirebaseDatabase.getInstance();
@@ -86,7 +89,7 @@ public class DanhSachKhoaHocActivity extends AppCompatActivity implements OnItem
 
         txtNganh = findViewById(R.id.txtNganh);
 
-        txtNganh.setText("CNTT");
+        txtNganh.setText(maNganh);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         rvDsKhoaHoc.setLayoutManager(linearLayoutManager);

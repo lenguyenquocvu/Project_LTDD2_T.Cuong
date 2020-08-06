@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.daimajia.swipe.util.Attributes;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.SinhVienSwipeRecyclerViewAdapter;
-import com.example.quanlydiemsinhvien.data_models.SinhVienModel;
+import com.example.quanlydiemsinhvien.data_models.SinhVien;
 import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditSinhVien;
 import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddSinhVienListener;
@@ -33,7 +33,7 @@ import java.util.HashMap;
 
 public class DanhSachSinhVienActivity extends AppCompatActivity implements OnItemClickToAddSinhVienListener, OnItemClickToDeleteListener_Huong, OnItemClickToEditSinhVienListener {
     public static Intent intent;
-    public static ArrayList<SinhVienModel> dsSinhVien;
+    public static ArrayList<SinhVien> dsSinhVien;
 
     private RecyclerView recyclerView;
     private TextView tvEmptyView;
@@ -49,7 +49,7 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
         setContentView(R.layout.danh_sach_sinh_vien_layout);
         setTitle("Quản lý sinh viên");
 
-        dsSinhVien = new ArrayList<SinhVienModel>();
+        dsSinhVien = new ArrayList<SinhVien>();
         intent = getIntent();
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("SinhVien");
@@ -63,8 +63,8 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dsSinhVien.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    SinhVienModel sinhVien = new SinhVienModel();
-                    sinhVien = dataSnapshot.getValue(SinhVienModel.class);
+                    SinhVien sinhVien = new SinhVien();
+                    sinhVien = dataSnapshot.getValue(SinhVien.class);
                     dsSinhVien.add(sinhVien);
                 }
                 mAdapter  = new SinhVienSwipeRecyclerViewAdapter(DanhSachSinhVienActivity.this, dsSinhVien);
@@ -124,23 +124,23 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
     }
     @Override
     public void delete(Object object) {
-        SinhVienModel sinhVien = (SinhVienModel) object;
+        SinhVien sinhVien = (SinhVien) object;
         dsSinhVien.remove(object);
 
-        reference.child(((SinhVienModel) object).getMaSV()).removeValue();
+        reference.child(((SinhVien) object).getMaSV()).removeValue();
 
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void applySinhVien(SinhVienModel sinhVien) {
+    public void applySinhVien(SinhVien sinhVien) {
         dsSinhVien.add(0,sinhVien);
         reference.child(sinhVien.getMaSV()).setValue(sinhVien);
     }
 
     @Override
-    public void onItemClicked(SinhVienModel sinhVien, int position) {
-        for(SinhVienModel sv : dsSinhVien){
+    public void onItemClicked(SinhVien sinhVien, int position) {
+        for(SinhVien sv : dsSinhVien){
             if(sv.getMaSV().equals(sinhVien.getMaSV())){
                 sv.setMaSV(sinhVien.getMaSV());
                 sv.setTenSV(sinhVien.getTenSV());

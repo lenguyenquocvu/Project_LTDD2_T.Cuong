@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.example.quanlydiemsinhvien.R;
-import com.example.quanlydiemsinhvien.data_models.SinhVienModel;
+import com.example.quanlydiemsinhvien.data_models.SinhVien;
 import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditSinhVien;
 import com.example.quanlydiemsinhvien.dialogs.DialogDeleteSinhVien;
 
@@ -22,12 +22,12 @@ import java.util.ArrayList;
 
 public class SinhVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SinhVienSwipeRecyclerViewAdapter.SimpleViewHolder> {
     private Context mContext;
-    private ArrayList<SinhVienModel> sinhVienList;
+    private ArrayList<SinhVien> sinhVienList;
 
     public static String KEY_SINHVIEN = "SinhVien";
     public static String KEY_POSITION = "position";
 
-    public SinhVienSwipeRecyclerViewAdapter(Context context, ArrayList<SinhVienModel> objects) {
+    public SinhVienSwipeRecyclerViewAdapter(Context context, ArrayList<SinhVien> objects) {
         this.mContext = context;
         this.sinhVienList = objects;
     }
@@ -40,7 +40,7 @@ public class SinhVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SinhV
 
     @Override
     public void onBindViewHolder(final SimpleViewHolder viewHolder, final int position) {
-        final SinhVienModel sinhVien = sinhVienList.get(position);
+        final SinhVien sinhVien = sinhVienList.get(position);
 
         viewHolder.tvTenSV.setText((sinhVien.getHoSV()) + " " + sinhVien.getTenSV());
         viewHolder.tvMaSV.setText(sinhVien.getMaSV());
@@ -111,7 +111,7 @@ public class SinhVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SinhV
         viewHolder.tvEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final SinhVienModel sinhVien = sinhVienList.get(position);
+                final SinhVien sinhVien = sinhVienList.get(position);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(KEY_SINHVIEN, sinhVien);
                 bundle.putInt(KEY_POSITION, position);

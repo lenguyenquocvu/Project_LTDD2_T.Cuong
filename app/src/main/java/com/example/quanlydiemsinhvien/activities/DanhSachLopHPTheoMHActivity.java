@@ -61,6 +61,7 @@ public class DanhSachLopHPTheoMHActivity extends AppCompatActivity implements On
 
         rvLopHPTheoMH = findViewById(R.id.rvDsLopHPTheoMH);
         intent = getIntent();
+
         maMH = intent.getStringExtra(DB_MAMH_COL);
         tenMH = intent.getStringExtra(DB_TENMH_COL);
 

@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.example.quanlydiemsinhvien.R;
+import com.example.quanlydiemsinhvien.activities.DanhSachKhoaHocActivity;
+import com.example.quanlydiemsinhvien.activities.LoginActivity;
 import com.example.quanlydiemsinhvien.activities.NganhActivity;
 import com.example.quanlydiemsinhvien.data_models.Nganh;
 import com.example.quanlydiemsinhvien.firebase_data.NganhDatabase;
@@ -95,15 +97,17 @@ public class NganhAdapter extends RecyclerSwipeAdapter<NganhAdapter.NganhViewHol
             }
         });
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.swipeLayout.getSurfaceView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 // Switch screen
-                /*Context context = view.getContext();
-                intent = new Intent();
+                Context ct = view.getContext();
+                /*intent = new Intent();
                 intent.setClass(context, );*/
-
+                LoginActivity.intent.setClass(ct ,DanhSachKhoaHocActivity.class);
+                LoginActivity.intent.putExtra("maNganh", theNganh.getMaNganh());
+                ct.startActivity(LoginActivity.intent);
                 Log.d("test", "CLick a Nganh");
             }
         });

@@ -17,6 +17,7 @@ import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.activities.DanhSachKhoaHocActivity;
+import com.example.quanlydiemsinhvien.activities.LoginActivity;
 import com.example.quanlydiemsinhvien.data_models.LopHocPhan;
 import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditLopHocPhan;
 import com.example.quanlydiemsinhvien.dialogs.DialogDeleteLopHocPhan;
@@ -62,7 +63,7 @@ public class LopHocPhanTheoMonAdapter extends RecyclerSwipeAdapter<LopHocPhanThe
             @Override
             public void onClick(View v) {
                 Context ct = v.getContext();
-                Intent intent = DanhSachKhoaHocActivity.intent;
+                Intent intent = LoginActivity.intent;
                 intent.setClass(ct, DanhSachKhoaHocActivity.class); // null <=> class danh sach sinh vien cua mot lop hoc phan
                 intent.putExtra(MALOP, dsLopHP.get(position).getMaLHP());
                 intent.putExtra(TENLOP, dsLopHP.get(position).getTenLHP());

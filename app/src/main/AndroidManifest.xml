@@ -13,17 +13,13 @@
         android:theme="@style/AppTheme">
 
         <!-- Vũ -->
+
         <activity android:name=".activities.DanhSachKhoaHocActivity"></activity>
         <activity android:name=".activities.DanhSachChuongTrinhDaoTaoActivity"></activity>
         <activity android:name=".activities.DanhSachLopHPTheoMHActivity"></activity>
 
         <!-- Hiệu -->
         <activity android:name=".activities.KhoaActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activities.NganhActivity"></activity>
 
@@ -33,7 +29,13 @@
         <activity android:name=".activities.QuanLyActivity"></activity>
 
         <!-- Tâm -->
-        <activity android:name=".activities.LoginActivity" ></activity>
+        <activity android:name=".activities.LoginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activities.DSSinhVienActivity"></activity>
         <activity android:name=".activities.MainDanhSachPhongDaoTao" ></activity>
         <activity android:name=".activities.MainDanhSachAdmin" ></activity>

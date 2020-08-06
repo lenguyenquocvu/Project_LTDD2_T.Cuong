@@ -20,6 +20,23 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="@string/mucMaGV"
+            android:gravity="center"
+            style="@style/TextViewIdEven"
+            android:textColor="@color/textColorItemRecyclerViewEven" />
+
+        <TextView
+            android:text="@string/mucTenGV"
+            style="@style/TextViewTenEven" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="9"
         android:layout_margin="@dimen/layout_margin"

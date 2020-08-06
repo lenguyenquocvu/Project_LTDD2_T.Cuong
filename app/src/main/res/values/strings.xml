@@ -62,8 +62,14 @@
 
     <string name="txtMaKhoaHoc">Mã khóa học</string>
 
-    <string name="swipeEdit">Edit</string>
+    <string name="swipeEdit">Chỉnh sửa</string>
     <string name="swipeDelete">Xóa</string>
 
     <string name="btnCapNhatDialog">Cập nhật</string>
+
+    <string name="mucMaGV">Mã giảng viên</string>
+    <string name="mucTenGV">Tên giảng viên</string>
+
+    <string name="mucMaSV">Mã sinh viên</string>
+    <string name="mucTenSV">Tên sinh viên</string>
 </resources>

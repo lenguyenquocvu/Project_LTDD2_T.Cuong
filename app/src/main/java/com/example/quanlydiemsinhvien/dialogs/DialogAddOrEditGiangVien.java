@@ -24,6 +24,9 @@ import com.example.quanlydiemsinhvien.data_models.GiangVien;
 import com.example.quanlydiemsinhvien.data_models.Nganh;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddGiangVienListener;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditGiangVienListener;
+import com.example.quanlydiemsinhvien.validators.DateOfBirthValidator;
+import com.example.quanlydiemsinhvien.validators.EmailValidator;
+import com.example.quanlydiemsinhvien.validators.NameValidator;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class DialogAddOrEditGiangVien extends DialogFragment {
     private EditText edtMaGV;
@@ -50,6 +54,10 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
     private OnItemClickToEditGiangVienListener editGiangVienListener;
 
     private DatabaseReference spinnerDatabase;
+
+    private EmailValidator emailValidator;
+    private NameValidator nameValidator;
+    private static DateOfBirthValidator dateOfBirthValidator;
 
     @NonNull
     @Override
@@ -142,12 +150,24 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (getArguments() == null) {
+                    emailValidator = new EmailValidator();
+                    nameValidator = new NameValidator();
+                    dateOfBirthValidator = new DateOfBirthValidator();
                     if(edtMaGV.getText().toString().isEmpty() ||
                             edtHoGV.getText().toString().isEmpty() ||
                             edtTenGV.getText().toString().isEmpty() ||
                             edtSDT.getText().toString().isEmpty() ||
                             edtNgaySinh.getText().toString().isEmpty()){
                         Toast.makeText(getContext(), "Không thể thêm giảng viên! Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_LONG).show();
+                    } else if (!nameValidator.validate(edtHoGV.getText().toString()) || !nameValidator.validate(edtTenGV.getText().toString())) {
+                        Toast.makeText(getContext(), "Vui lòng kiểm tra lại họ tên của giảng viên!", Toast.LENGTH_LONG).show();
+                    } else if (!checkNgaySinh(edtNgaySinh.getText().toString())) {
+                        Toast.makeText(getContext(), "Vui lòng kiểm tra lại ngày sinh giảng viên!", Toast.LENGTH_LONG).show();
+//                        Log.d("date", "" + edtNgaySinh.getText().toString().substring(edtNgaySinh.getText().toString().length() - 4));
+                    } else if (!emailValidator.validate(edtEmail.getText().toString())) {
+                        Toast.makeText(getContext(), "Vui lòng kiểm tra lại email của giảng viên!", Toast.LENGTH_LONG).show();
+                    } else if (edtMaGV.getText().toString().length() > 20) {
+                        Toast.makeText(getContext(), "Thêm không thành công! Mã giảng viên không được vượt quá 20 ký tự!", Toast.LENGTH_LONG).show();
                     } else if (!checkMaGV(edtMaGV.getText().toString())) {
                         Toast.makeText(getContext(), "Thêm không thành công! Mã giảng viên đã tồn tại!", Toast.LENGTH_LONG).show();
                     } else {
@@ -160,15 +180,26 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
                         giangVien.setEmail(edtEmail.getText().toString());
                         giangVien.setMaNganh(getSelectedMaNganh());
                         addGiangVienListener.applyGiangVien(giangVien);
+                        Toast.makeText(getContext(), "Thêm giảng viên thành công!", Toast.LENGTH_LONG).show();
                     }
                 } else {
+                    emailValidator = new EmailValidator();
+                    nameValidator = new NameValidator();
+                    dateOfBirthValidator = new DateOfBirthValidator();
                     if(edtMaGV.getText().toString().isEmpty() ||
                             edtHoGV.getText().toString().isEmpty() ||
                             edtTenGV.getText().toString().isEmpty() ||
                             edtSDT.getText().toString().isEmpty() ||
                             edtNgaySinh.getText().toString().isEmpty()){
                         Toast.makeText(getContext(), "Không thể chỉnh sửa thông tin! Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_LONG).show();
-                    }else{
+                    }else if (!nameValidator.validate(edtHoGV.getText().toString()) || !nameValidator.validate(edtTenGV.getText().toString())) {
+                        Toast.makeText(getContext(), "Vui lòng kiểm tra lại họ tên của giảng viên!", Toast.LENGTH_LONG).show();
+                    } else if (!checkNgaySinh(edtNgaySinh.getText().toString())) {
+                        Toast.makeText(getContext(), "Vui lòng kiểm tra lại ngày sinh giảng viên!", Toast.LENGTH_LONG).show();
+//                        Log.d("date", "" + edtNgaySinh.getText().toString().substring(edtNgaySinh.getText().toString().length() - 4));
+                    } else if (!emailValidator.validate(edtEmail.getText().toString())) {
+                        Toast.makeText(getContext(), "Vui lòng kiểm tra lại email của giảng viên!", Toast.LENGTH_LONG).show();
+                    } else{
                         giangVien.setMaGV(edtMaGV.getText().toString());
                         giangVien.setTenGV(edtTenGV.getText().toString());
                         giangVien.setHoGV(edtHoGV.getText().toString());
@@ -179,13 +210,14 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
                         int position = getArguments().getInt(GiangVienSwipeRecyclerViewAdapter.KEY_POSITION);
                         editGiangVienListener = (OnItemClickToEditGiangVienListener) getActivity();
                         editGiangVienListener.onItemClicked(giangVien, position);
+                        Toast.makeText(getContext(), "Chỉnh sửa giảng viên thành công!", Toast.LENGTH_LONG).show();
                         getArguments().clear();
                     }
 
                 }
             }
         })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Đóng", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dismiss();
@@ -230,6 +262,15 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
             if(maGV.equals(gv.getMaGV().toString())){
                 return false;
             }
+        }
+        return true;
+    }
+
+    public static boolean checkNgaySinh (String ngaySinh) {
+        Calendar cal = Calendar.getInstance();
+        int nam = Integer.parseInt(ngaySinh.substring(ngaySinh.length() - 4));
+        if(!dateOfBirthValidator.validate(ngaySinh) || nam > (cal.get(Calendar.YEAR) - 15)) {
+            return false;
         }
         return true;
     }

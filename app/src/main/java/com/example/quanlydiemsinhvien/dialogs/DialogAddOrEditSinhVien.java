@@ -27,6 +27,9 @@ import com.example.quanlydiemsinhvien.data_models.Nganh;
 import com.example.quanlydiemsinhvien.data_models.SinhVien;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddSinhVienListener;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditSinhVienListener;
+import com.example.quanlydiemsinhvien.validators.DateOfBirthValidator;
+import com.example.quanlydiemsinhvien.validators.EmailValidator;
+import com.example.quanlydiemsinhvien.validators.NameValidator;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +37,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class DialogAddOrEditSinhVien extends DialogFragment {
     private EditText edtMaSV;
@@ -56,6 +60,10 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
 
     private DatabaseReference spinnerNganhDatabase;
     private DatabaseReference spinnerMaKHDatabase;
+
+    private EmailValidator emailValidator;
+    private NameValidator nameValidator;
+    private static DateOfBirthValidator dateOfBirthValidator;
 
     @NonNull
     @Override
@@ -154,6 +162,9 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (getArguments() == null) {
+                    emailValidator = new EmailValidator();
+                    nameValidator = new NameValidator();
+                    dateOfBirthValidator = new DateOfBirthValidator();
                     if(edtMaSV.getText().toString().isEmpty() ||
                             edtHoSV.getText().toString().isEmpty() ||
                             edtTenSV.getText().toString().isEmpty() ||
@@ -161,6 +172,15 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
                             edtNgaySinh.getText().toString().isEmpty() ||
                             edtDiaChi.getText().toString().isEmpty()){
                         Toast.makeText(getContext(), "Không thể thêm sinh viên! Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_LONG).show();
+                    } else if (!nameValidator.validate(edtHoSV.getText().toString()) || !nameValidator.validate(edtTenSV.getText().toString())) {
+                        Toast.makeText(getContext(), "Vui lòng kiểm tra lại họ tên của sinh viên!", Toast.LENGTH_LONG).show();
+                    } else if (!checkNgaySinh(edtNgaySinh.getText().toString())) {
+                        Toast.makeText(getContext(), "Vui lòng kiểm tra lại ngày sinh sinh viên!", Toast.LENGTH_LONG).show();
+//                        Log.d("date", "" + edtNgaySinh.getText().toString().substring(edtNgaySinh.getText().toString().length() - 4));
+                    } else if (!emailValidator.validate(edtEmail.getText().toString())) {
+                        Toast.makeText(getContext(), "Vui lòng kiểm tra lại email của sinh viên!", Toast.LENGTH_LONG).show();
+                    } else if (edtMaSV.getText().toString().length() > 20) {
+                        Toast.makeText(getContext(), "Thêm không thành công! Mã sinh viên không được vượt quá 20 ký tự!", Toast.LENGTH_LONG).show();
                     } else if (!checkMaSV(edtMaSV.getText().toString())) {
                         Toast.makeText(getContext(), "Thêm không thành công! Mã sinh viên đã tồn tại!", Toast.LENGTH_LONG).show();
                     } else if (!checkMaSVTheoKH(edtMaSV.getText().toString(), spnMaKH.getSelectedItem().toString())){
@@ -178,8 +198,12 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
                         sinhVien.setMaNganh(getSelectedMaNganh());
                         sinhVien.setMaKH(spnMaKH.getSelectedItem().toString());
                         addSinhVienListener.applySinhVien(sinhVien);
+                        Toast.makeText(getContext(), "Thêm sinh viên thành công!", Toast.LENGTH_LONG).show();
                     }
                 } else {
+                    emailValidator = new EmailValidator();
+                    nameValidator = new NameValidator();
+                    dateOfBirthValidator = new DateOfBirthValidator();
                     if(edtMaSV.getText().toString().isEmpty() ||
                             edtHoSV.getText().toString().isEmpty() ||
                             edtTenSV.getText().toString().isEmpty() ||
@@ -187,7 +211,14 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
                             edtNgaySinh.getText().toString().isEmpty() ||
                             edtDiaChi.getText().toString().isEmpty()){
                         Toast.makeText(getContext(), "Không thể chỉnh sửa! Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_LONG).show();
-                    }else{
+                    } else if (!nameValidator.validate(edtHoSV.getText().toString()) || !nameValidator.validate(edtTenSV.getText().toString())) {
+                        Toast.makeText(getContext(), "Vui lòng kiểm tra lại họ tên của sinh viên!", Toast.LENGTH_LONG).show();
+                    } else if (!checkNgaySinh(edtNgaySinh.getText().toString())) {
+                        Toast.makeText(getContext(), "Vui lòng kiểm tra lại ngày sinh sinh viên!", Toast.LENGTH_LONG).show();
+//                        Log.d("date", "" + edtNgaySinh.getText().toString().substring(edtNgaySinh.getText().toString().length() - 4));
+                    } else if (!emailValidator.validate(edtEmail.getText().toString())) {
+                        Toast.makeText(getContext(), "Vui lòng kiểm tra lại email của sinh viên!", Toast.LENGTH_LONG).show();
+                    } else{
                         sinhVien.setMaSV(edtMaSV.getText().toString());
                         sinhVien.setTenSV(edtTenSV.getText().toString());
                         sinhVien.setHoSV(edtHoSV.getText().toString());
@@ -200,13 +231,14 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
                         int position = getArguments().getInt(SinhVienSwipeRecyclerViewAdapter.KEY_POSITION);
                         editSinhVienListener = (OnItemClickToEditSinhVienListener) getActivity();
                         editSinhVienListener.onItemClicked(sinhVien, position);
+                        Toast.makeText(getContext(), "Chỉnh sửa sinh viên thành công!", Toast.LENGTH_LONG).show();
                         getArguments().clear();
                     }
 
                 }
             }
         })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Đóng", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dismiss();
@@ -260,6 +292,15 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
         } else {
             return false;
         }
+    }
+
+    public static boolean checkNgaySinh (String ngaySinh) {
+        Calendar cal = Calendar.getInstance();
+        int nam = Integer.parseInt(ngaySinh.substring(ngaySinh.length() - 4));
+        if(!dateOfBirthValidator.validate(ngaySinh) || nam > (cal.get(Calendar.YEAR) - 15)) {
+            return false;
+        }
+        return true;
     }
 
 }

@@ -17,7 +17,6 @@ import com.daimajia.swipe.util.Attributes;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.SinhVienSwipeRecyclerViewAdapter;
 import com.example.quanlydiemsinhvien.data_models.AccountSinhVien;
-import com.example.quanlydiemsinhvien.data_models.LopHocPhan;
 import com.example.quanlydiemsinhvien.data_models.SinhVien;
 import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditSinhVien;
@@ -59,7 +58,6 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("SinhVien");
         accSVReference = rootNode.getReference("accountSinhVien");
-        lhpReference = rootNode.getReference("LopHocPhan");
         dssvMotLopReference = rootNode.getReference("DSSVMotLop");
 
         tvEmptyView = (TextView) findViewById(R.id.empty_view);

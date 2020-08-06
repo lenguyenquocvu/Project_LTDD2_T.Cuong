@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             intent.setClass(LoginActivity.this, ResetPasswordActivity.class);
 
-                            Intent intent = new Intent(LoginActivity.this, QuanLyActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
 
                             startActivity(intent);
                         } else {
@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                             intent.setClass(LoginActivity.this, DSLopActivity.class);
                             intent.putExtra("maGV", id);
 
-                            Intent intent = new Intent(LoginActivity.this, DanhSachGiangVienActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, DSLopActivity.class);
 
                             startActivity(intent);
                         } else {

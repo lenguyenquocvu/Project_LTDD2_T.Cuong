@@ -17,9 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.daimajia.swipe.util.Attributes;
 import com.example.quanlydiemsinhvien.R;
-import com.example.quanlydiemsinhvien.adapters.DSLopAdapter;
 import com.example.quanlydiemsinhvien.adapters.DSSinhVienAdapter;
-
 import com.example.quanlydiemsinhvien.adapters.LopHocPhanTheoMonAdapter;
 import com.example.quanlydiemsinhvien.data_models.DanhSachSinhVien;
 import com.example.quanlydiemsinhvien.data_models.SinhVien;
@@ -33,8 +31,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
-import static com.example.quanlydiemsinhvien.adapters.LopHocPhanTheoMonAdapter.MALOP;
 
 //import com.example.quanlydiemsinhvien.firebase_data.DSSVienDatabase;
 

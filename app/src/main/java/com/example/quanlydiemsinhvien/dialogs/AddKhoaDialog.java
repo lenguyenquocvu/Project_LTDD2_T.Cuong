@@ -16,6 +16,7 @@ import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.data_models.Khoa;
 import com.example.quanlydiemsinhvien.firebase_data.KhoaDatabase;
 
+
 public class AddKhoaDialog extends DialogFragment {
 
     private EditText edtMaKhoa;

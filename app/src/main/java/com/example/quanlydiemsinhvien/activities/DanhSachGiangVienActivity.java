@@ -1,15 +1,8 @@
 package com.example.quanlydiemsinhvien.activities;
 
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,13 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.daimajia.swipe.util.Attributes;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.GiangVienSwipeRecyclerViewAdapter;
-
 import com.example.quanlydiemsinhvien.data_models.AccountGiangVien;
 import com.example.quanlydiemsinhvien.data_models.GiangVien;
-import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
-
-import com.example.quanlydiemsinhvien.data_models.GiangVien;
-
 import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditGiangVien;
 import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddGiangVienListener;
@@ -81,19 +69,17 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dsGiangVien.clear();
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        GiangVien giangVien = new GiangVien();
+                        giangVien = dataSnapshot.getValue(GiangVien.class);
+                        dsGiangVien.add(giangVien);
+                    }
+                    mAdapter = new GiangVienSwipeRecyclerViewAdapter(DanhSachGiangVienActivity.this, dsGiangVien);
+                    recyclerView.setHasFixedSize(true);
+                    recyclerView.setAdapter(mAdapter);
+                    ((GiangVienSwipeRecyclerViewAdapter) mAdapter).setMode(Attributes.Mode.Single);
 
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
-                    GiangVien giangVien = new GiangVien();
-                    giangVien = dataSnapshot.getValue(GiangVien.class);
-                    dsGiangVien.add(giangVien);
-                }
-                mAdapter = new GiangVienSwipeRecyclerViewAdapter(DanhSachGiangVienActivity.this, dsGiangVien);
-                recyclerView.setHasFixedSize(true);
-                recyclerView.setAdapter(mAdapter);
-                ((GiangVienSwipeRecyclerViewAdapter) mAdapter).setMode(Attributes.Mode.Single);
             }
 
             @Override
@@ -101,6 +87,8 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
                 Log.w("Failed to read value.", error.toException());
             }
         });
+
+
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -193,12 +181,9 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
         mAdapter.notifyDataSetChanged();
     }
 
+
     @Override
     public void onItemClicked(GiangVien giangVien, int position) {
-
-        for(GiangVien gv : dsGiangVien){
-            if(gv.getMaGV().equals(giangVien.getMaGV())){
-
         for (GiangVien gv : dsGiangVien) {
             if (gv.getMaGV().equals(giangVien.getMaGV())) {
 
@@ -227,5 +212,4 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
         }
         mAdapter.notifyDataSetChanged();
     }
-
 }

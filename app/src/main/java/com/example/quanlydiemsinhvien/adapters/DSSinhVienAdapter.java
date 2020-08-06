@@ -21,7 +21,6 @@ import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.activities.DSSinhVienActivity;
 import com.example.quanlydiemsinhvien.data_models.DanhSachSinhVien;
-import com.example.quanlydiemsinhvien.data_models.SinhVien;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

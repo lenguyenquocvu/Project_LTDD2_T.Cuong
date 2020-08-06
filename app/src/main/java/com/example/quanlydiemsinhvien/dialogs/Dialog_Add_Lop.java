@@ -74,8 +74,6 @@ public class Dialog_Add_Lop extends DialogFragment {
 
 //                danhSachLop.setMaLHP(maLHP);
 //                danhSachLop.setTenLHP(tenLHP);
-
-                listener.applyLop(danhSachLop);
                 Toast.makeText(getActivity(), "Them lop hoc phan button is tapped!" + danhSachLop.toString(), Toast.LENGTH_SHORT).show();
             }
         });

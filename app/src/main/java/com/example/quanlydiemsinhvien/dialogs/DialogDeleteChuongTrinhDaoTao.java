@@ -11,7 +11,6 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.quanlydiemsinhvien.activities.DanhSachLopHPTheoMHActivity;
 import com.example.quanlydiemsinhvien.adapters.KhoaHocAdapter;
-import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditKhoahoc;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener;
 
 public class DialogDeleteChuongTrinhDaoTao extends DialogFragment {

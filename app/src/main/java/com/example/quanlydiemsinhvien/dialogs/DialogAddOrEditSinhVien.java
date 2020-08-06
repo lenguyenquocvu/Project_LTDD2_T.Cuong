@@ -4,9 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -20,13 +17,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.quanlydiemsinhvien.R;
-
 import com.example.quanlydiemsinhvien.activities.DanhSachSinhVienActivity;
 import com.example.quanlydiemsinhvien.adapters.SinhVienSwipeRecyclerViewAdapter;
 import com.example.quanlydiemsinhvien.data_models.KhoaHoc;
-
-import com.example.quanlydiemsinhvien.adapters.SinhVienSwipeRecyclerViewAdapter;
-
 import com.example.quanlydiemsinhvien.data_models.Nganh;
 import com.example.quanlydiemsinhvien.data_models.SinhVien;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddSinhVienListener;
@@ -195,11 +188,6 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
                         Toast.makeText(getContext(), "Thêm không thành công! Mã sinh viên phải thuộc khóa " + spnMaKH.getSelectedItem().toString() + "!", Toast.LENGTH_LONG).show();
                     } else{
                         sinhVien = new SinhVien();
-
-                    }else{
-
-                        sinhVien = new SinhVien();
-
 
                         sinhVien.setMaSV(edtMaSV.getText().toString());
                         sinhVien.setTenSV(edtTenSV.getText().toString());

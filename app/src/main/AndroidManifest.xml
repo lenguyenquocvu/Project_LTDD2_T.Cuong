@@ -14,39 +14,39 @@
 
         <!-- Vũ -->
 
-        <activity android:name=".activities.DanhSachKhoaHocActivity" android:label="@string/khoaHoc"></activity>
-        <activity android:name=".activities.DanhSachChuongTrinhDaoTaoActivity" android:label="@string/CTDT"></activity>
-        <activity android:name=".activities.DanhSachLopHPTheoMHActivity" android:label="@string/LHP_MH"></activity>
-        <activity android:name=".activities.DanhSachMonHocActivity" android:label="@string/monHoc">
+        <activity android:name=".activities.DanhSachKhoaHocActivity" android:label="@string/khoaHoc" android:screenOrientation="portrait"></activity>
+        <activity android:name=".activities.DanhSachChuongTrinhDaoTaoActivity" android:label="@string/CTDT" android:screenOrientation="portrait"></activity>
+        <activity android:name=".activities.DanhSachLopHPTheoMHActivity" android:label="@string/LHP_MH" android:screenOrientation="portrait"></activity>
+        <activity android:name=".activities.DanhSachMonHocActivity" android:label="@string/monHoc" android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activities.ResetPasswordActivity" android:label="@string/doiMatKhau"/>
+        <activity android:name=".activities.ResetPasswordActivity" android:label="@string/doiMatKhau" android:screenOrientation="portrait"/>
 
         <!-- Hiệu -->
-        <activity android:name=".activities.KhoaActivity">
+        <activity android:name=".activities.KhoaActivity" android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activities.NganhActivity"></activity>
+        <activity android:name=".activities.NganhActivity" android:screenOrientation="portrait"></activity>
 
         <!-- Hương -->
-        <activity android:name=".activities.MainDanhSachSinhVien"></activity>
-        <activity android:name=".activities.MainDanhSachGiangVien" ></activity>
-        <activity android:name=".activities.QuanLyActivity"></activity>
+        <activity android:name=".activities.MainDanhSachSinhVien" android:screenOrientation="portrait"></activity>
+        <activity android:name=".activities.MainDanhSachGiangVien" android:screenOrientation="portrait"></activity>
+        <activity android:name=".activities.QuanLyActivity" android:screenOrientation="portrait"></activity>
 
         <!-- Tâm -->
-        <activity android:name=".activities.LoginActivity" >
+        <activity android:name=".activities.LoginActivity"  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.DSSinhVienActivity"></activity>
-        <activity android:name=".activities.MainDanhSachPhongDaoTao" ></activity>
-        <activity android:name=".activities.MainDanhSachAdmin" ></activity>
+        <activity android:name=".activities.DSSinhVienActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".activities.MainDanhSachPhongDaoTao" android:screenOrientation="portrait" ></activity>
+        <activity android:name=".activities.MainDanhSachAdmin" android:screenOrientation="portrait"></activity>
 
         <!-- Triều -->
-        <activity android:name=".activities.DSLopActivity" ></activity>
-        <activity android:name=".activities.DanhSachGiangVienActivity"></activity>
-        <activity android:name=".activities.DanhSachSinhVienActivity"></activity>
+        <activity android:name=".activities.DSLopActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".activities.DanhSachGiangVienActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".activities.DanhSachSinhVienActivity" android:screenOrientation="portrait"></activity>
 
         <!--
                Set to true if your app is Standalone, that is, it does not require the handheld

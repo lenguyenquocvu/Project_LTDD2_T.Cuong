@@ -27,18 +27,6 @@ public class Nganh {
 
     public void setMaKhoa(String maKhoa) {
         this.maKhoa = maKhoa;
-
-    public Nganh(String maNganh, String tenNganh) {
-        this.maNganh = maNganh;
-        this.tenNganh = tenNganh;
-    };
-
-
-    public Nganh(String maKhoa, String maNganh, String tenNganh) {
-        this.maKhoa = maKhoa;
-        this.maNganh = maNganh;
-        this.tenNganh = tenNganh;
-
     }
 
     public String getMaNganh() {
@@ -55,20 +43,6 @@ public class Nganh {
 
     public void setTenNganh(String tenNganh) {
         this.tenNganh = tenNganh;
-    }
-
-
-    public String toString(){
-        return tenNganh;
-    }
-
-
-    public String getMaKhoa() {
-        return maKhoa;
-    }
-
-    public void setMaKhoa(String maKhoa) {
-        this.maKhoa = maKhoa;
     }
 
     @Override

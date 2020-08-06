@@ -17,6 +17,7 @@ import com.example.quanlydiemsinhvien.data_models.ChuongTrinhDaoTao;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddListener;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditListener;
 
+
 public class DialogAddChuongTrinhDaoTao extends DialogFragment {
     private OnItemClickToAddListener addListener;
     private OnItemClickToEditListener editListener;

@@ -173,8 +173,7 @@
     <string name="mucTenSV">Tên sinh viên</string>
     <string name="swipeEdit">Sửa</string>
     <string name="swipeDelete">Xóa</string>
-
-    <string name="btnCapNhatDialog">Cập nhật</string>
+    
     <string name="txtDanhSachMH">Danh sánh môn học</string>
     <string name="ma">Mã</string>
     <string name="ten">Tên</string>

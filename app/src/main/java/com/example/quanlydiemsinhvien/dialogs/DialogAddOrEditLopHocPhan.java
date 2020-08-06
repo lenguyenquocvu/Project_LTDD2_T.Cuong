@@ -21,7 +21,6 @@ import com.example.quanlydiemsinhvien.activities.DanhSachLopHPTheoMHActivity;
 import com.example.quanlydiemsinhvien.adapters.LopHocPhanTheoMonAdapter;
 import com.example.quanlydiemsinhvien.data_models.LopHocPhan;
 import com.example.quanlydiemsinhvien.data_models.MonHoc;
-import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditKhoahoc;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddListener;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditListener;
 import com.google.firebase.database.DataSnapshot;

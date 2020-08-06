@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,12 +18,9 @@ import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.activities.DanhSachLopHPTheoMHActivity;
 import com.example.quanlydiemsinhvien.activities.LoginActivity;
 import com.example.quanlydiemsinhvien.data_models.MonHoc;
-import com.example.quanlydiemsinhvien.dialogs.DialogDeleteChuongTrinhDaoTao;
 import com.example.quanlydiemsinhvien.dialogs.DialogEditMonHoc;
 
 import java.util.ArrayList;
-
-import static com.example.quanlydiemsinhvien.adapters.KhoaHocAdapter.POSITION_STRING;
 
 public class DanhSachMonHocAdapter extends RecyclerSwipeAdapter<DanhSachMonHocAdapter.MonHocViewHolder> {
 

@@ -12,13 +12,8 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.quanlydiemsinhvien.adapters.SinhVienSwipeRecyclerViewAdapter;
 import com.example.quanlydiemsinhvien.data_models.SinhVien;
-
-import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener;
-
-public class DialogDeleteSinhVien extends DialogFragment {
-    private OnItemClickToDeleteListener listener;
-
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener_Huong;
+
 
 public class DialogDeleteSinhVien extends DialogFragment {
     private OnItemClickToDeleteListener_Huong listener;

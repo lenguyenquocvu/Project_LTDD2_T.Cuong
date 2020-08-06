@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.example.quanlydiemsinhvien.R;
-import com.example.quanlydiemsinhvien.activities.DanhSachKhoaHocActivity;
 import com.example.quanlydiemsinhvien.activities.DanhSachLopHPTheoMHActivity;
 import com.example.quanlydiemsinhvien.activities.LoginActivity;
 import com.example.quanlydiemsinhvien.data_models.MonHoc;

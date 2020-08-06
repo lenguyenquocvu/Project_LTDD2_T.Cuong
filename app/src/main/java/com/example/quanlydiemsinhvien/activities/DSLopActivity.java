@@ -21,6 +21,7 @@ import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.DSLopAdapter;
 import com.example.quanlydiemsinhvien.data_models.DanhSachLop;
 import com.example.quanlydiemsinhvien.dialogs.Dialog_Add_Lop;
+import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.firebase_data.DSLopDatabase;
 import com.example.quanlydiemsinhvien.interfaces.AddLop;
 import com.google.firebase.database.DataSnapshot;
@@ -28,8 +29,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
-import static com.example.quanlydiemsinhvien.adapters.LopHocPhanTheoMonAdapter.MALOP;
 
 public class DSLopActivity extends AppCompatActivity implements AddLop {
     public static final String LOPTAG = "LopHocPhan";
@@ -67,7 +66,7 @@ public class DSLopActivity extends AppCompatActivity implements AddLop {
         maGV = intent.getStringExtra("id");
         txtMaGV.setText(maGV);
         //Item decoration
-       // recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R.drawable.divider, getTheme()));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R.drawable.divider, getTheme())));
 
         // Get all data from firebase
         mDatabase.getmDataRef().child(LOPTAG).addValueEventListener(new ValueEventListener() {

@@ -296,9 +296,13 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
 
     public static boolean checkNgaySinh (String ngaySinh) {
         Calendar cal = Calendar.getInstance();
-        int nam = Integer.parseInt(ngaySinh.substring(ngaySinh.length() - 4));
-        if(!dateOfBirthValidator.validate(ngaySinh) || nam > (cal.get(Calendar.YEAR) - 15)) {
+        if(ngaySinh.length() < 10) {
             return false;
+        } else {
+            int nam = Integer.parseInt(ngaySinh.substring(ngaySinh.length() - 4));
+            if(!dateOfBirthValidator.validate(ngaySinh) || (nam > cal.get(Calendar.YEAR) - 15)) {
+                return false;
+            }
         }
         return true;
     }

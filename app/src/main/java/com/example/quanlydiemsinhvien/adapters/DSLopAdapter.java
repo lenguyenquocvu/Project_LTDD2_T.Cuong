@@ -123,14 +123,14 @@ public class DSLopAdapter extends RecyclerSwipeAdapter<DSLopAdapter.DSLopViewHol
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        mDsLopDatabase.deleteLop(aCard.getMaLHP());
+//                        mDsLopDatabase.deleteLop(aCard.getMaLHP());
 
                         /*mItemManger.removeShownLayouts(holder.swipeLayout);*/
                         /*listLop.remove(position);*/
                         /*notifyItemRemoved(position);*/
                         /*notifyItemRangeChanged(position, listLop.size());*/
                         /*mItemManger.closeAllItems();*/
-                        Toast.makeText(view.getContext(), "Deleted !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(view.getContext(), "Bạn không được quyền sử dụng tính năng này !", Toast.LENGTH_SHORT).show();
                     }
                 });
                 AlertDialog alertDialog = builder.create();

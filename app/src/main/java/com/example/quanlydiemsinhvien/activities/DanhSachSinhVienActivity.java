@@ -2,7 +2,6 @@ package com.example.quanlydiemsinhvien.activities;
 
 
 import android.app.AlertDialog;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.daimajia.swipe.util.Attributes;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.SinhVienSwipeRecyclerViewAdapter;
-import com.example.quanlydiemsinhvien.data_models.DanhSachSinhVien;
 import com.example.quanlydiemsinhvien.data_models.SinhVien;
 import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditSinhVien;
 import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
@@ -139,26 +136,6 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
                 });
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(DanhSachSinhVienActivity.this, android.R.style.Theme_DeviceDefault_Light_Dialog);
-                builder.setTitle("Thông báo");
-                builder.setMessage("Bạn có muốn thoát hay không?");
-                builder.setIcon(android.R.drawable.ic_dialog_alert);
-                builder.setPositiveButton("Thoát ", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        onBackPressed();
-                    }
-                });
-
-                builder.setNegativeButton("Đóng", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                builder.show();
-
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

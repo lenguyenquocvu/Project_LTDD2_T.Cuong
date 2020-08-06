@@ -3,8 +3,6 @@
 
     <string name="app_name">QUẢN LÝ ĐIỂM SINH VIÊN</string>
 
-    <string name="app_name">Quản Lý Điểm Sinh Viên</string>
-
     <!--    Danh sach lop ma giang vien day     -->
     <string name="txtTenGV">Tên Giảng Viên</string>
     <string name="txtTimKiem">Tim kiếm mã lớp...</string>

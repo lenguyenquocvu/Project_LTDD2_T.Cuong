@@ -12,10 +12,17 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.quanlydiemsinhvien.adapters.GiangVienSwipeRecyclerViewAdapter;
 import com.example.quanlydiemsinhvien.data_models.GiangVien;
+
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener;
 
 public class DialogDeleteGiangVien extends DialogFragment {
     private OnItemClickToDeleteListener listener;
+
+import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener_Huong;
+
+public class DialogDeleteGiangVien extends DialogFragment {
+    private OnItemClickToDeleteListener_Huong listener;
+
     private GiangVien giangVien;
     @NonNull
     @Override
@@ -49,7 +56,7 @@ public class DialogDeleteGiangVien extends DialogFragment {
         super.onAttach(context);
 
         try {
-            listener = (OnItemClickToDeleteListener) context;
+            listener = (OnItemClickToDeleteListener_Huong) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + "Error!");
         }

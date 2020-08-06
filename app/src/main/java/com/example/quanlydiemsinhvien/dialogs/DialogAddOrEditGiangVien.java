@@ -159,6 +159,7 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
                             edtSDT.getText().toString().isEmpty() ||
                             edtNgaySinh.getText().toString().isEmpty()){
                         Toast.makeText(getContext(), "Không thể thêm giảng viên! Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_LONG).show();
+
                     } else if (!nameValidator.validate(edtHoGV.getText().toString()) || !nameValidator.validate(edtTenGV.getText().toString())) {
                         Toast.makeText(getContext(), "Vui lòng kiểm tra lại họ tên của giảng viên!", Toast.LENGTH_LONG).show();
                     } else if (!checkNgaySinh(edtNgaySinh.getText().toString())) {

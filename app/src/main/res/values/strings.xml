@@ -1,5 +1,33 @@
 <resources>
-    <string name="app_name">QuanLyDiemSinhVien</string>
+
+
+    <string name="app_name">QUẢN LÝ ĐIỂM SINH VIÊN</string>
+
+    <!--    Danh sach lop ma giang vien day     -->
+    <string name="txtTenGV">Tên Giảng Viên</string>
+    <string name="txtTimKiem">Tim kiếm mã lớp...</string>
+    <string name="txtMaLHP">Mã lớp học phần</string>
+    <string name="txtTenLHP">Tên lớp học phần</string>
+    <string name="txtMaGV">Mã giáo viên</string>
+    <string name="txtMaNH">Mã năm học</string>
+    <string name="txtMaMH">Mã môn học</string>
+    <string name="txtMaHK">Mã học kì</string>
+    <string name="txtKetThuc">Kết thúc</string>
+    <string name="titleSinhVien">Thêm sinh viên</string>
+    <string name="btnThemSV">Thêm sinh viên</string>
+    <string name="btnCancel">Thoát</string>
+    <!--    End     -->
+
+    <!--    Danh sach sinh vien trong mot lop   -->
+    <string name="txtMaSV">Mã Sinh Viên</string>
+    <string name="txtTenSV">Tên Sinh Viên</string>
+    <string name="txtDiemSV">Điểm</string>
+    <string name="btnEdit">Sửa</string>
+    <string name="btnDelete">Xóa</string>
+    <string name="btnThemLop">Thêm lớp học phần</string>
+    <string name="titleLop">Thêm lớp học phần</string>
+    <!--    End     -->
+
     <string name="title_activity_quan_ly">QuanLyActivity</string>
     <!--
     This string is used for square devices and overridden by hello_world in
@@ -16,22 +44,98 @@
 
     <string name="themMenuItem">Thêm</string>
     <string name="thoatMenuItem">Thoát</string>
+    <string name="menuTitle">Option menu</string>
+
+    <string name="dsKhoaHoc">Danh sách Khóa học</string>
+    <string name="khK17">K17</string>
+    <string name="k17Info">2017-2020</string>
+    <string name="txtKH">Khóa học:</string>
+    <string name="txtBatDau">Bắt đầu:</string>
+
+    <string name="txtOK">OK</string>
+    <string name="txtCTDT">Chương trình đào tạo</string>
+    <string name="txtDSLopHP">Danh sách lớp học phần (theo môn học)</string>
+    <string name="txtMaLop">Mã lớp HP:</string>
+    <string name="txtTenLopHP">Tên lớp HP:</string>
+
+    <string name="titleMenuThem">Thêm</string>
+    <string name="lblMonHoc">Mã môn học:</string>
+    <string name="lblTenMonHoc">Tên môn học:</string>
+    <string name="lblSoTC">Số tín chỉ:</string>
+
+    <string name="txtMonHoc">Môn học:</string>
+
+    <!-- String of the Khoa Layout-->
+    <string name="actionBarTitle">Danh sách Khoa</string>
+    <string name="ten_khoa">Tên Khoa</string>
+    <string name="ma_khoa">Mã Khoa</string>
+    <string name="ngay_thanh_lap">Ngày Thành Lập</string>
+    <string name="item_menu_them">Thêm</string>
+
+    <!-- Swipe for Edit and Delete button -->
+
+    <!-- Dialog Add Khoa -->
+    <string name="titleAddKhoa">Thêm Khoa Mới</string>
+    <string name="hintEdtMaKhoa">Nhập mã Khoa...</string>
+    <string name="hintEdtTenKhoa">Nhập tên Khoa...</string>
+    <string name="hintEdtNgayThanhLap">Ngày thành lập ...</string>
+    <string name="btnThem">Thêm</string>
+
+    <!-- Dialog Remove Khoa -->
+    <string name="titleRemoveKhoa">Thông báo xoá</string>
+    <string name="contentRemove">Bạn có muốn xoá Khoa này không?</string>
+    <string name="btnXoa">Xoá</string>
+
+    <!-- Dialog Edit Khoa-->
+    <string name="titleEditKhoa">Chỉnh sửa Khoa</string>
+    <string name="btnSua">Sửa</string>
+
+    <!-- End Khoa layout -->
+
+    <!-- String of the Nganh Layout -->
+    <string name="titleForActionBarOfNganh">Danh sách Ngành của Khoa</string>
+    <string name="ten_nganh">Tên Ngành</string>
+    <string name="ma_nganh">Mã Ngành</string>
+
+    <!-- Dialog Add Nganh -->
+    <string name="titleAddNganh">Thêm Ngành Mới</string>
+    <string name="hintEdtMaNganh">Nhập mã Ngành...</string>
+    <string name="hintEdtTenNganh">Nhập tên Ngành...</string>
+
+    <!-- Dialog Delete Nganh -->
+    <string name="titileDeleteNganh">Thông báo xoá </string>
+    <string name="contentRemoveNganh">Bạn có muốn xoá Ngành này không?</string>
+
+    <!-- Dialog Edit Nganh-->
+    <string name="titileEditNganh">Chỉnh sửa ngành</string>
+
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
 
     <string name="themDialogButton">Thêm</string>
     <string name="thoatDialogButton">Thoát</string>
 
-    <string name="menuTitle">Option menu</string>
-
     <string name="titleThemDialog">Thêm Giảng Viên</string>
     <string name="titleChinhSuaDialog">Chỉnh sửa thông tin</string>
 
-    <string name="txtMaGV">Mã GV</string>
     <string name="hintMaGV">Nhập mã giảng viên</string>
 
     <string name="txtHoGV">Họ GV</string>
     <string name="hintHoGV">Nhập họ giảng viên</string>
 
-    <string name="txtTenGV">Tên GV</string>
     <string name="hintTenGV">Nhập tên giảng viên</string>
 
     <string name="txtSdtGV">Số điện thoại</string>
@@ -45,13 +149,11 @@
 
     <string name="txtNganh">Ngành</string>
 
-    <string name="txtMaSV">Mã SV</string>
     <string name="hintMaSV">Nhập mã sinh viên</string>
 
     <string name="txtHoSV">Họ SV</string>
     <string name="hintHoSV">Nhập họ sinh viên</string>
 
-    <string name="txtTenSV">Tên SV</string>
     <string name="hintTenSV">Nhập tên sinh viên</string>
 
     <string name="txtSdtSV">Số điện thoại</string>
@@ -62,9 +164,6 @@
 
     <string name="txtMaKhoaHoc">Mã khóa học</string>
 
-    <string name="swipeEdit">Chỉnh sửa</string>
-    <string name="swipeDelete">Xóa</string>
-
     <string name="btnCapNhatDialog">Cập nhật</string>
 
     <string name="mucMaGV">Mã giảng viên</string>
@@ -72,4 +171,30 @@
 
     <string name="mucMaSV">Mã sinh viên</string>
     <string name="mucTenSV">Tên sinh viên</string>
+    <string name="swipeEdit">Sửa</string>
+    <string name="swipeDelete">Xóa</string>
+
+    <string name="btnCapNhatDialog">Cập nhật</string>
+    <string name="txtDanhSachMH">Danh sánh môn học</string>
+    <string name="ma">Mã</string>
+    <string name="ten">Tên</string>
+    <string name="tinChi">TC</string>
+    <string name="dsMH">DANH SÁCH MÔN HỌC</string>
+    <string name="btnMonHoc">Môn học</string>
+    <string name="maNganh">Mã ngành</string>
+    <string name="txtID">"Tài khoản: "</string>
+    <string name="txtAdmin">Admin</string>
+    <string name="txtPDT">Phòng Đào Tạo</string>
+    <string name="txtGV">Giảng Viên</string>
+    <string name="txtSV">Sinh Viên</string>
+    <string name="hintID">Nhập tài khoản...</string>
+    <string name="lblRestpassword">Đặt lại mật khẩu</string>
+    <string name="btnReset">Đặt lại</string>
+    <!-- End Nganh layout-->
+    <string name="khoaHoc">KHÓA HỌC</string>
+    <string name="CTDT">CHƯƠNG TRÌNH ĐÀO TẠO</string>
+    <string name="LHP_MH">LỚP HỌC PHẦN THEO MÔN</string>
+    <string name="monHoc">MÔN HỌC</string>
+    <string name="doiMatKhau">ĐỔI MẬT KHẨU</string>
+    <string name="lblLanHoc">Lần học</string>
 </resources>

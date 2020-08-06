@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:swipe="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    swipe:leftEdgeSwipeOffset="0dp"
+    swipe:rightEdgeSwipeOffset="0dp">
+
+    <LinearLayout
+        android:id="@+id/bottom_wrapper"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/tvEdit"
+            android:text="@string/swipeEdit"
+            style="@style/SwipeItemEditStyle"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/paddingLeftLayout">
+
+        <TextView
+            android:id="@+id/edtMaMH"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/marginLeftLayout"
+            android:layout_weight="1"
+            android:text="@string/khK17"
+            android:textColor="@color/textColorItemRecyclerViewEven"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/edtTenMH"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/marginLeftLayout"
+            android:layout_weight="3.5"
+            android:text="@string/k17Info"
+            android:textColor="@color/textColorItemRecyclerViewEven" />
+
+        <TextView
+            android:id="@+id/SoTinChi"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/marginLeftLayout"
+            android:layout_weight="0.5"
+            android:text="@string/k17Info"
+            android:textColor="@color/textColorItemRecyclerViewEven"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/maNganh"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/marginLeftLayout"
+            android:layout_weight="1"
+            android:text="@string/k17Info"
+            android:textColor="@color/textColorItemRecyclerViewEven"
+            android:gravity="center"/>
+    </LinearLayout>
+</com.daimajia.swipe.SwipeLayout>

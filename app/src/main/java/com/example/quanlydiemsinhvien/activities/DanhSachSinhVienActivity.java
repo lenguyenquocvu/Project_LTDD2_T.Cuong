@@ -1,5 +1,10 @@
 package com.example.quanlydiemsinhvien.activities;
 
+
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,12 +21,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.daimajia.swipe.util.Attributes;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.SinhVienSwipeRecyclerViewAdapter;
+
 import com.example.quanlydiemsinhvien.data_models.AccountSinhVien;
 import com.example.quanlydiemsinhvien.data_models.SinhVien;
 import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditSinhVien;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddSinhVienListener;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener;
+
+import com.example.quanlydiemsinhvien.data_models.SinhVien;
+import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditSinhVien;
+import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
+import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddSinhVienListener;
+import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener_Huong;
+
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditSinhVienListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,7 +45,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DanhSachSinhVienActivity extends AppCompatActivity implements OnItemClickToAddSinhVienListener, OnItemClickToDeleteListener, OnItemClickToEditSinhVienListener {
+public class DanhSachSinhVienActivity extends AppCompatActivity implements OnItemClickToAddSinhVienListener, OnItemClickToDeleteListener_Huong, OnItemClickToEditSinhVienListener {
     public static Intent intent;
     public static ArrayList<SinhVien> dsSinhVien;
 
@@ -74,7 +87,6 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
                     dsSinhVien.add(sinhVien);
                 }
                 mAdapter  = new SinhVienSwipeRecyclerViewAdapter(DanhSachSinhVienActivity.this, dsSinhVien);
-                recyclerView.setHasFixedSize(true);
                 recyclerView.setAdapter(mAdapter);
                 ((SinhVienSwipeRecyclerViewAdapter) mAdapter).setMode(Attributes.Mode.Single);
             }
@@ -119,7 +131,27 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
                 openDialog();
                 return true;
             case R.id.thoat_item:
+
                 // do your code
+                AlertDialog.Builder builder = new AlertDialog.Builder(DanhSachSinhVienActivity.this);
+                builder.setTitle("Thoát chương trình");
+                builder.setMessage("Bạn có muốn thoát khỏi chương trình?");
+                builder.setNegativeButton("Đóng", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setPositiveButton("Thoát", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        intent.setClass(getApplicationContext(), LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -135,6 +167,7 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
         dsSinhVien.remove(object);
 
         reference.child(((SinhVien) object).getMaSV()).removeValue();
+
         accSVReference.child(((SinhVien) object).getMaSV()).removeValue();
 
         dssvMotLopReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -152,6 +185,7 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
 
             }
         });
+
 
         mAdapter.notifyDataSetChanged();
     }
@@ -194,4 +228,5 @@ public class DanhSachSinhVienActivity extends AppCompatActivity implements OnIte
         }
         mAdapter.notifyDataSetChanged();
     }
+
 }

@@ -20,9 +20,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.quanlydiemsinhvien.R;
+
 import com.example.quanlydiemsinhvien.activities.DanhSachSinhVienActivity;
 import com.example.quanlydiemsinhvien.adapters.SinhVienSwipeRecyclerViewAdapter;
 import com.example.quanlydiemsinhvien.data_models.KhoaHoc;
+
+import com.example.quanlydiemsinhvien.adapters.SinhVienSwipeRecyclerViewAdapter;
+
 import com.example.quanlydiemsinhvien.data_models.Nganh;
 import com.example.quanlydiemsinhvien.data_models.SinhVien;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddSinhVienListener;
@@ -51,8 +55,10 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
     private static Spinner spnMaNganh;
 
     public static ArrayList<Nganh> spinnerItems = new ArrayList<Nganh>();
+
     public ArrayList<String> spinnerKH = new ArrayList<>();
     public static ArrayAdapter<String> arrayAdapterKH;
+
 
     private OnItemClickToAddSinhVienListener addSinhVienListener;
     private SinhVien sinhVien;
@@ -172,6 +178,7 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
                             edtNgaySinh.getText().toString().isEmpty() ||
                             edtDiaChi.getText().toString().isEmpty()){
                         Toast.makeText(getContext(), "Không thể thêm sinh viên! Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_LONG).show();
+
                     } else if (!nameValidator.validate(edtHoSV.getText().toString()) || !nameValidator.validate(edtTenSV.getText().toString())) {
                         Toast.makeText(getContext(), "Vui lòng kiểm tra lại họ tên của sinh viên!", Toast.LENGTH_LONG).show();
                     } else if (!checkNgaySinh(edtNgaySinh.getText().toString())) {
@@ -188,6 +195,12 @@ public class DialogAddOrEditSinhVien extends DialogFragment {
                         Toast.makeText(getContext(), "Thêm không thành công! Mã sinh viên phải thuộc khóa " + spnMaKH.getSelectedItem().toString() + "!", Toast.LENGTH_LONG).show();
                     } else{
                         sinhVien = new SinhVien();
+
+                    }else{
+
+                        sinhVien = new SinhVien();
+
+
                         sinhVien.setMaSV(edtMaSV.getText().toString());
                         sinhVien.setTenSV(edtTenSV.getText().toString());
                         sinhVien.setHoSV(edtHoSV.getText().toString());

@@ -49,7 +49,6 @@ public class GiangVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<Gian
         viewHolder.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
 
 
-
         // Drag From Right
         viewHolder.swipeLayout.addDrag(SwipeLayout.DragEdge.Right, viewHolder.swipeLayout.findViewById(R.id.bottom_wrapper));
 
@@ -73,7 +72,7 @@ public class GiangVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<Gian
                 bundle.putInt(KEY_POSITION, position);
                 DialogAddOrEditGiangVien dialogAddOrEditGiangVien = new DialogAddOrEditGiangVien();
                 dialogAddOrEditGiangVien.setArguments(bundle);
-                dialogAddOrEditGiangVien.show(((AppCompatActivity)mContext).getSupportFragmentManager(), "Edit");
+                dialogAddOrEditGiangVien.show(((AppCompatActivity) mContext).getSupportFragmentManager(), "Edit");
                 Toast.makeText(v.getContext(), "Clicked on Edit  " + viewHolder.tvName.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -86,7 +85,7 @@ public class GiangVienSwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<Gian
                 bundle.putSerializable(KEY_GIANGVIEN, giangVien);
                 DialogDeleteGiangVien deleteGiangVien = new DialogDeleteGiangVien();
                 deleteGiangVien.setArguments(bundle);
-                deleteGiangVien.show(((AppCompatActivity)mContext).getSupportFragmentManager(), "Delete");
+                deleteGiangVien.show(((AppCompatActivity) mContext).getSupportFragmentManager(), "Delete");
 //                mItemManger.removeShownLayouts(viewHolder.swipeLayout);
 //                giangVienList.remove(position);
 //                notifyItemRemoved(position);

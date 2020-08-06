@@ -16,6 +16,7 @@ public class SinhVien implements Serializable {
     public SinhVien() {
     }
 
+
     public SinhVien(String maSV, String tenSV, String hoSV, String ngaySinh, String sdt, String diaChi, String email, String maNganh, String maKH) {
         this.maSV = maSV;
         this.tenSV = tenSV;
@@ -26,6 +27,7 @@ public class SinhVien implements Serializable {
         this.email = email;
         this.maNganh = maNganh;
         this.maKH = maKH;
+
     }
 
     public String getMaSV() {
@@ -92,6 +94,7 @@ public class SinhVien implements Serializable {
         this.maNganh = maNganh;
     }
 
+
     public String getMaKH() {
         return maKH;
     }
@@ -99,4 +102,5 @@ public class SinhVien implements Serializable {
     public void setMaKH(String maKH) {
         this.maKH = maKH;
     }
+
 }

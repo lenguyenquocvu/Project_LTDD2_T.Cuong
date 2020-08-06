@@ -2,10 +2,8 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#3B5998</color>
-    <color name="backgroundColor">#ffffff</color>
-    <color name="titleDialogBackgroundColor">#3B5998</color>
-    <color name="titleDialogColor">#ffffff</color>
+    <color name="colorAccent">#D81B60</color>
+
     <color name="btnColor">#3B5998</color>
     <color name="titleColor">#3B5998</color>
     <color name="textColorButton">#ffffff</color>
@@ -13,10 +11,20 @@
     <color name="center_background_color">#3B5998</color>
     <color name="end_background_color">#DFE3EE</color>
     <color name="textColorItemRecyclerViewEven">#ffffff</color>
-    <color name="textColorItemRecyclerViewOdd">#3B5998</color>
     <color name="recyclerViewItemEvenColor">#3B5998</color>
     <color name="recyclerViewItemOddColor">#ffffff</color>
     <color name="actionBarBackground">#DFE3EE</color>
     <color name="textActionBarColor">#3B5998</color>
     <color name="menuActionBarcolor">#3B5998</color>
+
+    <color name="colorBlack">#000000</color>
+    <color name="backgroundColor">#E8E8E0</color>
+    <color name="backgroundColorPress">#DBDBD3</color>
+
+    <!-- Color of the Khoa Layout -->
+    <color name="colorBackgroundTitleTableKhoa">#FFFFFF</color>
+
+    <!-- Color for Swipe -->
+    <color name="colorBackgroundBtnEdit">#0776a5 </color>
+    <color name="colorBackgroundBtnDelete">#003c54</color>
 </resources>

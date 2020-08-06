@@ -1,9 +1,14 @@
 package com.example.quanlydiemsinhvien.activities;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,15 +18,25 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.daimajia.swipe.util.Attributes;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.GiangVienSwipeRecyclerViewAdapter;
+
 import com.example.quanlydiemsinhvien.data_models.AccountGiangVien;
 import com.example.quanlydiemsinhvien.data_models.GiangVien;
 import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
+
+import com.example.quanlydiemsinhvien.data_models.GiangVien;
+
 import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditGiangVien;
+import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddGiangVienListener;
-import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener;
+import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener_Huong;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToEditGiangVienListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,7 +47,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DanhSachGiangVienActivity extends AppCompatActivity implements OnItemClickToAddGiangVienListener, OnItemClickToEditGiangVienListener, OnItemClickToDeleteListener {
+public class DanhSachGiangVienActivity extends AppCompatActivity implements OnItemClickToAddGiangVienListener, OnItemClickToEditGiangVienListener, OnItemClickToDeleteListener_Huong {
     public static Intent intent;
     public static ArrayList<GiangVien> dsGiangVien;
 
@@ -66,12 +81,16 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dsGiangVien.clear();
+
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
                     GiangVien giangVien = new GiangVien();
                     giangVien = dataSnapshot.getValue(GiangVien.class);
                     dsGiangVien.add(giangVien);
                 }
-                mAdapter  = new GiangVienSwipeRecyclerViewAdapter(DanhSachGiangVienActivity.this, dsGiangVien);
+                mAdapter = new GiangVienSwipeRecyclerViewAdapter(DanhSachGiangVienActivity.this, dsGiangVien);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setAdapter(mAdapter);
                 ((GiangVienSwipeRecyclerViewAdapter) mAdapter).setMode(Attributes.Mode.Single);
@@ -83,7 +102,7 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
             }
         });
 
-        LinearLayoutManager layoutManager =new LinearLayoutManager(this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         // Item decoration
         recyclerView.addItemDecoration(new DividerItemDecoration(getResources().getDrawable(R.drawable.divider, getTheme())));
@@ -111,18 +130,42 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
 //        Toast.makeText(this, "Selected Item: " +item.getTitle(), Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(this, "Selected Item: " + item.getTitle(), Toast.LENGTH_SHORT).show();
+
         switch (item.getItemId()) {
             case R.id.them_item:
                 openDialog();
                 return true;
             case R.id.thoat_item:
                 // do your code
+                AlertDialog.Builder builder = new AlertDialog.Builder(DanhSachGiangVienActivity.this);
+                builder.setTitle("Thoát chương trình");
+                builder.setMessage("Bạn có muốn thoát khỏi chương trình?");
+                builder.setNegativeButton("Đóng", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setPositiveButton("Thoát", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        intent.setClass(getApplicationContext(), LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
     private void openDialog() {
         DialogAddOrEditGiangVien addOrEditGiangVien = new DialogAddOrEditGiangVien();
         addOrEditGiangVien.show(getSupportFragmentManager(), "Thêm giảng viên");
@@ -130,7 +173,9 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
 
     @Override
     public void applyGiangVien(GiangVien giangVien) {
-        dsGiangVien.add(0,giangVien);
+
+        dsGiangVien.add(0, giangVien);
+
         reference.child(giangVien.getMaGV()).setValue(giangVien);
 
         accGVReference.child(giangVien.getMaGV()).setValue(new AccountGiangVien(giangVien.getMaGV(), giangVien.getMaGV()));
@@ -142,6 +187,7 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
         dsGiangVien.remove(object);
 
         reference.child(((GiangVien) object).getMaGV()).removeValue();
+
         accGVReference.child(((GiangVien) object).getMaGV()).removeValue();
 
         mAdapter.notifyDataSetChanged();
@@ -149,8 +195,13 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
 
     @Override
     public void onItemClicked(GiangVien giangVien, int position) {
+
         for(GiangVien gv : dsGiangVien){
             if(gv.getMaGV().equals(giangVien.getMaGV())){
+
+        for (GiangVien gv : dsGiangVien) {
+            if (gv.getMaGV().equals(giangVien.getMaGV())) {
+
                 gv.setMaGV(giangVien.getMaGV());
                 gv.setTenGV(giangVien.getTenGV());
                 gv.setHoGV(giangVien.getHoGV());
@@ -176,4 +227,5 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
         }
         mAdapter.notifyDataSetChanged();
     }
+
 }

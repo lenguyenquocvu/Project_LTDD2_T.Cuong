@@ -7,22 +7,12 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="actionBarStyle">@style/MyActionBarStyle</item>
-<!--        Đổi màu cho menu item-->
+
+        <!--        Đổi màu cho menu item-->
         <item name="android:textColor">@color/textActionBarColor</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="MyActionBarStyle" parent="@style/Widget.AppCompat.ActionBar.Solid">
-        <item name="background">@color/actionBarBackground</item>
-        <item name="titleTextStyle">@style/TitleActionBarStyle</item>
-    </style>
-
-    <style name="TitleActionBarStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/textActionBarColor</item>
-        <item name="android:textSize">@dimen/title_text_size</item>
-        <item name="android:textStyle">bold</item>
-        <item name="textAllCaps">true</item>
-    </style>
 
     <style name="TitleLayout">
         <item name="android:layout_width">match_parent</item>
@@ -41,15 +31,6 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
-    <style name="QuanLyButton">
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/textColorButton</item>
-        <item name="android:background">@drawable/my_button_bg</item>
-        <item name="android:paddingLeft">@dimen/button_padding_left</item>
-        <item name="android:layout_marginBottom">@dimen/button_margin_bottom</item>
-    </style>
 
     <style name="TextViewIdEven">
         <item name="android:layout_width">0dp</item>
@@ -67,6 +48,99 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/textColorItemRecyclerViewEven</item>
     </style>
+
+
+    <style name="btnEditAnđelete">
+        <item name="android:layout_width">@dimen/width_0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="divLayoutTo1per1_Horizontal">
+        <item name="android:layout_width">@dimen/width_0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <!-- Style of Khoa. -->
+    <style name="textview_on_item_khoa_recyclerview">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical|center</item>
+        <item name="android:textColor">@color/textColorItemRecyclerViewEven</item>
+    </style>
+
+    <style name="title_for_table_khoa">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/colorBackgroundTitleTableKhoa</item>
+
+    </style>
+
+
+    <style name="textview_on_table_khoa">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/fontSizeOnCarViewKhoa</item>
+    </style>
+
+    <style name="SpinnerMaNganh" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
+        <item name="android:textSize">@dimen/spinnerItemTextSize</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">7</item>
+
+    </style>
+
+    <!-- Dialog Them -->
+    <style name="child_linear_dialog">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="item_on_dialog">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="textview_on_dialog">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/fontSizeTextViewDialog</item>
+
+    </style>
+    <!-- End Style of Khoa.-->
+
+
+    <style name="MyActionBarStyle" parent="@style/Widget.AppCompat.ActionBar.Solid">
+        <item name="background">@color/actionBarBackground</item>
+        <item name="titleTextStyle">@style/TitleActionBarStyle</item>
+    </style>
+
+    <style name="TitleActionBarStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/textActionBarColor</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+
+    <style name="QuanLyButton">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/textColorButton</item>
+        <item name="android:background">@drawable/my_button_bg</item>
+        <item name="android:paddingLeft">@dimen/button_padding_left</item>
+        <item name="android:layout_marginBottom">@dimen/button_margin_bottom</item>
+    </style>
+
+
 
     <style name="ThemLayout">
         <item name="android:layout_width">match_parent</item>
@@ -98,27 +172,29 @@
         <item name="android:textStyle">normal</item>
     </style>
 
-    <style name="SpinnerMaNganh" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
-        <item name="android:textSize">@dimen/spinnerItemTextSize</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">7</item>
-    </style>
 
     <style name="SwipeStyle">
-        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_width">160dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:weightSum">2</item>
     </style>
 
-    <style name="SwipeItemStyle">
+    <style name="SwipeItemEditStyle">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColor">#fff</item>
-        <item name="android:background">#0076a5</item>
+        <item name="android:textColor">@color/textColorItemRecyclerViewEven</item>
+        <item name="android:background">@color/colorBackgroundBtnEdit</item>
+    </style>
+
+    <style name="SwipeItemDeleteStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/textColorItemRecyclerViewEven</item>
+        <item name="android:background">@color/colorBackgroundBtnDelete</item>
     </style>
 
     <style name="ButtonThemDialog">
@@ -138,4 +214,5 @@
         <item name="android:background">@color/btnColor</item>
         <item name="android:textColor">@color/textColorButton</item>
     </style>
+
 </resources>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/marginDialog"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/child_linear_dialog"
+        android:layout_weight="1">
+
+        <LinearLayout
+            style="@style/item_on_dialog"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/textview_on_dialog"
+                android:text="@string/ma_khoa" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/item_on_dialog"
+            android:layout_weight="3">
+
+            <EditText
+                android:id="@+id/edtMaKhoa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hintEdtMaKhoa" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/child_linear_dialog"
+        android:layout_weight="1">
+
+        <LinearLayout
+            style="@style/item_on_dialog"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/textview_on_dialog"
+                android:text="@string/ten_khoa" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/item_on_dialog"
+            android:layout_weight="3">
+
+            <EditText
+                android:id="@+id/edtTenKhoa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hintEdtTenKhoa" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/child_linear_dialog"
+        android:layout_weight="2">
+
+        <LinearLayout
+            style="@style/item_on_dialog"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/textview_on_dialog"
+                android:text="@string/ngay_thanh_lap" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/item_on_dialog"
+            android:layout_weight="3">
+
+            <DatePicker
+                android:id="@+id/dtpNgayThanhLap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:datePickerMode="spinner"
+                android:calendarViewShown="false"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

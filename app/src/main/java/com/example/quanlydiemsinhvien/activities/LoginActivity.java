@@ -16,6 +16,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quanlydiemsinhvien.R;
+import com.example.quanlydiemsinhvien.adapters.GiangVienSwipeRecyclerViewAdapter;
+import com.example.quanlydiemsinhvien.adapters.SinhVienSwipeRecyclerViewAdapter;
 import com.example.quanlydiemsinhvien.data_models.Accounts;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -72,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("==>", item.getId() + " " + item.getPassword());
                         if (id.equals(item.getId()) && password.equals(item.getPassword())) {
                             Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thành công", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, MainDanhSachAdmin.class);
+                            Intent intent = new Intent(LoginActivity.this, QuanLyActivity.class);
                             startActivity(intent);
                         } else {
 
@@ -98,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("==>", item.getId() + " " + item.getPassword());
                         if (id.equals(item.getId()) && password.equals(item.getPassword())) {
                             Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thành công", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, MainDanhSachGiangVien.class);
+                            Intent intent = new Intent(LoginActivity.this, DanhSachGiangVienActivity.class);
                             startActivity(intent);
                         } else {
                             //Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thất bại", Toast.LENGTH_SHORT).show();
@@ -110,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("==>", item.getId() + " " + item.getPassword());
                         if (id.equals(item.getId()) && password.equals(item.getPassword())) {
                             Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thành công", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, MainDanhSachSinhVien.class);
+                            Intent intent = new Intent(LoginActivity.this, DanhSachSinhVienActivity.class);
                             startActivity(intent);
                         } else {
                             //Toast.makeText(LoginActivity.this, "Bạn đã đặng nhập thất bại", Toast.LENGTH_SHORT).show();
@@ -139,7 +141,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Đóng", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -254,7 +256,7 @@ public class LoginActivity extends AppCompatActivity {
                     String passwordDB = snapshot.child(idVal).child("password").getValue(String.class);
                     if (passwordDB.equals(passwordVal)) {
                         String idDB = snapshot.child(idVal).child("id").getValue(String.class);
-                        Intent intent = new Intent(getApplicationContext(), Accounts.class);
+                        intent.setClass(getApplicationContext(), QuanLyActivity.class);
                         intent.putExtra("id", idDB);
                         intent.putExtra("password", passwordDB);
                         startActivity(intent);
@@ -282,8 +284,8 @@ public class LoginActivity extends AppCompatActivity {
                     String passwordDB = snapshot.child(idVal).child("password").getValue(String.class);
                     if (passwordDB.equals(passwordVal)) {
                         String idDB = snapshot.child(idVal).child("id").getValue(String.class);
-                        Intent intent = new Intent(getApplicationContext(), Accounts.class);
-                        intent.putExtra("id", idDB);
+                        intent.setClass(getApplicationContext(), DanhSachGiangVienActivity.class);
+                        intent.putExtra(GiangVienSwipeRecyclerViewAdapter.KEY_GIANGVIEN, idDB);
                         intent.putExtra("password", passwordDB);
                         startActivity(intent);
                     } else {
@@ -310,8 +312,8 @@ public class LoginActivity extends AppCompatActivity {
                     String passwordDB = snapshot.child(idVal).child("password").getValue(String.class);
                     if (passwordDB.equals(passwordVal)) {
                         String idDB = snapshot.child(idVal).child("id").getValue(String.class);
-                        Intent intent = new Intent(getApplicationContext(), Accounts.class);
-                        intent.putExtra("id", idDB);
+                        intent.setClass(getApplicationContext(), DanhSachSinhVienActivity.class);
+                        intent.putExtra(SinhVienSwipeRecyclerViewAdapter.KEY_SINHVIEN, idDB);
                         intent.putExtra("password", passwordDB);
                         startActivity(intent);
                     } else {

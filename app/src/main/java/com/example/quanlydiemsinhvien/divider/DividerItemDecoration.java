@@ -1,8 +1,6 @@
 
 package com.example.quanlydiemsinhvien.divider;
 
-
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;

@@ -1,7 +1,15 @@
 package com.example.quanlydiemsinhvien.activities;
 
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,7 +26,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.daimajia.swipe.util.Attributes;
 import com.example.quanlydiemsinhvien.R;
 import com.example.quanlydiemsinhvien.adapters.GiangVienSwipeRecyclerViewAdapter;
+
+import com.example.quanlydiemsinhvien.data_models.AccountGiangVien;
 import com.example.quanlydiemsinhvien.data_models.GiangVien;
+import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
+
+import com.example.quanlydiemsinhvien.data_models.GiangVien;
+
 import com.example.quanlydiemsinhvien.dialogs.DialogAddOrEditGiangVien;
 import com.example.quanlydiemsinhvien.divider.DividerItemDecoration;
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToAddGiangVienListener;
@@ -44,6 +58,7 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
+    DatabaseReference accGVReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +71,7 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
         dsGiangVien = new ArrayList<GiangVien>();
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("GiangVien");
+        accGVReference = rootNode.getReference("accountGiangVien");
 
         tvEmptyView = (TextView) findViewById(R.id.empty_view);
         recyclerView = findViewById(R.id.list_teacher_recycler_view);
@@ -65,7 +81,11 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dsGiangVien.clear();
+
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
                     GiangVien giangVien = new GiangVien();
                     giangVien = dataSnapshot.getValue(GiangVien.class);
                     dsGiangVien.add(giangVien);
@@ -110,7 +130,11 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+//        Toast.makeText(this, "Selected Item: " +item.getTitle(), Toast.LENGTH_SHORT).show();
+
         Toast.makeText(this, "Selected Item: " + item.getTitle(), Toast.LENGTH_SHORT).show();
+
         switch (item.getItemId()) {
             case R.id.them_item:
                 openDialog();
@@ -149,8 +173,12 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
 
     @Override
     public void applyGiangVien(GiangVien giangVien) {
+
         dsGiangVien.add(0, giangVien);
+
         reference.child(giangVien.getMaGV()).setValue(giangVien);
+
+        accGVReference.child(giangVien.getMaGV()).setValue(new AccountGiangVien(giangVien.getMaGV(), giangVien.getMaGV()));
     }
 
     @Override
@@ -160,13 +188,20 @@ public class DanhSachGiangVienActivity extends AppCompatActivity implements OnIt
 
         reference.child(((GiangVien) object).getMaGV()).removeValue();
 
+        accGVReference.child(((GiangVien) object).getMaGV()).removeValue();
+
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onItemClicked(GiangVien giangVien, int position) {
+
+        for(GiangVien gv : dsGiangVien){
+            if(gv.getMaGV().equals(giangVien.getMaGV())){
+
         for (GiangVien gv : dsGiangVien) {
             if (gv.getMaGV().equals(giangVien.getMaGV())) {
+
                 gv.setMaGV(giangVien.getMaGV());
                 gv.setTenGV(giangVien.getTenGV());
                 gv.setHoGV(giangVien.getHoGV());

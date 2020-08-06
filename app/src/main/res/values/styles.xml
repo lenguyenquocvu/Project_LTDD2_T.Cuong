@@ -35,7 +35,7 @@
     <style name="TextViewIdEven">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">3</item>
+        <item name="android:layout_weight">4</item>
         <item name="android:gravity">center</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/textColorItemRecyclerViewEven</item>
@@ -44,7 +44,7 @@
     <style name="TextViewTenEven">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">7</item>
+        <item name="android:layout_weight">6</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/textColorItemRecyclerViewEven</item>
     </style>

@@ -12,10 +12,17 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.quanlydiemsinhvien.adapters.GiangVienSwipeRecyclerViewAdapter;
 import com.example.quanlydiemsinhvien.data_models.GiangVien;
+
+import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener;
+
+public class DialogDeleteGiangVien extends DialogFragment {
+    private OnItemClickToDeleteListener listener;
+
 import com.example.quanlydiemsinhvien.interfaces.OnItemClickToDeleteListener_Huong;
 
 public class DialogDeleteGiangVien extends DialogFragment {
     private OnItemClickToDeleteListener_Huong listener;
+
     private GiangVien giangVien;
     @NonNull
     @Override
@@ -24,7 +31,7 @@ public class DialogDeleteGiangVien extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Xóa giảng viên");
         builder.setMessage("Bạn có chắc muốn xóa?");
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Đóng", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

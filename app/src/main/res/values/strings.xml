@@ -162,6 +162,15 @@
     <string name="txtDiaChiSV">Địa chỉ</string>
     <string name="hintDiaChiSV">Nhập Địa chỉ</string>
 
+    <string name="txtMaKhoaHoc">Mã khóa học</string>
+
+    <string name="btnCapNhatDialog">Cập nhật</string>
+
+    <string name="mucMaGV">Mã giảng viên</string>
+    <string name="mucTenGV">Tên giảng viên</string>
+
+    <string name="mucMaSV">Mã sinh viên</string>
+    <string name="mucTenSV">Tên sinh viên</string>
     <string name="swipeEdit">Sửa</string>
     <string name="swipeDelete">Xóa</string>
 

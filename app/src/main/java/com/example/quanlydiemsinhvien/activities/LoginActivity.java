@@ -305,7 +305,7 @@ public class LoginActivity extends AppCompatActivity {
                         intent.setClass(getApplicationContext(), DSLopActivity.class);
                         intent.putExtra("id", idDB);
 
-                        intent.setClass(getApplicationContext(), DanhSachGiangVienActivity.class);
+                        intent.setClass(getApplicationContext(), DSLopActivity.class);
                         intent.putExtra(GiangVienSwipeRecyclerViewAdapter.KEY_GIANGVIEN, idDB);
 
                         intent.putExtra("password", passwordDB);

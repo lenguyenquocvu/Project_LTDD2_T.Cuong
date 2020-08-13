@@ -48,14 +48,14 @@ public class DSLopAdapter extends RecyclerSwipeAdapter<DSLopAdapter.DSLopViewHol
     static class DSLopViewHolder extends RecyclerView.ViewHolder {
         private TextView mTxtMaLHP;
         private TextView mTxtTenLHP;
-        private ImageButton ibtnDelete;
+//        private ImageButton ibtnDelete;
         private SwipeLayout swipeLayout;
 
         public DSLopViewHolder(@NonNull View itemView) {
             super(itemView);
             mTxtMaLHP = (TextView) itemView.findViewById(R.id.txtMaLHP);
             mTxtTenLHP = (TextView) itemView.findViewById(R.id.txtTenLHP);
-            ibtnDelete = (ImageButton) itemView.findViewById(R.id.ibtnDelete);
+//            ibtnDelete = (ImageButton) itemView.findViewById(R.id.ibtnDelete);
             swipeLayout = itemView.findViewById(R.id.swipe_dslop);
         }
     }
@@ -104,38 +104,38 @@ public class DSLopAdapter extends RecyclerSwipeAdapter<DSLopAdapter.DSLopViewHol
         mItemManger.bindView(holder.itemView, position);
 
 
-        holder.ibtnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Xóa lớp");
-                builder.setMessage("Bạn có muốn xóa không?");
-
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-//                        mDsLopDatabase.deleteLop(aCard.getMaLHP());
-
-                        /*mItemManger.removeShownLayouts(holder.swipeLayout);*/
-                        /*listLop.remove(position);*/
-                        /*notifyItemRemoved(position);*/
-                        /*notifyItemRangeChanged(position, listLop.size());*/
-                        /*mItemManger.closeAllItems();*/
-                        Toast.makeText(view.getContext(), "Bạn không được quyền sử dụng tính năng này !", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-            }
-        });
+//        holder.ibtnDelete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(final View view) {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//                builder.setTitle("Xóa lớp");
+//                builder.setMessage("Bạn có muốn xóa không?");
+//
+//                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.dismiss();
+//                    }
+//                });
+//
+//                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+////                        mDsLopDatabase.deleteLop(aCard.getMaLHP());
+//
+//                        /*mItemManger.removeShownLayouts(holder.swipeLayout);*/
+//                        /*listLop.remove(position);*/
+//                        /*notifyItemRemoved(position);*/
+//                        /*notifyItemRangeChanged(position, listLop.size());*/
+//                        /*mItemManger.closeAllItems();*/
+//                        Toast.makeText(view.getContext(), "Bạn không được quyền sử dụng tính năng này !", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//                AlertDialog alertDialog = builder.create();
+//                alertDialog.show();
+//            }
+//        });
         mItemManger.bindView(holder.itemView, position);
 
 //        holder.itemView.setOnClickListener(new View.OnClickListener() {

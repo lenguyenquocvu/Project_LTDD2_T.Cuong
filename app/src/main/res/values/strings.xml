@@ -88,7 +88,7 @@
 
     <!-- Dialog Edit Khoa-->
     <string name="titleEditKhoa">Chỉnh sửa Khoa</string>
-    <string name="btnSua">Sửa</string>
+    <string name="btnSua">OK</string>
 
     <!-- End Khoa layout -->
 

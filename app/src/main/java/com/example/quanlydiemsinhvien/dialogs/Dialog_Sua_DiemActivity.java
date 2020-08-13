@@ -24,13 +24,13 @@ public class Dialog_Sua_DiemActivity extends DialogFragment {
         View view = inflater.inflate(R.layout.suadiem_layout, null);
         builder.setView(view)
                 .setTitle("Cập nhật lại khóa học")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton(DialogAddOrEditKhoahoc.OK_STRING, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         openDialog();
                     }
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(DialogAddOrEditKhoahoc.THOAT_STRING, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 

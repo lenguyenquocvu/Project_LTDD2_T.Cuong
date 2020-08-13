@@ -44,7 +44,7 @@ public class DialogAddChuongTrinhDaoTao extends DialogFragment {
         builder.setView(view);
 
 
-        builder.setNegativeButton(DialogAddOrEditKhoahoc.CANCEL_STRING, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(DialogAddOrEditKhoahoc.THOAT_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

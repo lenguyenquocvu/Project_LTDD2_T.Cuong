@@ -85,7 +85,7 @@ public class DanhSachKhoaHocActivity extends AppCompatActivity implements OnItem
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.e(DanhSachChuongTrinhDaoTaoActivity.TAG, DialogAddOrEditKhoahoc.CANCEL_STRING, error.toException());
+                Log.e(DanhSachChuongTrinhDaoTaoActivity.TAG, DialogAddOrEditKhoahoc.THOAT_STRING, error.toException());
             }
         });
 
@@ -204,7 +204,7 @@ public class DanhSachKhoaHocActivity extends AppCompatActivity implements OnItem
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
-                                Log.e(DanhSachChuongTrinhDaoTaoActivity.TAG, DialogAddOrEditKhoahoc.CANCEL_STRING, error.toException());
+                                Log.e(DanhSachChuongTrinhDaoTaoActivity.TAG, DialogAddOrEditKhoahoc.THOAT_STRING, error.toException());
                             }
                         });
                     }

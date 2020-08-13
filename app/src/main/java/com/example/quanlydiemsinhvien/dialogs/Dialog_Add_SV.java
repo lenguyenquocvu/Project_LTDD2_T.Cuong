@@ -37,7 +37,7 @@ public class Dialog_Add_SV extends DialogFragment {
         builder.setView(inflater.inflate(R.layout.dialog_addsv_layout, null));
 
         // Set them button
-        builder.setPositiveButton(R.string.btnThemSV, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(DialogAddOrEditKhoahoc.OK_STRING, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -59,7 +59,7 @@ public class Dialog_Add_SV extends DialogFragment {
         });
 
         // Set Cancel button
-        builder.setNegativeButton(R.string.btnCancel, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(DialogAddOrEditKhoahoc.THOAT_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(getActivity(), "Cancel on DSSV is tapped!", Toast.LENGTH_SHORT).show();

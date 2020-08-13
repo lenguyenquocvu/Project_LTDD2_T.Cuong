@@ -145,7 +145,7 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
         }
 
 
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(DialogAddOrEditKhoahoc.OK_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (getArguments() == null) {
@@ -217,7 +217,7 @@ public class DialogAddOrEditGiangVien extends DialogFragment {
                 }
             }
         })
-                .setNegativeButton("Đóng", new DialogInterface.OnClickListener() {
+                .setNegativeButton(DialogAddOrEditKhoahoc.THOAT_STRING, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dismiss();

@@ -24,7 +24,7 @@ public class DialogDeleteKhoaHoc extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Xóa khóa học");
         builder.setMessage("Bạn có muốn xóa không?");
-        builder.setNegativeButton(DialogAddOrEditKhoahoc.CANCEL_STRING, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(DialogAddOrEditKhoahoc.THOAT_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

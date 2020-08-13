@@ -34,14 +34,14 @@ public class DialogThemMonHoc extends DialogFragment {
 
         builder.setTitle("Thêm môn học");
         builder.setView(view);
-        builder.setNegativeButton(DialogAddOrEditKhoahoc.CANCEL_STRING, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(DialogAddOrEditKhoahoc.THOAT_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         });
 
-        builder.setPositiveButton("Thêm", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(DialogAddOrEditKhoahoc.OK_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 monHoc.setMaMH(edtMaMH.getText().toString());

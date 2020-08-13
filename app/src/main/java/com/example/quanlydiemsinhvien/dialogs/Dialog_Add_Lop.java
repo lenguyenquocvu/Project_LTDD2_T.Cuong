@@ -44,7 +44,7 @@ public class Dialog_Add_Lop extends DialogFragment {
         builder.setView(inflater.inflate(R.layout.dialog_addlop_layout, null));
 
         //Set button them lop
-        builder.setPositiveButton(R.string.btnThemLop, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(DialogAddOrEditKhoahoc.OK_STRING, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -79,7 +79,7 @@ public class Dialog_Add_Lop extends DialogFragment {
         });
 
         // Set Cancel button
-        builder.setNegativeButton(R.string.btnCancel, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(DialogAddOrEditKhoahoc.THOAT_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(getActivity(), "Cancel on DSLop is tapped!", Toast.LENGTH_SHORT).show();

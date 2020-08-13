@@ -26,14 +26,14 @@ public class DialogDeleteSinhVien extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Xóa sinh viên");
         builder.setMessage("Bạn có chắc muốn xóa?");
-        builder.setNegativeButton("Đóng", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(DialogAddOrEditKhoahoc.THOAT_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         });
 
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(DialogAddOrEditKhoahoc.OK_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if(getArguments() != null){

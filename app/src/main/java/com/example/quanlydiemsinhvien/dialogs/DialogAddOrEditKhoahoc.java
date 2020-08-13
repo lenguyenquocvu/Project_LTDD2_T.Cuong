@@ -27,7 +27,7 @@ public class DialogAddOrEditKhoahoc extends DialogFragment {
     KhoaHoc khoaHoc;
     private OnItemClickToEditListener editKhoaHocListener;
     public static final String OK_STRING = "OK";
-    public static final String CANCEL_STRING = "Cancel";
+    public static final String THOAT_STRING = "THOÁT";
 
     @NonNull
     @Override
@@ -47,10 +47,10 @@ public class DialogAddOrEditKhoahoc extends DialogFragment {
             edtMaKH.setText(khoaHoc.getMaKH());
             edtBatdau.setText(khoaHoc.getBatDau() + "");
             edtKetthuc.setText(khoaHoc.getKetThuc() + "");
-            builder.setTitle("Update Khóa học");
+            builder.setTitle("Cập nhật Khóa học");
         } else {
             edtMaKH.setEnabled(true);
-            builder.setTitle("Add Khóa học");
+            builder.setTitle("Thêm Khóa học");
         }
 
 
@@ -75,7 +75,7 @@ public class DialogAddOrEditKhoahoc extends DialogFragment {
                 }
             }
         })
-                .setNegativeButton(CANCEL_STRING, new DialogInterface.OnClickListener() {
+                .setNegativeButton(THOAT_STRING, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dismiss();

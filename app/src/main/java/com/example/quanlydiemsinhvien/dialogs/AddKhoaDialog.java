@@ -38,7 +38,7 @@ public class AddKhoaDialog extends DialogFragment {
         builder.setView(inflater.inflate(R.layout.dialog_them_khoa, null));
 
         // Set button Them
-        builder.setPositiveButton(R.string.btnThem, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(DialogAddOrEditKhoahoc.OK_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Dialog dialog = Dialog.class.cast(dialogInterface);
@@ -70,7 +70,7 @@ public class AddKhoaDialog extends DialogFragment {
         });
 
         // Set Cancel button
-        builder.setNegativeButton(R.string.btnCancel, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(DialogAddOrEditKhoahoc.THOAT_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Log.d("test", "The Cancel button on Dialog is tapped!");

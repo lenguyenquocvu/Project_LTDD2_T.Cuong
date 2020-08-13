@@ -84,7 +84,7 @@ public class DialogAddOrEditLopHocPhan extends DialogFragment {
                 edtTenLop.setText(lopHocPhan.getTenLHP());
 
 
-                builder.setTitle("Sửa thông tin lớp học phần");
+                builder.setTitle("Cập nhật thông tin lớp học phần");
 
             } else {
                 builder.setTitle("Thêm lớp học phần");
@@ -170,7 +170,7 @@ public class DialogAddOrEditLopHocPhan extends DialogFragment {
                 }
             }
         });
-        builder.setNegativeButton(DialogAddOrEditKhoahoc.CANCEL_STRING, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(DialogAddOrEditKhoahoc.THOAT_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dismiss();

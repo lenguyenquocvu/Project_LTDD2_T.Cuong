@@ -51,7 +51,7 @@ public class AddNganhDialog extends DialogFragment {
         tvMaKhoa.setText(NganhActivity.getMaKhoaCuaNganh);
 
         // Set Them Nganh button
-        builder.setPositiveButton(R.string.btnThem, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(DialogAddOrEditKhoahoc.OK_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String maNganh = edtMaNganh.getText().toString();
@@ -70,7 +70,7 @@ public class AddNganhDialog extends DialogFragment {
         });
 
         // Set Cancel button
-        builder.setNegativeButton(R.string.btnCancel, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(DialogAddOrEditKhoahoc.THOAT_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 AddNganhDialog.this.dismiss();

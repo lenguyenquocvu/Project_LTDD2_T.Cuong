@@ -102,7 +102,7 @@ public class DanhSachChuongTrinhDaoTaoActivity extends AppCompatActivity impleme
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-                            Log.e(TAG, DialogAddOrEditKhoahoc.CANCEL_STRING, error.toException());
+                            Log.e(TAG, DialogAddOrEditKhoahoc.THOAT_STRING, error.toException());
                         }
                     });
 
@@ -111,7 +111,7 @@ public class DanhSachChuongTrinhDaoTaoActivity extends AppCompatActivity impleme
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.e(TAG, DialogAddOrEditKhoahoc.CANCEL_STRING, error.toException());
+                Log.e(TAG, DialogAddOrEditKhoahoc.THOAT_STRING, error.toException());
             }
         });
 
@@ -149,7 +149,7 @@ public class DanhSachChuongTrinhDaoTaoActivity extends AppCompatActivity impleme
                         dialog.dismiss();
                     }
                 });
-                builder.setPositiveButton("Thoát", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(DialogAddOrEditKhoahoc.THOAT_STRING, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         intent.setClass(getApplicationContext(), LoginActivity.class);
@@ -202,7 +202,7 @@ public class DanhSachChuongTrinhDaoTaoActivity extends AppCompatActivity impleme
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.e(TAG, DialogAddOrEditKhoahoc.CANCEL_STRING, error.toException());
+                Log.e(TAG, DialogAddOrEditKhoahoc.THOAT_STRING, error.toException());
             }
         });
         rvChuongTrinhDaoTaos.removeViewAt(position);

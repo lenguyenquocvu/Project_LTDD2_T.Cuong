@@ -47,11 +47,7 @@ public class Nganh {
 
     @Override
     public String toString() {
-        return "Nganh{" +
-                "maKhoa='" + maKhoa + '\'' +
-                ", maNganh='" + maNganh + '\'' +
-                ", tenNganh='" + tenNganh + '\'' +
-                '}';
+        return tenNganh;
     }
 
     public Map<String, Object> toMap() {

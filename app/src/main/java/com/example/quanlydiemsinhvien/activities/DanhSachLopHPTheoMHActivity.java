@@ -96,7 +96,7 @@ public class DanhSachLopHPTheoMHActivity extends AppCompatActivity implements On
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.e(DanhSachChuongTrinhDaoTaoActivity.TAG, DialogAddOrEditKhoahoc.CANCEL_STRING, error.toException());
+                Log.e(DanhSachChuongTrinhDaoTaoActivity.TAG, DialogAddOrEditKhoahoc.THOAT_STRING, error.toException());
             }
         });
 
